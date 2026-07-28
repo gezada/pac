@@ -1,0 +1,122 @@
+name: Deploy static site
+
+# Intencionalmente manual até a primeira implantação e o rollback serem
+# validados na VPS. Não adicionar gatilho de push antes disso.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pac-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+
+    env:
+      PAC_VPS_HOST: ${{ secrets.PAC_VPS_HOST }}
+      PAC_VPS_PORT: ${{ secrets.PAC_VPS_PORT }}
+      PAC_VPS_USER: ${{ secrets.PAC_VPS_USER }}
+      PAC_VPS_SSH_KEY: ${{ secrets.PAC_VPS_SSH_KEY }}
+      PAC_VPS_KNOWN_HOSTS: ${{ secrets.PAC_VPS_KNOWN_HOSTS }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify production build
+        run: npm run verify
+
+      - name: Validate deploy secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          required=(
+            PAC_VPS_HOST
+            PAC_VPS_USER
+            PAC_VPS_SSH_KEY
+            PAC_VPS_KNOWN_HOSTS
+          )
+
+          for variable in "${required[@]}"; do
+            if [[ -z "${!variable}" ]]; then
+              echo "::error::Missing required secret: ${variable}"
+              exit 1
+            fi
+          done
+
+      - name: Configure isolated SSH client
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          key_file="${RUNNER_TEMP}/pac_deploy_key"
+          known_hosts_file="${RUNNER_TEMP}/pac_known_hosts"
+
+          printf '%s\n' "${PAC_VPS_SSH_KEY}" > "${key_file}"
+          printf '%s\n' "${PAC_VPS_KNOWN_HOSTS}" > "${known_hosts_file}"
+          chmod 600 "${key_file}" "${known_hosts_file}"
+
+      - name: Upload and activate immutable release
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          port="${PAC_VPS_PORT:-22}"
+          key_file="${RUNNER_TEMP}/pac_deploy_key"
+          known_hosts_file="${RUNNER_TEMP}/pac_known_hosts"
+          release_id="${GITHUB_SHA}"
+          incoming="/srv/pac/web/releases/.incoming-${release_id}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          target="${PAC_VPS_USER}@${PAC_VPS_HOST}"
+
+          ssh_args=(
+            -i "${key_file}"
+            -p "${port}"
+            -o BatchMode=yes
+            -o IdentitiesOnly=yes
+            -o StrictHostKeyChecking=yes
+            -o "UserKnownHostsFile=${known_hosts_file}"
+          )
+
+          ssh "${ssh_args[@]}" "${target}" "mkdir -- '${incoming}'"
+          tar -C dist -czf - . |
+            ssh "${ssh_args[@]}" "${target}" "tar -xzf - -C '${incoming}'"
+          ssh "${ssh_args[@]}" "${target}" \
+            "bash -s -- '${release_id}' '${incoming}'" \
+            < ops/scripts/activate-release.sh
+
+      - name: Verify Nginx response on the VPS
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          port="${PAC_VPS_PORT:-22}"
+          key_file="${RUNNER_TEMP}/pac_deploy_key"
+          known_hosts_file="${RUNNER_TEMP}/pac_known_hosts"
+          target="${PAC_VPS_USER}@${PAC_VPS_HOST}"
+
+          ssh \
+            -i "${key_file}" \
+            -p "${port}" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            -o "UserKnownHostsFile=${known_hosts_file}" \
+            "${target}" \
+            "curl --fail --silent --show-error --retry 3 --header 'Host: pac.bet' http://127.0.0.1/ > /dev/null"

@@ -2,7 +2,7 @@
 
 Documento mestre de arquitetura, implantação temporária, operação segura e migração.
 
-> **Estado atual em 28/07/2026:** este repositório contém somente documentação. A landing page ainda não foi desenvolvida, não existe deploy do PAC na VPS, o DNS não foi apontado para a VPS e nenhuma configuração do Cogu foi alterada.
+> **Estado atual em 28/07/2026:** a landing page provisória e a estrutura operacional foram implementadas e validadas localmente. Ainda não existe deploy do PAC na VPS, o DNS não foi apontado para a VPS e nenhuma configuração do Cogu foi alterada.
 
 Este README foi escrito para servir como fonte de contexto para pessoas e agentes de inteligência artificial. Antes de executar qualquer trabalho de infraestrutura, leia o documento inteiro.
 
@@ -35,11 +35,11 @@ O compartilhamento da VPS é temporário. O compartilhamento de código, dados, 
 | Visibilidade | Público | Não versionar segredos ou dados privados |
 | Domínio | `pac.bet` | Registrado na GoDaddy |
 | DNS atual | Nameservers na GoDaddy; raiz ainda ligada ao Website Builder; `www` aponta para `pac.bet` | Observado em 28/07/2026; reconfirmar antes de qualquer mudança |
-| Produto inicial | Landing page institucional estática | Decisão confirmada |
+| Produto inicial | Landing page estática de “Em construção” | Implementada e validada localmente |
 | Hospedagem inicial desejada | VPS Hostinger já usada por serviços do Cogu | Planejado, ainda não executado |
 | Docker no PAC inicial | Não será usado | Decisão confirmada |
 | Banco de dados do PAC | Não existe nesta fase | Será próprio quando necessário |
-| Deploy automático | Planejado, ainda não configurado | Implementar depois do primeiro deploy controlado |
+| Deploy | CI de build ativa; workflow de produção preparado com disparo somente manual | Não executar antes da auditoria e preparação da VPS |
 | Endereço IP da VPS | Não confirmado neste repositório | Deve ser obtido diretamente no hPanel ou por SSH autorizado |
 | Capacidade livre da VPS | Não auditada | Conferir CPU, RAM, disco, portas e carga antes do deploy |
 | Firewall e exposição de portas | Não auditados | Conferir antes de adicionar qualquer serviço |
@@ -168,42 +168,59 @@ Isso permite recriar o site em outro servidor com:
 
 ---
 
-## 6. Estrutura planejada
+## 6. Estrutura implementada
 
 ### 6.1 Repositório
 
-A estrutura abaixo é uma proposta para quando o desenvolvimento começar. Ela ainda não existe.
+A landing usa Vite com TypeScript e não possui framework de interface, backend ou dependências de runtime. O build é inteiramente estático.
 
 ```text
 /
+├── AGENTS.md                     # limites para pessoas e agentes de IA
 ├── README.md
+├── index.html
 ├── package.json
 ├── package-lock.json
+├── tsconfig.json
+├── vite.config.ts
 ├── src/
+│   ├── main.ts
+│   ├── styles.css
+│   └── vite-env.d.ts
 ├── public/
-├── dist/                         # gerado; não deve ser a fonte da verdade
+│   └── robots.txt
+├── dist/                         # gerado e ignorado pelo Git
 ├── .github/
 │   └── workflows/
+│       ├── ci.yml
 │       └── deploy-static.yml
 └── ops/
     ├── nginx/
     │   └── pac.bet.conf
     ├── scripts/
-    │   └── deploy-static.sh
+    │   ├── activate-release.sh
+    │   └── rollback-release.sh
     ├── RUNBOOK.md
     └── MIGRATION.md
 ```
 
-Quando a stack for definida, este README deve registrar:
+Contrato de build:
 
-- versão exata do runtime;
-- gerenciador de pacotes;
-- comando de instalação;
-- comando de build;
-- diretório de saída;
-- variáveis de ambiente esperadas, sem valores;
-- procedimento de teste;
-- procedimento de rollback.
+| Item | Valor |
+|---|---|
+| Runtime de referência | Node.js 22, mínimo `22.12.0` |
+| Gerenciador | npm com `package-lock.json` |
+| Vite | `8.1.5` |
+| TypeScript | `7.0.2` |
+| Instalação reproduzível | `npm ci` |
+| Desenvolvimento | `npm run dev` |
+| Checagem de tipos | `npm run typecheck` |
+| Build | `npm run build` |
+| Validação completa | `npm run verify` |
+| Artefato | `dist/` |
+| Variáveis de runtime | Nenhuma nesta fase |
+
+O arquivo `dist/` não é fonte da verdade nem deve ser versionado. Cada publicação deve recompilar um commit identificado.
 
 ### 6.2 VPS
 
@@ -312,13 +329,15 @@ A implantação só pode avançar quando:
 
 ### Fase A — Desenvolver a landing
 
-1. Escolher e registrar a stack.
-2. Manter o resultado como site estático.
-3. Fixar versões e versionar o arquivo de lock.
-4. Definir um comando único de build.
-5. Garantir que o build gere um diretório autocontido.
-6. Validar links, rotas, assets, responsividade e metadados.
-7. Não adicionar banco, API ou Docker sem necessidade confirmada.
+**Estado: concluída no repositório.**
+
+1. Stack registrada: Vite `8.1.5`, TypeScript `7.0.2` e Node.js 22.
+2. Resultado mantido como site estático.
+3. Dependências fixadas e arquivo de lock versionado.
+4. Comando único de validação: `npm run verify`.
+5. Build autocontido gerado em `dist/`.
+6. Metadados, indexação temporariamente bloqueada e responsividade implementados.
+7. Nenhum banco, API, container ou variável de runtime adicionado.
 
 ### Fase B — Preparar o espaço isolado
 
@@ -635,8 +654,8 @@ Se houver dúvida entre reutilizar algo existente e criar algo isolado, a escolh
 
 ### Antes
 
-- [ ] Stack e comando de build documentados
-- [ ] Landing validada localmente
+- [x] Stack e comando de build documentados
+- [x] Landing validada localmente
 - [ ] Auditoria somente de leitura concluída
 - [ ] IP real da VPS confirmado
 - [ ] Capacidade livre confirmada
@@ -669,8 +688,8 @@ Se houver dúvida entre reutilizar algo existente e criar algo isolado, a escolh
 - [ ] Commit de produção registrado
 - [ ] Rollback testável
 - [ ] Deploy automático configurado com secrets próprios
-- [ ] Nenhum segredo versionado
-- [ ] Este README atualizado
+- [x] Nenhum segredo versionado
+- [x] Este README atualizado
 
 ---
 
@@ -686,18 +705,20 @@ Se houver dúvida entre reutilizar algo existente e criar algo isolado, a escolh
 | 28/07/2026 | Proibir compartilhamento de dados e serviços com o Cogu | Reduzir risco e facilitar migração |
 | 28/07/2026 | Usar Docker separado quando existirem serviços dinâmicos | Garantir isolamento e portabilidade |
 | 28/07/2026 | Migrar o PAC para infraestrutura própria no futuro | Remover dependência da VPS compartilhada |
+| 28/07/2026 | Usar Vite + TypeScript sem framework para a landing | Build estático reproduzível com baixa complexidade |
+| 28/07/2026 | Bloquear indexação da página provisória | Evitar indexar uma experiência temporária |
+| 28/07/2026 | Manter deploy de produção somente manual nesta fase | Impedir publicação antes da auditoria e do primeiro deploy acompanhado |
 
 ---
 
 ## 16. Próximo passo autorizado
 
-O próximo passo técnico, quando solicitado, é:
+O próximo passo técnico autorizado é:
 
-1. desenvolver e validar a landing page no repositório;
-2. obter acesso SSH seguro à VPS;
+1. publicar e integrar a implementação no GitHub;
+2. obter acesso SSH temporário e seguro à VPS;
 3. executar a auditoria somente de leitura;
-4. apresentar os resultados e o plano final;
-5. aguardar autorização antes de criar qualquer recurso na VPS.
+4. apresentar capacidade, conflitos, riscos e os comandos exatos de preparação;
+5. aguardar autorização antes de criar usuário, diretórios ou virtual host do PAC.
 
-Até que isso aconteça, nenhuma ação em Hostinger, VPS, GoDaddy, Nginx, Certbot ou Cogu está autorizada por este documento.
-
+Até a conclusão da auditoria, nenhuma ação em GoDaddy, Nginx, Certbot, firewall ou recursos do Cogu está autorizada por este documento. O workflow de produção também não deve ser executado.
