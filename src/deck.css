@@ -58,19 +58,20 @@
 /* 03 — current reality */
 .reality-slide .slide-head {
   max-width: 1180px;
+  margin-bottom: clamp(10px, 1.8vh, 18px);
 }
 
 .reality-map {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr .55fr 1fr;
+  grid-template-columns: .88fr .68fr .88fr;
   align-items: center;
   gap: clamp(24px, 4vw, 68px);
   min-height: clamp(300px, 42dvh, 440px);
 }
 
 .platform-window {
-  min-height: clamp(250px, 34dvh, 350px);
+  min-height: clamp(225px, 30dvh, 315px);
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 24px;
@@ -85,7 +86,7 @@
   gap: 10px;
   padding-inline: 18px;
   border-bottom: 1px solid rgba(255, 255, 255, .07);
-  color: #87919d;
+  color: #b0bac5;
   font: 500 9px/1 var(--mono);
   letter-spacing: .13em;
 }
@@ -186,7 +187,7 @@
 .audience-core {
   position: relative;
   z-index: 2;
-  min-height: 210px;
+  min-height: 245px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -211,13 +212,15 @@
 
 .audience-core strong {
   margin: 14px 0;
-  font-size: clamp(18px, 1.5vw, 25px);
+  font-size: clamp(24px, 1.9vw, 32px);
   line-height: 1;
   letter-spacing: -.045em;
 }
 
 .audience-core span {
-  color: #ff8d9a;
+  color: #ff9ca7;
+  font-size: clamp(9px, .7vw, 12px);
+  letter-spacing: .14em;
 }
 
 .reality-links {
@@ -2212,7 +2215,7 @@
   }
 
   .platform-window {
-    min-height: 112px;
+    min-height: 104px;
     border-radius: 15px;
   }
 
@@ -2249,8 +2252,8 @@
 
   .audience-core {
     grid-row: 2;
-    width: 150px;
-    min-height: 92px;
+    width: 170px;
+    min-height: 106px;
     margin-inline: auto;
     padding: 12px;
     border-radius: 18px;
@@ -2258,7 +2261,7 @@
 
   .audience-core strong {
     margin: 6px 0;
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .platform-window--whatsapp {

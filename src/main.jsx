@@ -195,7 +195,7 @@ function App() {
       <main>
         <section className="deck-slide reality-slide" data-deck-start aria-label="A realidade atual">
           <div className="deck-slide__inner">
-            <SlideHead kicker="HOJE" support="A audiência existe, mas a relação ainda depende de plataformas de terceiros">
+            <SlideHead kicker="HOJE">
               FACEBOOK É O PALCO<br />WHATSAPP É A DISTRIBUIÇÃO<br /><span>NENHUM DOS DOIS É A CASA</span>
             </SlideHead>
             <div className="reality-map">
