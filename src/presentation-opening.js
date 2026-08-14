@@ -45,11 +45,9 @@ function buildOpeningSlides() {
         <div class="impact-slide__label">PRINCIPAIS OBJETIVOS</div>
         <div class="impact-slide__cards">
           <article class="impact-objective-card">
-            <span>01</span>
-            <strong>AUMENTAR O TICKET MÉDIO DO PÚBLICO</strong>
+            <strong>AUMENTAR O TICKET MÉDIO</strong>
           </article>
           <article class="impact-objective-card">
-            <span>02</span>
             <strong>SER PROPRIETÁRIO DOS LEADS</strong>
           </article>
         </div>
