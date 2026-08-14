@@ -56,9 +56,9 @@ function addSlideMetadata(main) {
 }
 function buildOpeningSlides() {
   const main = document.querySelector("main");
-  const hero = main?.querySelector(":scope > .hero");
+  const firstDeckSlide = main?.querySelector(":scope > [data-deck-start]");
 
-  if (!main || !hero || main.querySelector(".opening-slide")) return false;
+  if (!main || !firstDeckSlide || main.querySelector(".opening-slide")) return false;
 
   const cover = document.createElement("section");
   cover.className = "opening-slide presentation-slide";
@@ -92,14 +92,9 @@ function buildOpeningSlides() {
     </div>
   `;
 
-  main.insertBefore(cover, hero);
-  main.insertBefore(impact, hero);
+  main.insertBefore(cover, firstDeckSlide);
+  main.insertBefore(impact, firstDeckSlide);
 
-  /* The original hero becomes the supporting third slide. Its former headline
-     now lives on slide 02, so remove only that duplicate headline while
-     preserving every other piece of the commercial narrative below it */
-  hero.classList.add("hero-support-slide");
-  hero.querySelector(".hero-copy h1")?.remove();
 
   addSlideMetadata(main);
   removeTerminalPeriods(main);

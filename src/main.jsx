@@ -1,323 +1,606 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import "./styles.css";
+import React from "react"
+import { createRoot } from "react-dom/client"
+import { motion } from "motion/react"
+import "./styles.css"
+import "./deck.css"
 
-const ease = [0.22, 1, 0.36, 1];
+const ease = [0.22, 1, 0.36, 1]
 
-const cassFeatures = [
-  ["01", "CONTA + PERFIL", "Identidade própria, histórico, opt-ins e uma base que pertence ao ecossistema — não à plataforma de terceiros."],
-  ["02", "XP + LEVELS", "Progressão, status, ranking, benefícios e motivos concretos para voltar mais vezes."],
-  ["03", "CASSCOIN", "Recompensa econômica com valor dentro do ecossistema, preparada para Store, rewards e PAC."],
-  ["04", "STORE", "Banca, produtos, tickets, drops, experiências e qualquer reward que faça sentido para a comunidade."],
-  ["05", "MISSIONS", "Daily, streaks, códigos durante a live, drops, tarefas e campanhas que transformam audiência em hábito."],
-  ["06", "RAFFLES + PREDICTIONS", "Sorteios e interações leves que já criam participação antes mesmo do PAC entrar no ar."],
-  ["07", "PARTNER HUB", "Casas parceiras, campanhas, links, tracking e relatórios — com integrações graduais, sem travar o produto."]
-];
-
-const cassJourney = [
-  ["01", "VÊ CASS", "Facebook continua sendo o palco e o gatilho de atenção."],
-  ["02", "ENTRA", "CTA leva para uma conta própria e uma promessa clara de recompensa."],
-  ["03", "GANHA", "O primeiro reward prova valor imediatamente após o cadastro."],
-  ["04", "ACUMULA", "XP, level e CassCoin transformam sessões soltas em progressão."],
-  ["05", "TROCA", "Store, raffles, benefícios e campanhas dão utilidade ao que foi acumulado."],
-  ["06", "VOLTA", "Mais frequência, mais pontos de contato e mais oportunidades de receita."]
-];
+const behaviorLoop = ["ASSISTE", "ENTRA", "GANHA", "ACUMULA", "EVOLUI", "TROCA", "PARTICIPA", "VOLTA"]
 
 const cassRoadmap = [
-  ["01", "FOUNDATION", "Login, perfil, XP, levels e CassCoin."],
-  ["02", "REWARDS", "Store, raffles, drops, tickets e catálogo agnóstico."],
-  ["03", "LIVE LAYER", "Códigos, missions, predictions e widgets conectados à live."],
-  ["04", "PARTNERS", "Hub de bets, tracking, relatórios e integrações graduais."],
-  ["05", "PAC READY", "Saldo, ledger lógico, infraestrutura e pontos de integração."],
-  ["06", "MOBILE", "App/PWA, push e uma relação ainda mais direta com a comunidade."]
-];
+  ["01", "FOUNDATION", "Conta · Perfil · XP · CassCoin"],
+  ["02", "REWARDS ENGINE", "Store · Raffles · Drops"],
+  ["03", "LIVE ENGAGEMENT", "Codes · Missions · Predictions"],
+  ["04", "PARTNER LAYER", "Tracking · Campaigns · Reports"],
+  ["05", "PAC READY", "Saldo · Identidade · Event Engine"],
+  ["06", "MOBILE", "App/PWA · Push · CRM"],
+]
 
-const callTypes = [
-  { number: "01", title: "COMMUNITY CALL", copy: "A comunidade entra com a banca econômica. Cass executa/fronta e o resultado segue a estratégia escolhida.", meta: ["banca coletiva", "regra configurável"] },
-  { number: "02", title: "MATCH CALL", copy: "Cass adiciona X% ou R$X à banca. Pode participar ou não do lucro — e cria skin in the game instantaneamente.", meta: ["match flexível", "participa ou bonifica"] },
-  { number: "03", title: "PROTECTED / BOOSTED", copy: "Cass ou parceiro protege principal, adiciona prêmio ou melhora retorno. Um formato natural para campanhas patrocinadas.", meta: ["proteção", "patrocínio nativo"] },
-  { number: "04", title: "WINNER MODE", copy: "Um vencedor, vários vencedores, prêmio concentrado ou principal devolvido aos demais. A distribuição vira estratégia, não gambiarra.", meta: ["1 → N vencedores", "rules engine"] }
-];
+const callTemplates = [
+  ["01", "COMMUNITY CALL", "A COMUNIDADE FORMA A BANCA", "Cass executa"],
+  ["02", "MATCH CALL", "CASS ADICIONA R$ OU %", "Pode participar ou apenas bonificar"],
+  ["03", "PROTECTED / BOOSTED", "CASS OU PARCEIRO PROTEGE OU IMPULSIONA", "Proteção · prêmio · retorno melhor"],
+]
 
-const callFlow = [
-  ["01", "CONFIGURA", "Template, banca, taxa, distribuição, duração e regra."],
-  ["02", "PARTICIPA", "Viewer entra com R$ ou CassCoin."],
-  ["03", "RESERVA", "Saldo fica reservado na infraestrutura financeira."],
-  ["04", "EXECUTA", "Cass conduz a aposta ao vivo."],
-  ["05", "RESULTADO", "Manual no começo ou via integração quando disponível."],
-  ["06", "SETTLEMENT", "O sistema calcula fee e distribuição."],
-  ["07", "SALDO", "Usuário reutiliza, troca ou saca."]
-];
-
-const distribution = ["PROPORCIONAL", "IGUALITÁRIA", "1 VENCEDOR LEVA TUDO", "1 VENCEDOR + PRINCIPAL VOLTA", "X VENCEDORES", "RANKING", "PATROCINADA"];
+const distributionStrategies = [
+  "PROPORCIONAL",
+  "IGUALITÁRIA",
+  "1 VENCEDOR",
+  "1 VENCEDOR + PRINCIPAL VOLTA",
+  "X VENCEDORES",
+  "RANKING",
+  "PATROCINADA",
+]
 
 const pacRoadmap = [
-  ["01", "DISCOVERY", "Jurídico, PSP/BaaS, fluxo financeiro final e arquitetura."],
-  ["02", "WALLET", "Saldo, ledger, reserva, Pix in/out e histórico."],
-  ["03", "CALL MVP", "Dashboard, templates, realtime e settlement."],
-  ["04", "AUTOMATION", "APIs, CSV, webhooks e reconciliação gradual."],
-  ["05", "EXPANSION", "Novas Calls, overlays, analytics e campanhas especiais."],
-  ["06", "OPTIONALITY", "Exclusivo do Cass, multi-creator ou tecnologia para Bet."]
-];
+  ["01", "TECHNICAL DISCOVERY", "Fluxo · Jurídico · PSP/BaaS"],
+  ["02", "WALLET + LEDGER", "Saldo · Reserva · Logs · Pix"],
+  ["03", "CALL ENGINE MVP", "Dashboard · Realtime · Settlement"],
+  ["04", "AUTOMATION LAYER", "API · CSV · Webhooks · Reconciliação"],
+  ["05", "EXPANSION", "Novas Calls · Overlays · Analytics"],
+  ["06", "STRATEGIC OPTIONALITY", "Exclusivo · Multi-Creator · B2B"],
+]
 
-const assumptions = [
-  "Fornecedor financeiro / PSP / BaaS será selecionado durante o desenvolvimento.",
-  "Custos externos, taxas, jurídico, compliance, cloud e budget de rewards não estão inclusos no fee.",
-  "Integrações com casas começam flexíveis: manual, CSV, API ou webhook conforme disponibilidade.",
-  "CassCoin entra como mecânica planejada; fontes sensíveis de emissão serão validadas juridicamente.",
-  "PAC pode seguir exclusivo do Cass caso gere vantagem competitiva relevante.",
-  "Se fizer sentido escalar, a arquitetura preserva caminho para multi-creator, B2B ou aquisição por uma Bet."
-];
-
-function Logo({ compact = false }) {
-  return (
-    <div className={`logo ${compact ? "logo--compact" : ""}`} aria-label="PAC — Passa a Call">
-      <div className="logo-mark" aria-hidden="true"><span /><span /><span /></div>
-      <div className="logo-copy"><strong>PAC</strong>{!compact && <small>PASSA A CALL</small>}</div>
-    </div>
-  );
-}
+const milestones = [
+  ["25%", "KICKOFF"],
+  ["25%", "CASS FOUNDATION"],
+  ["20%", "CASS LAUNCH"],
+  ["20%", "PAC FOUNDATION"],
+  ["10%", "PAC LAUNCH"],
+]
 
 function Reveal({ children, className = "", delay = 0 }) {
   return (
-    <motion.div className={className} initial={{ opacity: 0, y: 28, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-8%" }} transition={{ duration: 0.72, delay, ease }}>
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 22, filter: "blur(7px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, margin: "-7%" }}
+      transition={{ duration: 0.68, delay, ease }}
+    >
       {children}
     </motion.div>
-  );
+  )
 }
 
-function Pill({ children }) { return <span className="pill">{children}</span>; }
-function ArrowIcon() { return <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>; }
-function Dot() { return <i className="dot" aria-hidden="true" />; }
+function Kicker({ children }) {
+  return <div className="deck-kicker"><i />{children}</div>
+}
 
-function HeroCard() {
-  const x = useMotionValue(0); const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 120, damping: 18 });
-  const springY = useSpring(y, { stiffness: 120, damping: 18 });
-  const rotateX = useTransform(springY, [-0.5, 0.5], [7, -7]);
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-8, 8]);
-  function handleMove(event) { const rect = event.currentTarget.getBoundingClientRect(); x.set((event.clientX - rect.left) / rect.width - 0.5); y.set((event.clientY - rect.top) / rect.height - 0.5); }
-  function reset() { x.set(0); y.set(0); }
-
+function SlideHead({ kicker, children, support, accent }) {
   return (
-    <motion.div className="hero-stage" onMouseMove={handleMove} onMouseLeave={reset} style={{ rotateX, rotateY, transformPerspective: 1100 }} initial={{ opacity: 0, y: 28, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 1, delay: 0.35, ease }}>
-      <div className="stage-glow" aria-hidden="true" />
-      <div className="call-card">
-        <div className="call-card__topline"><div className="live-badge"><i /> AO VIVO</div><span>CALL #084</span></div>
-        <div className="call-card__headline"><p>COMMUNITY MATCH</p><h3>DOUBLE TROUBLE</h3><span>A comunidade entra. Cass acompanha.</span></div>
-        <div className="signal-chart" aria-hidden="true"><svg viewBox="0 0 520 120" preserveAspectRatio="none"><defs><linearGradient id="line" x1="0" x2="1"><stop offset="0" stopColor="#5CFF8D" /><stop offset=".55" stopColor="#1CD8FF" /><stop offset="1" stopColor="#B52CFF" /></linearGradient><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#1CD8FF" stopOpacity=".24" /><stop offset="1" stopColor="#1CD8FF" stopOpacity="0" /></linearGradient></defs><path d="M0 98 C42 90 58 54 95 68 S152 106 186 80 S235 34 274 48 S324 103 360 72 S414 22 451 40 S488 64 520 26 L520 120 L0 120 Z" fill="url(#area)" /><path d="M0 98 C42 90 58 54 95 68 S152 106 186 80 S235 34 274 48 S324 103 360 72 S414 22 451 40 S488 64 520 26" fill="none" stroke="url(#line)" strokeWidth="3" strokeLinecap="round" /></svg></div>
-        <div className="call-stats"><div><small>COMUNIDADE</small><strong>R$ 42.780</strong></div><div><small>CASS MATCH</small><strong>+ R$ 20.000</strong></div><div><small>PARTICIPANTES</small><strong>1.284</strong></div></div>
-        <div className="call-entry"><button type="button"><span>ENTRAR COM</span><strong>R$ 10</strong></button><button type="button" className="ghost-entry"><span>OU</span><strong>10.000 CC</strong></button></div>
+    <header className="slide-head">
+      {kicker && <Reveal><Kicker>{kicker}</Kicker></Reveal>}
+      <Reveal delay={0.04}>
+        <h2>{children}{accent && <><br /><span>{accent}</span></>}</h2>
+      </Reveal>
+      {support && <Reveal className="slide-support" delay={0.08}>{support}</Reveal>}
+    </header>
+  )
+}
+
+function Arrow({ vertical = false }) {
+  return <span className={"diagram-arrow" + (vertical ? " diagram-arrow--vertical" : "")} aria-hidden="true">→</span>
+}
+
+function Tag({ children, accent = false }) {
+  return <span className={"deck-tag" + (accent ? " deck-tag--accent" : "")}>{children}</span>
+}
+
+function CallInterface() {
+  return (
+    <div className="call-ui">
+      <div className="call-ui__bar">
+        <span className="status-live"><i /> CALL AO VIVO</span>
+        <span>EXEMPLO DE INTERFACE</span>
       </div>
-      <motion.div className="floating-chip floating-chip--one" animate={{ y: [0, -8, 0], rotate: [-2, 1, -2] }} transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}><span>SETTLEMENT</span><strong>READY</strong></motion.div>
-      <motion.div className="floating-chip floating-chip--two" animate={{ y: [0, 8, 0], rotate: [2, -1, 2] }} transition={{ repeat: Infinity, duration: 5.6, ease: "easeInOut" }}><span>REWARD ENGINE</span><strong>ON</strong></motion.div>
-    </motion.div>
-  );
+      <div className="call-ui__title">
+        <small>COMMUNITY MATCH</small>
+        <strong>DOUBLE TROUBLE</strong>
+      </div>
+      <div className="call-ui__chart" aria-hidden="true">
+        <svg viewBox="0 0 560 120" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="callLine" x1="0" x2="1">
+              <stop offset="0" stopColor="#64ff93" />
+              <stop offset=".5" stopColor="#20d9ff" />
+              <stop offset="1" stopColor="#b42bff" />
+            </linearGradient>
+          </defs>
+          <path d="M0 98 C55 92 74 58 116 72 S182 104 222 74 S286 31 330 51 S393 96 432 61 S499 31 560 20" fill="none" stroke="url(#callLine)" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      </div>
+      <div className="call-ui__metrics">
+        <div><small>COMUNIDADE</small><strong>R$ XX.XXX</strong></div>
+        <div><small>CASS MATCH</small><strong>+ XX%</strong></div>
+        <div><small>PARTICIPANTES</small><strong>X PARTICIPANTES</strong></div>
+      </div>
+      <div className="call-ui__actions">
+        <span>ENTRAR COM R$</span>
+        <span>ENTRAR COM CASSCOIN</span>
+      </div>
+    </div>
+  )
 }
 
-function DashboardMock() {
+function DashboardInterface() {
+  const fields = [
+    ["TIPO DE CALL", "MATCH CALL"],
+    ["ENTRADA", "R$ XX"],
+    ["META", "R$ XX.XXX"],
+    ["APORTE CASS", "XX%"],
+    ["PROTEÇÃO", "ATIVA"],
+    ["DISTRIBUIÇÃO", "PROPORCIONAL"],
+    ["ELEGIBILIDADE", "LEVEL X+"],
+    ["DURAÇÃO", "XX MIN"],
+    ["PARCEIRO", "SELECIONAR"],
+    ["REWARD", "SELECIONAR"],
+  ]
+
   return (
-    <div className="dashboard-shell">
-      <div className="dashboard-sidebar"><Logo compact /><div className="sidebar-dot active" /><div className="sidebar-dot" /><div className="sidebar-dot" /><div className="sidebar-dot" /></div>
-      <div className="dashboard-main">
-        <div className="dashboard-header"><div><span>CRIAR EVENTO</span><strong>NOVA CALL</strong></div><button type="button">SALVAR DRAFT</button></div>
-        <div className="dashboard-grid">
-          <div className="dashboard-form">
-            <label>TIPO DE CALL</label><div className="select-box">Match Call <span>⌄</span></div>
-            <div className="form-row"><div><label>META DA COMUNIDADE</label><div className="input-box">R$ 50.000</div></div><div><label>APORTE CASS</label><div className="input-box">40%</div></div></div>
-            <label>DISTRIBUIÇÃO</label><div className="option-list"><div className="option active"><i /> Proporcional ao aporte</div><div className="option"><i /> 1 vencedor — prêmio total</div><div className="option"><i /> X vencedores</div></div>
+    <div className="creator-ui">
+      <aside className="creator-ui__rail">
+        <div className="mini-mark"><i /><i /><i /></div>
+        {[0, 1, 2, 3].map((item) => <span className={item === 0 ? "active" : ""} key={item} />)}
+      </aside>
+      <div className="creator-ui__main">
+        <div className="creator-ui__header">
+          <div><small>CREATOR CONTROL</small><strong>NOVA CALL</strong></div>
+          <span>AGENDAMENTO · EXEMPLO</span>
+        </div>
+        <div className="creator-ui__body">
+          <div className="creator-ui__fields">
+            {fields.map(([label, value], index) => (
+              <div className={index === 0 ? "wide" : ""} key={label}>
+                <small>{label}</small>
+                <span>{value}</span>
+              </div>
+            ))}
           </div>
-          <div className="dashboard-preview"><span>PREVIEW</span><div className="preview-card"><div className="preview-ring"><b>68%</b><small>FUNDING</small></div><strong>R$ 34.290</strong><small>DE R$ 50.000</small></div><button type="button">INICIAR CALL</button></div>
+          <div className="creator-ui__preview">
+            <small>PREVIEW</small>
+            <div className="preview-orbit"><span>CALL</span><strong>READY</strong></div>
+            <div className="creator-ui__start-note">START = REGRA CONGELADA</div>
+            <button type="button">INICIAR CALL</button>
+          </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-function SectionTitle({ index, kicker, title, accent, description }) {
+function Timeline({ items, className = "" }) {
   return (
-    <div className="section-title">
-      <Reveal className="section-kicker">{index} / {kicker}</Reveal>
-      <Reveal delay={0.05}><h2>{title}<br /><span>{accent}</span></h2></Reveal>
-      {description && <Reveal className="section-description" delay={0.1}><p>{description}</p></Reveal>}
+    <div className={"timeline " + className}>
+      <div className="timeline__track" aria-hidden="true" />
+      {items.map(([number, title, copy], index) => (
+        <Reveal className="timeline__item" delay={index * 0.045} key={title}>
+          <span>{number}</span>
+          <h3>{title}</h3>
+          {copy && <p>{copy}</p>}
+        </Reveal>
+      ))}
     </div>
-  );
-}
-
-function Roadmap({ items }) {
-  return <div className="roadmap-grid">{items.map(([n,t,c], idx) => <Reveal className="roadmap-card" delay={idx * .04} key={t}><span>{n}</span><h3>{t}</h3><p>{c}</p></Reveal>)}</div>;
+  )
 }
 
 function App() {
   return (
     <div className="site">
-      <div className="noise" aria-hidden="true" /><div className="ambient ambient--a" aria-hidden="true" /><div className="ambient ambient--b" aria-hidden="true" />
-      <nav className="nav wrap">
-        <div className="nav-brand"><Logo /><span className="nav-project">CASS + PAC / PROPOSTA COMERCIAL</span></div>
-        <div className="nav-links"><a href="#tese">TESE</a><a href="#cass">CASS PLATFORM</a><a href="#pac">PAC</a><a href="#investimento">INVESTIMENTO</a></div>
-        <a className="nav-cta" href="#proximos">NEXT <ArrowIcon /></a>
-      </nav>
+      <div className="noise" aria-hidden="true" />
+      <div className="ambient ambient--a" aria-hidden="true" />
+      <div className="ambient ambient--b" aria-hidden="true" />
 
       <main>
-        <section className="hero wrap">
-          <div className="hero-copy">
-            <motion.div className="eyebrow" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}><i /> CASS + PAC · PRODUCT / COMMUNITY / REVENUE</motion.div>
-            <motion.h1 initial={{ opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, delay: 0.12, ease }}>A AUDIÊNCIA<br />JÁ EXISTE.<br /><span>AGORA ELA VIRA ATIVO.</span></motion.h1>
-            <motion.p initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.22, ease }}>A casa digital do Cass + o motor de participação ao vivo. Uma infraestrutura proprietária para transformar atenção em cadastro, hábito, recompensa, first-party data e ticket médio maior.</motion.p>
-            <motion.div className="hero-actions" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.32, ease }}><a className="primary-btn" href="#tese">VER A TESE <ArrowIcon /></a><span className="microcopy">PROPOSTA COMERCIAL · 2026</span></motion.div>
-          </div>
-          <HeroCard />
-        </section>
-
-        <section className="marquee" aria-label="Objetivos"><div className="marquee-track">{["FIRST-PARTY DATA", "REWARDS", "RETENÇÃO", "TICKET MÉDIO", "PARTICIPAÇÃO", "PARCEIROS", "FIRST-PARTY DATA", "REWARDS", "RETENÇÃO", "TICKET MÉDIO", "PARTICIPAÇÃO", "PARCEIROS"].map((item, idx) => <span key={`${item}-${idx}`}>{item}<i>✦</i></span>)}</div></section>
-
-        <section id="tese" className="section wrap opportunity-section">
-          <SectionTitle index="01" kicker="OPORTUNIDADE" title="O PROBLEMA NÃO É FALTA DE PÚBLICO." accent="É VALOR DEIXADO NA MESA." description="Cass já tem atenção, frequência e confiança. O próximo passo é capturar melhor o valor da audiência que já existe." />
-          <div className="triple-grid">
-            <Reveal className="big-card"><small>BASE ATUAL</small><h3>O SHOW ACONTECE FORA DE CASA.</h3><p>Facebook concentra a live. WhatsApp concentra parte da comunidade. O relacionamento ainda depende de plataformas que o Cass não controla.</p></Reveal>
-            <Reveal className="big-card" delay={.06}><small>OBJETIVO</small><h3>FAZER CADA VIEWER VALER MAIS.</h3><p>Aumentar ticket médio, recorrência e volume nas casas parceiras — sem depender de crescimento de audiência para crescer receita.</p></Reveal>
-            <Reveal className="big-card big-card--accent" delay={.12}><small>MOVIMENTO</small><h3>CRIAR UMA CASA PRÓPRIA.</h3><p>Conta, rewards, CassCoin, CRM, dados, parceiros e, depois, PAC. Um ativo proprietário construído em cima da comunidade existente.</p></Reveal>
-          </div>
-        </section>
-
-        <section className="statement-section vision-statement"><div className="wrap statement-inner"><Reveal className="statement-label">THE SHIFT</Reveal><Reveal delay={0.08}><p className="statement">FACEBOOK CONTINUA SENDO <em>O PALCO.</em><br />O ATIVO PASSA A SER <em>A CASA PRÓPRIA.</em></p></Reveal></div></section>
-
-        <section className="section wrap vision-section">
-          <SectionTitle index="02" kicker="VISÃO" title="UM ECOSSISTEMA." accent="QUATRO CAMADAS." />
-          <div className="ecosystem-flow">
-            {[["FACEBOOK LIVE", "Show, alcance, urgência e aquisição."],["CASS PLATFORM", "Conta, rewards, hábito e first-party data."],["PARCEIROS", "Campanhas, tracking e receita."],["PAC", "Participação econômica ao vivo."]].map(([t,c], idx) => <React.Fragment key={t}><Reveal className="ecosystem-card" delay={idx*.05}><span>{String(idx+1).padStart(2,"0")}</span><h3>{t}</h3><p>{c}</p></Reveal>{idx<3 && <div className="flow-arrow" aria-hidden="true">→</div>}</React.Fragment>)}
-          </div>
-          <Reveal className="vision-note" delay={.2}><strong>WhatsApp continua.</strong><p>Ele segue como funil e comunidade. A diferença é que deixa de ser o único ativo: cada pessoa pode virar conta, histórico, saldo e relacionamento próprio.</p></Reveal>
-        </section>
-
-        <section className="section wrap benchmark-section">
-          <SectionTitle index="03" kicker="BENCHMARK" title="ROSHSTEIN NÃO É REFERÊNCIA DE LAYOUT." accent="É PROVA DE CATEGORIA." />
-          <div className="triple-grid benchmark-grid">
-            <Reveal className="big-card"><small>COPIAR A LÓGICA</small><h3>PROGRESSÃO QUE FAZ VOLTAR.</h3><p>Rewards, missions, store, loops de retorno, progressão e uma comunidade permanentemente conectada à live.</p></Reveal>
-            <Reveal className="big-card" delay={.06}><small>ADAPTAR AO BRASIL</small><h3>PIX. WHATSAPP. FACEBOOK. CASAS LOCAIS.</h3><p>Uma linguagem nativa para o público do Cass e uma economia própria que faça sentido para esse contexto.</p></Reveal>
-            <Reveal className="big-card big-card--accent" delay={.12}><small>INVENTAR O DIFERENCIAL</small><h3>O PAC.</h3><p>Viewers participando economicamente das Calls do Cass, com regras, dashboard, saldo e settlement próprios.</p></Reveal>
+        <section className="deck-slide reality-slide" data-deck-start aria-label="A realidade atual">
+          <div className="deck-slide__inner">
+            <SlideHead kicker="HOJE" support="A audiência existe, mas a relação ainda depende de plataformas de terceiros">
+              FACEBOOK É O PALCO<br />WHATSAPP É A DISTRIBUIÇÃO<br /><span>NENHUM DOS DOIS É A CASA</span>
+            </SlideHead>
+            <div className="reality-map">
+              <Reveal className="platform-window platform-window--facebook" delay={0.1}>
+                <div className="platform-window__top"><i /><span>FACEBOOK LIVE</span></div>
+                <div className="live-frame"><span className="live-chip">AO VIVO</span><div className="live-person" /><div className="live-chat"><i /><i /><i /></div></div>
+              </Reveal>
+              <div className="reality-links" aria-hidden="true"><i /><i /></div>
+              <Reveal className="audience-core" delay={0.18}><small>COMUNIDADE</small><strong>AUDIÊNCIA<br />DO CASS</strong><span>RELAÇÃO ALUGADA</span></Reveal>
+              <Reveal className="platform-window platform-window--whatsapp" delay={0.14}>
+                <div className="platform-window__top"><i /><span>WHATSAPP</span></div>
+                <div className="chat-stack"><i /><i /><i /><i /></div>
+              </Reveal>
+            </div>
           </div>
         </section>
 
-        <section id="cass" className="product-divider product-divider--cass"><div className="wrap product-divider-inner"><Reveal className="product-number">PRODUTO 01</Reveal><Reveal delay={.06}><h2>CASS<br /><span>PLATFORM</span></h2></Reveal><Reveal className="product-divider-copy" delay={.12}><p>Não é “um site do streamer”.</p><strong>É o lugar onde o público cria conta porque existe vantagem real.</strong></Reveal></div></section>
-
-        <section className="section wrap foundation-section">
-          <SectionTitle index="04" kicker="FOUNDATION" title="CADASTRAR PRECISA" accent="VALER A PENA." description="O primeiro release já precisa provar utilidade: ganhar, evoluir, trocar, participar e voltar." />
-          <div className="feature-grid">{cassFeatures.map(([n,t,c], idx) => <Reveal className={`feature-card ${idx===2 ? "feature-card--featured" : ""}`} delay={idx*.035} key={t}><span>{n}</span><h3>{t}</h3><p>{c}</p></Reveal>)}</div>
-        </section>
-
-        <section className="section wrap journey-section">
-          <SectionTitle index="05" kicker="JORNADA" title="DA LIVE PARA A CONTA." accent="DA CONTA PARA O HÁBITO." description="Antes de pedir mais valor econômico, o produto cria motivo para cadastro, retorno e permanência." />
-          <div className="journey-line">{cassJourney.map(([n,t,c],idx) => <Reveal className="journey-step" delay={idx*.04} key={t}><span>{n}</span><h3>{t}</h3><p>{c}</p></Reveal>)}</div>
-          <Reveal className="journey-punch" delay={.2}><p>COM CONTA + SALDO + HISTÓRICO + RECOMPENSA,</p><strong>O PAC ENTRA COMO EVOLUÇÃO NATURAL — NÃO COMO UMA APOSTA SOLTA.</strong></Reveal>
-        </section>
-
-        <section className="section wrap economy-section">
-          <SectionTitle index="06" kicker="ECONOMIA" title="RECOMPENSA PRECISA" accent="TER VALOR PERCEBIDO." />
-          <div className="economy-grid">
-            <Reveal className="economy-card"><small>XP</small><h3>STATUS, NÃO DINHEIRO.</h3><p>Level, ranking, progressão e desbloqueios. XP mantém a gamificação limpa e cria status dentro da comunidade.</p><div className="economy-meter"><span style={{width:"72%"}} /></div></Reveal>
-            <Reveal className="economy-card economy-card--coin" delay={.06}><small>CASSCOIN</small><h3>RECOMPENSA ECONÔMICA.</h3><p>Referência inicial: <strong>1.000 CC = R$1.</strong> Pode ser usada em Store, rewards e, depois, nas próprias Calls.</p><div className="coin-convert"><span>10.000 CC</span><i>→</i><strong>R$ 10</strong></div></Reveal>
-            <Reveal className="economy-card" delay={.12}><small>REWARDS</small><h3>CATÁLOGO AGNÓSTICO.</h3><p>Banca, free spins, produto físico, ticket, experiência, drop ou qualquer benefício financiado pelo ecossistema e parceiros.</p><div className="reward-tags"><Pill>BANCA</Pill><Pill>FREE SPINS</Pill><Pill>MERCH</Pill><Pill>EXPERIÊNCIAS</Pill></div></Reveal>
-          </div>
-          <Reveal className="legal-note" delay={.18}><Dot /><p>Fontes sensíveis de CassCoin são validadas durante o desenvolvimento. Se uma mecânica não passar no jurídico, pivotamos a emissão sem quebrar o produto.</p></Reveal>
-        </section>
-
-        <section className="section wrap roadmap-section">
-          <SectionTitle index="07" kicker="ROADMAP CASS" title="ENTREGAS PROGRESSIVAS." accent="ARQUITETURA COMPLETA DESDE O DIA 1." />
-          <Roadmap items={cassRoadmap} />
-        </section>
-
-        <section id="pac" className="product-divider"><div className="wrap product-divider-inner"><Reveal className="product-number">PRODUTO 02 · BIG UPDATE</Reveal><Reveal delay={.06}><h2>PASSA<br /><span>A CALL</span></h2></Reveal><Reveal className="product-divider-copy" delay={.12}><p>O momento em que o viewer deixa de torcer de fora.</p><strong>E ENTRA NO JOGO JUNTO COM O CASS.</strong></Reveal></div></section>
-
-        <section className="section wrap pac-intro-section">
-          <div className="pac-intro-copy">
-            <Reveal className="section-kicker">08 / PAC</Reveal><Reveal delay={.05}><h2>PARTICIPAÇÃO<br /><span>AO VIVO.</span></h2></Reveal>
-            <Reveal delay={.1}><p>Cass cria uma Call no dashboard. O público entra com R$ ou CassCoin. O saldo é reservado, Cass executa a aposta e o PAC organiza regra, resultado, fee e distribuição.</p></Reveal>
-            <Reveal className="control-points" delay={.16}><span><Dot /> Entrada em R$ ou CC</span><span><Dot /> Regras congeladas no start</span><span><Dot /> Resultado manual ou integrado</span><span><Dot /> Saldo reutilizável ou sacável</span></Reveal>
-          </div>
-          <HeroCard />
-        </section>
-
-        <section className="section wrap mechanic-section">
-          <SectionTitle index="09" kicker="MECÂNICA" title="SIMPLES PARA O PÚBLICO." accent="CONTROLADA PARA A OPERAÇÃO." />
-          <div className="mechanic-grid">{callFlow.map(([n,t,c],idx)=><Reveal className="mechanic-card" delay={idx*.035} key={t}><span>{n}</span><h3>{t}</h3><p>{c}</p></Reveal>)}</div>
-          <Reveal className="freeze-banner" delay={.2}><strong>START = REGRA CONGELADA.</strong><p>Depois que a Call começa, parâmetros críticos não mudam. Mais previsibilidade para usuário, streamer e operação.</p></Reveal>
-        </section>
-
-        <section className="section wrap engine-section">
-          <SectionTitle index="10" kicker="CALL ENGINE" title="UM MOTOR." accent="MUITAS CALLS." description="Não é liberdade caótica. É liberdade dentro de modelos testáveis, operáveis e vendáveis." />
-          <div className="call-type-grid">{callTypes.map((call, idx) => <Reveal className="call-type" delay={idx * 0.05} key={call.title}><div className="call-type__num">{call.number}</div><div className="call-type__body"><h3>{call.title}</h3><p>{call.copy}</p><div className="call-type__meta">{call.meta.map((m) => <Pill key={m}>{m}</Pill>)}</div></div><div className="call-type__arrow"><ArrowIcon /></div></Reveal>)}</div>
-        </section>
-
-        <section className="section wrap distribution-section">
-          <SectionTitle index="11" kicker="DISTRIBUTION ENGINE" title="CADA CAMPANHA PODE TER" accent="UMA MECÂNICA PRÓPRIA." />
-          <div className="distribution-cloud">{distribution.map((item,idx)=><Reveal className="distribution-pill" delay={idx*.04} key={item}>{item}</Reveal>)}</div>
-          <Reveal className="distribution-copy" delay={.16}><p>Uma nova regra de distribuição entra como estratégia adicionável.</p><strong>O PRODUTO CRESCE SEM VIRAR GAMBARRA NO CÓDIGO.</strong></Reveal>
-        </section>
-
-        <section className="section wrap control-section">
-          <div className="control-copy"><Reveal className="section-kicker">12 / CREATOR CONTROL</Reveal><Reveal delay={0.06}><h2>SEM DEV.<br /><span>SEM ATRITO.</span></h2></Reveal><Reveal delay={0.12}><p>Cass cria, agenda e controla a experiência sozinho: entrada, meta, aporte, winners, proteção, duração, distribuição e regras.</p></Reveal><Reveal className="control-points" delay={0.18}><span><Dot /> Ao vivo ou agendado</span><span><Dot /> Regras congeladas no start</span><span><Dot /> Resultado manual ou integrado</span><span><Dot /> Parceiros e rewards plugáveis</span></Reveal></div>
-          <Reveal className="dashboard-wrap" delay={0.08}><DashboardMock /></Reveal>
-        </section>
-
-        <section className="section wrap finance-section">
-          <SectionTitle index="13" kicker="FINANCEIRO" title="DINHEIRO COM PARCEIRO." accent="PRODUTO COM A GENTE." />
-          <div className="finance-flow">
-            {[["USUÁRIO", "Pix · saldo · saque"],["PSP / BAAS", "KYC · custódia · webhooks"],["PAC", "UX · ledger · reserva · settlement"],["CASS / BET", "execução da Call"]].map(([t,c],idx)=><React.Fragment key={t}><Reveal className={`finance-node ${idx===2?"finance-node--accent":""}`} delay={idx*.05}><span>{String(idx+1).padStart(2,"0")}</span><h3>{t}</h3><p>{c}</p></Reveal>{idx<3&&<div className="flow-arrow">→</div>}</React.Fragment>)}
-          </div>
-          <Reveal className="finance-note" delay={.2}><p><strong>Premissa comercial:</strong> escolha do fornecedor financeiro, validações jurídicas e adequações fazem parte da implementação.</p><p>Custos de terceiros e taxas transacionais ficam fora do fee de desenvolvimento.</p></Reveal>
-        </section>
-
-        <section className="section wrap roadmap-section">
-          <SectionTitle index="14" kicker="ROADMAP PAC" title="DO MVP AO" accent="MOAT COMPETITIVO." />
-          <Roadmap items={pacRoadmap} />
-          <Reveal className="optionality-banner" delay={.2}><span>EXCLUSIVO DO CASS</span><i>OU</i><span>MULTI-CREATOR</span><i>OU</i><span>BET / B2B</span></Reveal>
-        </section>
-
-        <section className="statement-section package-statement"><div className="wrap statement-inner"><Reveal className="statement-label">THE COMMERCIAL THESIS</Reveal><Reveal delay={.08}><p className="statement">SEPARADOS CONSTROEM <em>FEATURES.</em><br />JUNTOS CONSTROEM <em>UM ATIVO.</em></p></Reveal></div></section>
-
-        <section className="section wrap package-section">
-          <SectionTitle index="15" kicker="PACOTE" title="A PLATAFORMA PREPARA." accent="O PAC CONVERTE." />
-          <div className="triple-grid package-grid">
-            <Reveal className="big-card"><small>CASS PLATFORM</small><h3>IDENTIDADE + HÁBITO.</h3><p>Conta, progressão, recompensa, first-party data e uma base própria que aprende a voltar.</p></Reveal>
-            <Reveal className="big-card" delay={.06}><small>PAC</small><h3>PARTICIPAÇÃO + TICKET.</h3><p>Transforma o hábito acumulado em uma experiência econômica ao vivo, configurável e repetível.</p></Reveal>
-            <Reveal className="big-card big-card--accent" delay={.12}><small>JUNTOS</small><h3>INFRAESTRUTURA PROPRIETÁRIA.</h3><p>Não estamos propondo “um site”. Estamos construindo a camada digital para capturar mais valor da audiência do Cass.</p></Reveal>
+        <section className="deck-slide movement-slide" aria-label="O movimento">
+          <div className="deck-slide__inner">
+            <SlideHead>
+              NÃO TROCAMOS O QUE JÁ FUNCIONA<br /><span>ADICIONAMOS O QUE AINDA NÃO EXISTE</span>
+            </SlideHead>
+            <div className="layer-architecture">
+              <Reveal className="layer-node" delay={0.08}><small>FACEBOOK</small><strong>PALCO</strong><span>ALCANCE + LIVE</span></Reveal>
+              <Arrow />
+              <Reveal className="layer-node" delay={0.12}><small>WHATSAPP</small><strong>DISTRIBUIÇÃO</strong><span>COMUNIDADE + RETORNO</span></Reveal>
+              <Arrow />
+              <Reveal className="layer-node layer-node--owned" delay={0.16}><small>CASS PLATFORM</small><strong>CASA</strong><span>IDENTIDADE + DADOS</span></Reveal>
+              <Arrow />
+              <Reveal className="layer-node layer-node--owned layer-node--pac" delay={0.2}><small>PAC</small><strong>PARTICIPAÇÃO</strong><span>ECONOMIA + TICKET</span></Reveal>
+            </div>
+            <Reveal className="slide-footnote" delay={0.24}>Aquisição e comunidade continuam onde já funcionam — identidade, dados e economia passam a ser próprios</Reveal>
           </div>
         </section>
 
-        <section id="investimento" className="section wrap investment-section">
-          <SectionTitle index="16" kicker="INVESTIMENTO" title="DOIS PRODUTOS." accent="UM PACOTE RECOMENDADO." />
-          <div className="pricing-grid">
-            <Reveal className="price-card"><small>CASS PLATFORM</small><h3>R$ 85.000</h3><span>10–12 semanas</span><p>Conta, gamificação, rewards, admin e partner hub.</p></Reveal>
-            <Reveal className="price-card" delay={.06}><small>PAC</small><h3>R$ 165.000</h3><span>12–16 semanas</span><p>Wallet, Call Engine, dashboard, settlement e integração PSP/BaaS.</p></Reveal>
-            <Reveal className="price-card price-card--featured" delay={.12}><div className="recommended">RECOMENDADO</div><small>ECOSSISTEMA COMPLETO</small><h3>R$ 220.000</h3><span>22–28 semanas</span><p>Arquitetura compartilhada + desconto de pacote. CASS Platform primeiro; PAC como grande atualização.</p></Reveal>
+        <section className="deck-slide benchmark-new-slide" aria-label="Benchmark Roshtein">
+          <div className="deck-slide__inner">
+            <SlideHead kicker="BENCHMARK">
+              A CATEGORIA JÁ PROVOU QUE FUNCIONA<br /><span>A OPORTUNIDADE É ADAPTAR PARA O CASS</span>
+            </SlideHead>
+            <div className="benchmark-split">
+              <Reveal className="benchmark-product" delay={0.08}>
+                <div className="benchmark-product__bar"><span>ROSHSTEIN ECOSYSTEM</span><small>PROVA DE CATEGORIA</small></div>
+                <div className="benchmark-profile"><div className="profile-ring">R</div><div><strong>LEVEL XX</strong><span>PROGRESSÃO ATIVA</span></div></div>
+                <div className="benchmark-modules"><span>MISSIONS</span><span>REWARDS</span><span>STORE</span><span>COMMUNITY</span></div>
+                <div className="benchmark-progress"><i /></div>
+              </Reveal>
+              <div className="benchmark-lessons">
+                {[
+                  ["APRENDER", "Progressão · Missions · Rewards · Store"],
+                  ["ADAPTAR", "Facebook · WhatsApp · Pix · Casas brasileiras"],
+                  ["CRIAR", "Uma camada própria que Roshtein não tem: PAC"],
+                ].map(([title, copy], index) => (
+                  <Reveal className={index === 2 ? "benchmark-lesson benchmark-lesson--accent" : "benchmark-lesson"} delay={0.12 + index * 0.05} key={title}>
+                    <span>{title}</span><strong>{copy}</strong>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
           </div>
-          <Reveal className="post-launch" delay={.16}><div><small>OPCIONAL PÓS-LANÇAMENTO</small><strong>SUPORTE / PRODUTO · R$ 12K/MÊS</strong></div><div><small>OPCIONAL PÓS-LANÇAMENTO</small><strong>GROWTH / CRM · R$ 8K/MÊS</strong></div></Reveal>
         </section>
 
-        <section className="section wrap milestones-section">
-          <SectionTitle index="17" kicker="PAGAMENTO" title="MILESTONES CLAROS." accent="RISCO DISTRIBUÍDO." />
-          <div className="milestone-track">{[["25%","KICKOFF","assinatura e início"],["25%","CASS FOUNDATION","primeiro build funcional"],["20%","CASS LAUNCH","plataforma pública"],["20%","PAC FOUNDATION","wallet + engine"],["10%","PAC LAUNCH","MVP no ar"]].map(([p,t,c],idx)=><Reveal className="milestone" delay={idx*.04} key={t}><strong>{p}</strong><h3>{t}</h3><p>{c}</p></Reveal>)}</div>
-          <Reveal className="milestone-note" delay={.18}>Pagamentos por entrega protegem caixa, reduzem risco e mantêm avanço objetivo.</Reveal>
+        <section id="cass" className="deck-slide product-transition product-transition--cass" aria-label="Cass Platform">
+          <div className="product-transition__glow" aria-hidden="true" />
+          <div className="deck-slide__inner product-transition__inner">
+            <Reveal><Kicker>PRODUTO 01</Kicker></Reveal>
+            <Reveal delay={0.05}><h2>CASS<br /><span>PLATFORM</span></h2></Reveal>
+            <Reveal className="product-transition__support" delay={0.1}>A casa própria do Cass</Reveal>
+            <Reveal className="product-transition__micro" delay={0.14}>Conta · hábito · rewards · dados próprios</Reveal>
+          </div>
         </section>
 
-        <section id="proximos" className="section wrap next-section">
-          <SectionTitle index="18" kicker="PRÓXIMOS PASSOS" title="APROVAR AGORA." accent="RESOLVER NO PROCESSO." />
-          <div className="next-grid">{[["01","APROVAÇÃO","Confirmar pacote, escopo macro, valores e modelo de pagamento."],["02","KICKOFF","Alinhar responsáveis, prioridades, roadmap e primeiras decisões de produto."],["03","DISCOVERY TÉCNICO","PSP/BaaS, jurídico, arquitetura, UX e backlog fechado da primeira release."],["04","BUILD","CASS Platform primeiro. PAC entra como a atualização que muda o jogo."]].map(([n,t,c],idx)=><Reveal className="next-card" delay={idx*.05} key={t}><span>{n}</span><h3>{t}</h3><p>{c}</p></Reveal>)}</div>
-          <Reveal className="closing-thesis" delay={.2}><p>FECHAR O PROJETO AGORA NÃO COMPRA UMA SOLUÇÃO PRONTA.</p><strong>COMPRA O TEMPO TÉCNICO PARA TRANSFORMAR A TESE EM PRODUTO.</strong></Reveal>
+        <section className="deck-slide account-slide" aria-label="Por que criar conta">
+          <div className="deck-slide__inner">
+            <SlideHead support="A vantagem precisa existir desde o primeiro acesso">
+              CADASTRAR PRECISA<br /><span>VALER A PENA</span>
+            </SlideHead>
+            <div className="account-orbit">
+              <Reveal className="viewer-profile" delay={0.1}>
+                <div className="viewer-profile__avatar">C</div>
+                <small>PERFIL DO VIEWER</small>
+                <strong>LEVEL XX</strong>
+                <div className="viewer-profile__bar"><i /></div>
+                <div className="viewer-profile__wallet"><span>XP</span><span>CASSCOIN</span></div>
+              </Reveal>
+              {[
+                ["GANHA", "Rewards desde a entrada"],
+                ["EVOLUI", "XP · levels · streaks"],
+                ["TROCA", "Store · raffles · drops"],
+                ["PARTICIPA", "Missions · predictions · campanhas"],
+              ].map(([title, copy], index) => (
+                <Reveal className={"orbit-action orbit-action--" + (index + 1)} delay={0.14 + index * 0.04} key={title}>
+                  <strong>{title}</strong><span>{copy}</span>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </section>
 
-        <section className="section wrap assumptions-section">
-          <Reveal className="section-kicker">19 / PREMISSAS IMPORTANTES</Reveal>
-          <div className="assumption-list">{assumptions.map((item,idx)=><Reveal className="assumption" delay={idx*.035} key={item}><span>{String(idx+1).padStart(2,"0")}</span><p>{item}</p></Reveal>)}</div>
-          <Reveal className="assumption-bottom" delay={.2}>A proposta assume execução progressiva: <strong>construir, validar, adequar e lançar</strong> sem travar a venda por incógnitas naturais de um produto novo.</Reveal>
+        <section className="deck-slide loop-slide" aria-label="Loop de comportamento">
+          <div className="deck-slide__inner">
+            <SlideHead>DE AUDIÊNCIA<br /><span>PARA HÁBITO</span></SlideHead>
+            <div className="behavior-loop">
+              <div className="behavior-loop__ring" aria-hidden="true" />
+              {behaviorLoop.map((item, index) => (
+                <Reveal className={"behavior-loop__item behavior-loop__item--" + (index + 1)} delay={0.07 + index * 0.035} key={item}>
+                  <span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong>
+                </Reveal>
+              ))}
+              <div className="behavior-loop__center"><small>LOOP</small><strong>MAIS<br />VALOR</strong></div>
+            </div>
+            <Reveal className="slide-footnote" delay={0.22}>Cada volta cria mais dados, mais relacionamento e mais oportunidades comerciais</Reveal>
+          </div>
         </section>
 
-        <section className="final-section"><div className="final-orbit final-orbit--one" aria-hidden="true" /><div className="final-orbit final-orbit--two" aria-hidden="true" /><div className="wrap final-inner"><Reveal><Logo /></Reveal><Reveal delay={0.06}><p className="final-kicker">CASS + PAC</p></Reveal><Reveal delay={0.1}><h2>A PRÓXIMA FASE<br /><span>COMEÇA AQUI.</span></h2></Reveal><Reveal className="final-copy" delay={0.16}><p>Primeiro construímos a casa.<br />Depois plugamos o motor que muda o jogo.</p></Reveal><Reveal delay={0.22}><a className="primary-btn primary-btn--large" href="#tese">REVER A PROPOSTA <ArrowIcon /></a></Reveal></div><div className="wrap footer-line"><span>PAC.BET / 2026</span><span>PRODUCT · COMMUNITY · TECHNOLOGY</span><span>COMMERCIAL PROPOSAL</span></div></section>
+        <section className="deck-slide economy-new-slide" aria-label="Economia da Cass Platform">
+          <div className="deck-slide__inner">
+            <SlideHead>UMA ECONOMIA<br /><span>DOIS PAPÉIS</span></SlideHead>
+            <div className="economy-roles">
+              <Reveal className="economy-role economy-role--xp" delay={0.08}>
+                <div className="economy-role__head"><small>XP</small><strong>STATUS</strong></div>
+                <div className="economy-role__list"><span>LEVEL</span><span>RANKING</span><span>PROGRESSÃO</span><span>DESBLOQUEIOS</span></div>
+                <div className="economy-role__flag">NÃO É DINHEIRO</div>
+              </Reveal>
+              <div className="economy-divider"><i /><span>≠</span><i /></div>
+              <Reveal className="economy-role economy-role--coin" delay={0.12}>
+                <div className="economy-role__head"><small>CASSCOIN</small><strong>VALOR ECONÔMICO</strong></div>
+                <div className="economy-role__list"><span>STORE</span><span>RAFFLES</span><span>REWARDS</span><span>FUTURAMENTE PAC</span></div>
+                <div className="economy-role__rate">1.000 CC = R$1</div>
+              </Reveal>
+            </div>
+            <Reveal className="rewards-rail" delay={0.18}><strong>REWARDS</strong>{["BANCA", "FREE SPINS", "MERCH", "HARDWARE", "TICKETS", "EXPERIÊNCIAS"].map((item) => <Tag key={item}>{item}</Tag>)}</Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide live-layer-slide" aria-label="Live engagement">
+          <div className="deck-slide__inner">
+            <SlideHead support="O site cria motivos para assistir, entrar, interagir e voltar">
+              A LIVE GANHA<br /><span>UMA SEGUNDA CAMADA</span>
+            </SlideHead>
+            <div className="live-layer">
+              <Reveal className="live-mock" delay={0.08}>
+                <div className="live-mock__screen"><span>FACEBOOK LIVE</span><div className="live-person live-person--large" /><div className="live-reactions">♥ ♥ ✦</div></div>
+                <strong>PRÓXIMA LIVE</strong>
+              </Reveal>
+              <div className="live-layer__flow">
+                <div className="engagement-modules">{["CÓDIGOS", "MISSIONS", "DROPS", "PREDICTIONS"].map((item, index) => <Reveal delay={0.1 + index * 0.035} key={item}><Tag>{item}</Tag></Reveal>)}</div>
+                <Arrow vertical />
+                <Reveal className="platform-core" delay={0.17}><small>CASS PLATFORM</small><strong>REWARDS + PROGRESSÃO</strong></Reveal>
+                <div className="return-line"><span>RETORNO</span><i /></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="deck-slide partner-slide" aria-label="Partner layer e dados">
+          <div className="deck-slide__inner">
+            <SlideHead accent="VIRA DADO + HISTÓRICO + RELACIONAMENTO">
+              CADA ATIVAÇÃO DEIXA<br />DE SER SÓ UM LINK
+            </SlideHead>
+            <div className="partner-flow">
+              {["CASA PARCEIRA", "CAMPANHA", "CONTA DO USUÁRIO", "AÇÃO", "TRACKING", "CRM"].map((item, index) => (
+                <React.Fragment key={item}>
+                  <Reveal className={index === 2 || index === 5 ? "partner-node partner-node--accent" : "partner-node"} delay={0.07 + index * 0.035}><span>{item}</span></Reveal>
+                  {index < 5 && <Arrow />}
+                </React.Fragment>
+              ))}
+            </div>
+            <div className="partner-bottom">
+              <Reveal className="integration-strip" delay={0.2}>{["API", "WEBHOOK", "POSTBACK", "SUBID", "CSV", "MANUAL"].map((item) => <Tag key={item}>{item}</Tag>)}</Reveal>
+              <Reveal className="integration-callout" delay={0.23}>A INTEGRAÇÃO NÃO PODE BLOQUEAR O PRODUTO</Reveal>
+            </div>
+          </div>
+        </section>
+
+        <section className="deck-slide roadmap-cass-slide" aria-label="Roadmap Cass Platform">
+          <div className="deck-slide__inner">
+            <SlideHead>COMEÇA PELO ESSENCIAL<br /><span>CRESCE SEM REFAZER O CORE</span></SlideHead>
+            <Timeline items={cassRoadmap} className="timeline--cass" />
+          </div>
+        </section>
+
+        <section id="pac" className="deck-slide product-transition product-transition--pac" aria-label="Passa a Call">
+          <div className="product-transition__glow" aria-hidden="true" />
+          <div className="deck-slide__inner product-transition__inner">
+            <Reveal><Kicker>PRODUTO 02</Kicker></Reveal>
+            <Reveal delay={0.05}><h2>PASSA<br /><span>A CALL</span></h2></Reveal>
+            <Reveal className="product-transition__support product-transition__support--strong" delay={0.1}>ASSISTIR VIRA PARTICIPAR</Reveal>
+            <Reveal className="product-transition__micro" delay={0.14}>O viewer deixa de torcer de fora</Reveal>
+          </div>
+        </section>
+        <section className="deck-slide pac-screen-slide" aria-label="PAC em uma tela">
+          <div className="deck-slide__inner">
+            <SlideHead>COMUNIDADE ENTRA<br />CASS EXECUTA<br /><span>PAC ORGANIZA</span></SlideHead>
+            <div className="pac-screen-layout">
+              <Reveal className="call-ui-wrap" delay={0.08}><CallInterface /></Reveal>
+              <Reveal className="pac-screen-tags" delay={0.16}><Tag accent>R$ OU CASSCOIN</Tag><Tag>REGRA CONGELADA</Tag><Tag>SETTLEMENT</Tag></Reveal>
+            </div>
+          </div>
+        </section>
+
+        <section className="deck-slide call-flow-slide" aria-label="Como uma Call funciona">
+          <div className="deck-slide__inner">
+            <SlideHead>POR FORA, SIMPLES<br /><span>POR DENTRO, CONTROLADO</span></SlideHead>
+            <div className="call-flow">
+              {[
+                ["01", "CRIA", "Cass escolhe template e regra"],
+                ["02", "ENTRA", "Viewer participa com saldo"],
+                ["03", "RESERVA", "Valor fica reservado"],
+                ["04", "EXECUTA", "Cass conduz a Call ao vivo"],
+                ["05", "DISTRIBUI", "PAC calcula resultado, fee e settlement"],
+              ].map(([number, title, copy], index) => (
+                <React.Fragment key={title}>
+                  <Reveal className="call-flow__step" delay={0.07 + index * 0.04}><span>{number}</span><strong>{title}</strong><small>{copy}</small></Reveal>
+                  {index === 2 && <Reveal className="call-flow__start" delay={0.18}><span>START</span><strong>REGRA<br />CONGELADA</strong></Reveal>}
+                  {index < 4 && index !== 2 && <Arrow />}
+                </React.Fragment>
+              ))}
+            </div>
+            <Reveal className="slide-footnote" delay={0.24}>Saldo pode ficar no ecossistema para a próxima Call ou ser sacado</Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide engine-slide" aria-label="Call Engine">
+          <div className="deck-slide__inner">
+            <SlideHead kicker="CALL ENGINE">UM ENGINE<br /><span>DIFERENTES FORMAS DE JOGAR JUNTO</span></SlideHead>
+            <div className="engine-composition">
+              <div className="engine-core"><span>CALL</span><strong>ENGINE</strong><i /></div>
+              <div className="template-grid">
+                {callTemplates.map(([number, title, headline, copy], index) => (
+                  <Reveal className="template-card" delay={0.08 + index * 0.05} key={title}>
+                    <span>{number}</span><small>{title}</small><strong>{headline}</strong><p>{copy}</p>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+            <Reveal className="engine-footer" delay={0.22}><strong>MESMO ENGINE</strong><span>REGRAS DIFERENTES</span></Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide distribution-new-slide" aria-label="Distribution Engine">
+          <div className="deck-slide__inner">
+            <SlideHead kicker="DISTRIBUTION ENGINE">
+              A CALL DEFINE A EXPERIÊNCIA<br /><span>A DISTRIBUIÇÃO DEFINE COMO VOLTA</span>
+            </SlideHead>
+            <div className="distribution-matrix">
+              <Reveal className="matrix-axis" delay={0.08}><small>CALL TEMPLATE</small><strong>×</strong><small>DISTRIBUTION STRATEGY</small></Reveal>
+              <div className="strategy-cloud">
+                {distributionStrategies.map((item, index) => <Reveal className={index === 2 || index === 3 || index === 4 ? "strategy-pill strategy-pill--winner" : "strategy-pill"} delay={0.1 + index * 0.03} key={item}>{item}</Reveal>)}
+              </div>
+            </div>
+            <Reveal className="slide-footnote" delay={0.23}>Novas estratégias entram sem reescrever o core do produto</Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide dashboard-slide" aria-label="Dashboard do Cass">
+          <div className="deck-slide__inner">
+            <div className="dashboard-slide__head">
+              <SlideHead kicker="CREATOR CONTROL" support="Template, entrada, aporte, proteção, distribuição e duração">
+                SEM DEV<br /><span>CASS MONTA A CALL</span>
+              </SlideHead>
+            </div>
+            <Reveal className="creator-ui-wrap" delay={0.08}><DashboardInterface /></Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide finance-architecture-slide" aria-label="Arquitetura financeira">
+          <div className="deck-slide__inner">
+            <SlideHead kicker="FINANCEIRO">DINHEIRO COM O PARCEIRO<br /><span>PRODUTO COM A GENTE</span></SlideHead>
+            <div className="finance-layers">
+              <Reveal className="finance-layer finance-layer--financial" delay={0.08}>
+                <div className="finance-layer__label">FINANCIAL LAYER</div>
+                <div className="finance-pair"><div><small>USUÁRIO</small><strong>CONTA + SALDO</strong></div><span>↔</span><div className="finance-pair__accent"><small>PSP / BAAS</small><strong>KYC · PIX · CUSTÓDIA · SALDO · SAQUE</strong></div></div>
+              </Reveal>
+              <div className="finance-bridge"><span>API / WEBHOOK</span><i /></div>
+              <Reveal className="finance-layer finance-layer--product" delay={0.14}>
+                <div className="finance-layer__label">PRODUCT LAYER</div>
+                <div className="finance-pair"><div className="finance-pair__accent"><small>PAC</small><strong>UX · REGRAS · LEDGER LÓGICO · RESERVA · SETTLEMENT</strong></div><span>↔</span><div><small>CASS / CASA PARCEIRA</small><strong>EXECUÇÃO DA CALL</strong></div></div>
+              </Reveal>
+            </div>
+            <Reveal className="slide-footnote" delay={0.22}>PAC não precisa custodiar dinheiro em conta própria</Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide discovery-slide" aria-label="Discovery">
+          <div className="deck-slide__inner">
+            <SlideHead>DISCOVERY<br /><span>TAMBÉM É ENTREGA</span></SlideHead>
+            <div className="discovery-triad">
+              {[
+                ["FINANCEIRO", ["PSP / BaaS", "Pix", "KYC", "Custódia"]],
+                ["JURÍDICO", ["Fluxos", "CassCoin", "Regras", "Compliance"]],
+                ["INTEGRAÇÕES", ["APIs", "Webhooks", "CSV", "Reconciliação"]],
+              ].map(([title, items], index) => (
+                <Reveal className="discovery-pillar" delay={0.08 + index * 0.05} key={title}>
+                  <span>0{index + 1}</span><h3>{title}</h3><div>{items.map((item) => <Tag key={item}>{item}</Tag>)}</div>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal className="discovery-conclusion" delay={0.22}>O PROJETO INCLUI TRANSFORMAR ESSAS INCÓGNITAS EM DECISÕES DE PRODUTO</Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide roadmap-pac-slide" aria-label="Roadmap PAC">
+          <div className="deck-slide__inner">
+            <SlideHead>PRIMEIRO FAZ FUNCIONAR<br /><span>DEPOIS FAZ ESCALAR</span></SlideHead>
+            <Timeline items={pacRoadmap} className="timeline--pac" />
+            <Reveal className="optionality-paths" delay={0.23}><span>CASS EXCLUSIVE</span><i>OU</i><span>MULTI-CREATOR</span><i>OU</i><span>BET / B2B</span></Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide wrap-up-slide" aria-label="Tese combinada">
+          <div className="deck-slide__inner">
+            <div className="wrap-up-head">
+              <Reveal><h2>PRIMEIRO TRANSFORMAMOS<br />AUDIÊNCIA EM ATIVO</h2></Reveal>
+              <Reveal delay={0.06}><h2 className="gradient-text">DEPOIS FAZEMOS<br />ESSE ATIVO VALER MAIS</h2></Reveal>
+            </div>
+            <div className="wrap-equation">
+              <Reveal className="wrap-product" delay={0.1}><small>CASS PLATFORM</small><div>{["IDENTIDADE", "HÁBITO", "REWARDS", "DADOS"].map((item) => <Tag key={item}>{item}</Tag>)}</div></Reveal>
+              <span className="equation-sign">+</span>
+              <Reveal className="wrap-product" delay={0.14}><small>PAC</small><div>{["PARTICIPAÇÃO", "RECORRÊNCIA", "TICKET"].map((item) => <Tag key={item}>{item}</Tag>)}</div></Reveal>
+              <span className="equation-sign">=</span>
+              <Reveal className="wrap-result" delay={0.18}><small>RESULTADO</small><strong>INFRAESTRUTURA<br />PROPRIETÁRIA</strong></Reveal>
+            </div>
+          </div>
+        </section>
+
+        <section id="investimento" className="deck-slide investment-new-slide" aria-label="Investimento">
+          <div className="deck-slide__inner">
+            <SlideHead kicker="INVESTIMENTO">DOIS PRODUTOS<br /><span>UM PACOTE RECOMENDADO</span></SlideHead>
+            <div className="offer-grid">
+              <Reveal className="offer-card" delay={0.07}><small>CASS PLATFORM</small><strong>R$ 85.000</strong><span>PRODUTO 01</span></Reveal>
+              <Reveal className="offer-card" delay={0.11}><small>PAC</small><strong>R$ 165.000</strong><span>PRODUTO 02</span></Reveal>
+              <Reveal className="offer-card offer-card--featured" delay={0.15}><div className="recommended-badge">RECOMENDADO</div><small>CASS PLATFORM + PAC</small><strong>R$ 220.000</strong><span>ECOSSISTEMA COMPLETO</span></Reveal>
+            </div>
+            <Reveal className="post-launch-strip" delay={0.21}>
+              <small>OPCIONAL PÓS-LANÇAMENTO</small>
+              <div><span>SUPORTE / PRODUTO</span><strong>R$ 12.000 / MÊS</strong></div>
+              <div><span>GROWTH / CRM</span><strong>R$ 8.000 / MÊS</strong></div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide milestones-new-slide" aria-label="Milestones">
+          <div className="deck-slide__inner">
+            <SlideHead>PAGAMENTO ACOMPANHA<br /><span>O PRODUTO SAINDO DO PAPEL</span></SlideHead>
+            <div className="milestone-timeline">
+              <div className="milestone-timeline__track"><i style={{ width: "100%" }} /></div>
+              {milestones.map(([percent, title], index) => (
+                <Reveal className="milestone-point" delay={0.08 + index * 0.045} key={title}><span>{percent}</span><i /><strong>{title}</strong></Reveal>
+              ))}
+            </div>
+            <Reveal className="slide-footnote" delay={0.22}>CASS Platform primeiro · PAC como grande atualização</Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide assumptions-new-slide" aria-label="Premissas comerciais">
+          <div className="deck-slide__inner">
+            <SlideHead kicker="PREMISSAS">O QUE O FEE CONSTRÓI<br /><span>E O QUE DEPENDE DE TERCEIROS</span></SlideHead>
+            <div className="premise-grid">
+              {[
+                ["FINANCEIRO", "PSP/BaaS, KYC, Pix e taxas transacionais são custos externos"],
+                ["JURÍDICO", "Validações e adequações regulatórias acontecem durante a implementação"],
+                ["OPERAÇÃO", "Cloud, mensageria, rewards, prêmios e fornecedores não fazem parte do fee"],
+                ["PARCEIROS", "Integrações profundas dependem de API, documentação e colaboração das casas"],
+              ].map(([title, copy], index) => (
+                <Reveal className="premise-block" delay={0.08 + index * 0.045} key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="proximos" className="deck-slide next-steps-slide" aria-label="Próximos passos">
+          <div className="deck-slide__inner">
+            <SlideHead>DA APROVAÇÃO<br /><span>PARA O BUILD</span></SlideHead>
+            <div className="next-flow">
+              {[
+                ["01", "APROVA", "Pacote + valores + escopo macro"],
+                ["02", "KICKOFF", "Prioridades + responsáveis"],
+                ["03", "DISCOVERY", "Produto + financeiro + jurídico"],
+                ["04", "BUILD", "CASS Platform → PAC"],
+              ].map(([number, title, copy], index) => (
+                <React.Fragment key={title}>
+                  <Reveal className="next-flow__step" delay={0.08 + index * 0.045}><span>{number}</span><strong>{title}</strong><small>{copy}</small></Reveal>
+                  {index < 3 && <Arrow />}
+                </React.Fragment>
+              ))}
+            </div>
+            <Reveal className="next-callout" delay={0.23}>CASS PLATFORM PRIMEIRO<br /><span>PAC COMO GRANDE ATUALIZAÇÃO</span></Reveal>
+          </div>
+        </section>
+
+        <section className="deck-slide closing-slide" aria-label="Encerramento">
+          <div className="closing-slide__glow" aria-hidden="true" />
+          <div className="deck-slide__inner closing-slide__inner">
+            <Reveal><h2>A PRÓXIMA FASE<br /><span>COMEÇA AQUI</span></h2></Reveal>
+            <Reveal delay={0.08}><p>cass platform + passa a call</p></Reveal>
+          </div>
+        </section>
       </main>
     </div>
-  );
+  )
 }
 
-createRoot(document.getElementById("root")).render(<React.StrictMode><App /></React.StrictMode>);
+createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
