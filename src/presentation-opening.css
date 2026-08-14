@@ -152,6 +152,7 @@
   line-height: 1.05;
   letter-spacing: -.038em;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .hero-support-slide .hero-copy {
@@ -224,5 +225,6 @@
   .impact-objective-card > strong {
     max-width: 92%;
     font-size: clamp(19px, 5.6vw, 25px);
+    white-space: normal;
   }
 }

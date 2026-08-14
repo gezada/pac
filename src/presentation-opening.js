@@ -48,7 +48,7 @@ function buildOpeningSlides() {
             <strong>AUMENTAR O TICKET MÉDIO</strong>
           </article>
           <article class="impact-objective-card">
-            <strong>SER PROPRIETÁRIO DOS LEADS</strong>
+            <strong>SER PROPRIETÁRIOS DOS LEADS</strong>
           </article>
         </div>
       </div>
