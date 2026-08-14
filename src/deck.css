@@ -373,45 +373,40 @@
   flex: 1;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: clamp(20px, 2.5vh, 28px);
-  padding-top: clamp(22px, 3vh, 32px);
+  gap: clamp(14px, 1.8vh, 20px);
+  padding-top: clamp(18px, 2.4vh, 26px);
 }
 
 .benchmark-hub {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 18px;
+  justify-content: flex-start;
+  gap: 14px;
+  padding-inline: 4px;
 }
 
 .benchmark-hub::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: calc(0px - clamp(20px, 2.5vh, 28px));
-  width: 1px;
-  height: clamp(20px, 2.5vh, 28px);
-  background: linear-gradient(rgba(32, 217, 255, .38), rgba(32, 217, 255, .1));
+  display: none;
 }
 
 .benchmark-mark {
-  width: clamp(64px, 5vw, 78px);
+  width: clamp(52px, 4.2vw, 64px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
   border: 1px solid rgba(32, 217, 255, .28);
-  border-radius: 20px;
+  border-radius: 16px;
   color: #effcff;
   background: radial-gradient(circle, rgba(32, 217, 255, .13), rgba(255, 255, 255, .025));
   box-shadow: 0 0 38px rgba(32, 217, 255, .08);
-  font-size: clamp(25px, 2vw, 34px);
+  font-size: clamp(21px, 1.7vw, 28px);
   font-weight: 800;
 }
 
 .benchmark-hub > div:last-child {
   display: grid;
-  gap: 8px;
+  gap: 5px;
 }
 
 .benchmark-hub small,
@@ -422,7 +417,7 @@
 }
 
 .benchmark-hub strong {
-  font-size: clamp(18px, 1.35vw, 23px);
+  font-size: clamp(16px, 1.15vw, 19px);
   letter-spacing: -.03em;
 }
 
@@ -431,21 +426,19 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
+  padding: 10px;
+  border: 1px solid rgba(32, 217, 255, .11);
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(32, 217, 255, .025), rgba(180, 43, 255, .02));
 }
 
 .benchmark-modules::before {
-  content: "";
-  position: absolute;
-  left: 12.5%;
-  right: 12.5%;
-  top: calc(0px - clamp(20px, 2.5vh, 28px));
-  height: 1px;
-  background: linear-gradient(90deg, rgba(32, 217, 255, .1), rgba(32, 217, 255, .32), rgba(180, 43, 255, .2));
+  display: none;
 }
 
 .benchmark-module {
   position: relative;
-  min-height: clamp(82px, 10dvh, 104px);
+  min-height: clamp(84px, 10dvh, 102px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -454,17 +447,19 @@
   border: 1px solid rgba(255, 255, 255, .08);
   border-radius: 14px;
   color: #9ca6b2;
-  background: rgba(255, 255, 255, .02);
+  background: rgba(255, 255, 255, .028);
 }
 
 .benchmark-module::before {
   content: "";
   position: absolute;
-  left: 50%;
-  top: calc(0px - clamp(20px, 2.5vh, 28px));
-  width: 1px;
-  height: clamp(20px, 2.5vh, 28px);
-  background: rgba(32, 217, 255, .2);
+  right: 10px;
+  top: 10px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #70eda0;
+  box-shadow: 0 0 12px rgba(112, 237, 160, .42);
 }
 
 .benchmark-module .presentation-icon {
@@ -474,8 +469,8 @@
 }
 
 .benchmark-module span {
-  font: 500 8px/1 var(--mono);
-  letter-spacing: .08em;
+  font: 500 7.5px/1.25 var(--mono);
+  letter-spacing: .07em;
 }
 
 .benchmark-community {
@@ -487,7 +482,7 @@
   padding: 12px 14px;
   border: 1px solid rgba(255, 255, 255, .075);
   border-radius: 15px;
-  background: rgba(255, 255, 255, .018);
+  background: linear-gradient(90deg, rgba(180, 43, 255, .035), rgba(255, 255, 255, .018));
 }
 
 .benchmark-community > .presentation-icon {
@@ -515,7 +510,6 @@
   font: 500 7px/1 var(--mono);
   letter-spacing: .1em;
 }
-
 .benchmark-lessons {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
@@ -2530,55 +2524,51 @@
   }
 
   .benchmark-ecosystem {
-    gap: 9px;
-    padding-top: 10px;
+    gap: 6px;
+    padding-top: 9px;
   }
 
   .benchmark-hub {
-    gap: 10px;
-  }
-
-  .benchmark-hub::after {
-    bottom: -9px;
-    height: 9px;
+    gap: 8px;
+    padding-inline: 2px;
   }
 
   .benchmark-mark {
-    width: 42px;
-    border-radius: 12px;
-    font-size: 17px;
+    width: 36px;
+    border-radius: 10px;
+    font-size: 15px;
   }
 
   .benchmark-hub > div:last-child {
-    gap: 4px;
+    gap: 3px;
   }
 
   .benchmark-hub small,
   .benchmark-community small {
-    font-size: 6px;
+    font-size: 5.7px;
   }
 
   .benchmark-hub strong {
-    font-size: 13px;
+    font-size: 11px;
   }
 
   .benchmark-modules {
     gap: 4px;
-  }
-
-  .benchmark-modules::before {
-    top: -9px;
+    padding: 5px;
+    border-radius: 10px;
   }
 
   .benchmark-module {
-    min-height: 44px;
-    padding: 5px;
+    min-height: 48px;
+    padding: 6px;
     border-radius: 8px;
   }
 
   .benchmark-module::before {
-    top: -9px;
-    height: 9px;
+    right: 6px;
+    top: 6px;
+    width: 4px;
+    height: 4px;
   }
 
   .benchmark-module .presentation-icon {
@@ -2587,7 +2577,8 @@
   }
 
   .benchmark-module span {
-    font-size: 5.5px;
+    font-size: 5.2px;
+    line-height: 1.18;
   }
 
   .benchmark-community {
@@ -2614,7 +2605,6 @@
     padding: 5px 6px;
     font-size: 5.5px;
   }
-
   .benchmark-lessons {
     gap: 5px;
   }

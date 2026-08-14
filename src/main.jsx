@@ -240,11 +240,11 @@ function App() {
               <Reveal className="benchmark-product" delay={0.08}>
                 <div className="benchmark-product__bar"><span>ROSHSTEIN.COM</span><small>ECOSSISTEMA VALIDADO</small></div>
                 <div className="benchmark-ecosystem">
-                  <div className="benchmark-hub"><div className="benchmark-mark">R</div><div><small>ECOSSISTEMA ROSHTEIN</small><strong>CONTA + PROGRESSÃO</strong></div></div>
+                  <div className="benchmark-hub"><div className="benchmark-mark">R</div><div><small>ECOSSISTEMA ROSHTEIN</small><strong>MODELO RECORRENTE</strong></div></div>
                   <div className="benchmark-modules">
-                    {[["progress", "PROGRESSÃO"], ["missions", "MISSIONS"], ["rewards", "REWARDS"], ["store", "STORE"]].map(([icon, label]) => <div className="benchmark-module" key={label}><PresentationIcon name={icon} /><span>{label}</span></div>)}
+                    {[["progress", "CONTA + PROGRESSÃO"], ["missions", "MISSIONS"], ["rewards", "REWARDS"], ["store", "STORE"]].map(([icon, label]) => <div className="benchmark-module" key={label}><PresentationIcon name={icon} /><span>{label}</span></div>)}
                   </div>
-                  <div className="benchmark-community"><PresentationIcon name="community" /><div><small>COMUNIDADE</small><strong>HÁBITO + RECORRÊNCIA</strong></div><span>MODELO VALIDADO</span></div>
+                  <div className="benchmark-community"><PresentationIcon name="community" /><div><small>COMUNIDADE ATIVA</small><strong>HÁBITO + RECORRÊNCIA</strong></div><span>MODELO VALIDADO</span></div>
                 </div>
               </Reveal>
               <div className="benchmark-lessons">
