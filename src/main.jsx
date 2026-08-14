@@ -308,23 +308,26 @@ function App() {
 
         <section className="deck-slide loop-slide" aria-label="Loop de comportamento">
           <div className="deck-slide__inner">
-            <SlideHead>DE AUDIÊNCIA<br /><span>PARA HÁBITO</span></SlideHead>
+            <div className="loop-copy">
+              <SlideHead>DE AUDIÊNCIA<br /><span>PARA HÁBITO</span></SlideHead>
+              <Reveal className="loop-support" delay={0.05}>CADA VOLTA GERA MAIS DADOS, RELAÇÃO E VALOR</Reveal>
+            </div>
             <div className="behavior-loop">
-              <div className="behavior-loop__ring" aria-hidden="true" />
+              <div className="behavior-loop__ring" aria-hidden="true"><span>→</span><span>↓</span><span>←</span><span>↑</span></div>
               {behaviorLoop.map((item, index) => (
                 <Reveal className={"behavior-loop__item behavior-loop__item--" + (index + 1)} delay={0.07 + index * 0.035} key={item}>
                   <span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong>
                 </Reveal>
               ))}
               <div className="behavior-loop__center"><small>LOOP</small><strong>MAIS<br />VALOR</strong></div>
+              <div className="behavior-loop__return">VOLTA <span>→</span> ASSISTE</div>
             </div>
-            <Reveal className="slide-footnote" delay={0.22}>Cada volta cria mais dados, mais relacionamento e mais oportunidades comerciais</Reveal>
           </div>
         </section>
 
         <section className="deck-slide economy-new-slide" aria-label="Economia da Cass Platform">
           <div className="deck-slide__inner">
-            <SlideHead>UMA ECONOMIA<br /><span>DOIS PAPÉIS</span></SlideHead>
+            <SlideHead>PROGRESSÃO E VALOR<br /><span>NÃO SÃO A MESMA COISA</span></SlideHead>
             <div className="economy-roles">
               <Reveal className="economy-role economy-role--xp" delay={0.08}>
                 <div className="economy-role__head"><small>XP</small><strong>STATUS</strong></div>
@@ -338,7 +341,12 @@ function App() {
                 <div className="economy-role__rate">1.000 CC = R$1</div>
               </Reveal>
             </div>
-            <Reveal className="rewards-rail" delay={0.18}><strong>REWARDS</strong>{["BANCA", "FREE SPINS", "MERCH", "HARDWARE", "TICKETS", "EXPERIÊNCIAS"].map((item) => <Tag key={item}>{item}</Tag>)}</Reveal>
+            <Reveal className="rewards-rail" delay={0.18}>
+              <div className="rewards-rail__intro"><small>REWARDS</small><strong>PODEM ASSUMIR VÁRIAS FORMAS</strong></div>
+              <div className="rewards-rail__items">
+                {[["bankroll", "BANCA"], ["free-spins", "FREE SPINS"], ["merch", "MERCH"], ["hardware", "HARDWARE"], ["tickets", "TICKETS"], ["experiences", "EXPERIÊNCIAS"]].map(([icon, item]) => <div className="reward-form" key={item}><PresentationIcon name={icon} /><span>{item}</span></div>)}
+              </div>
+            </Reveal>
           </div>
         </section>
 
