@@ -279,10 +279,10 @@ function App() {
             </SlideHead>
             <div className="account-orbit">
               <svg className="account-connections" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <line x1="50" y1="50" x2="20" y2="22" />
-                <line x1="50" y1="50" x2="80" y2="22" />
-                <line x1="50" y1="50" x2="20" y2="78" />
-                <line x1="50" y1="50" x2="80" y2="78" />
+                <line x1="50" y1="50" x2="18" y2="33" />
+                <line x1="50" y1="50" x2="82" y2="33" />
+                <line x1="50" y1="50" x2="18" y2="67" />
+                <line x1="50" y1="50" x2="82" y2="67" />
               </svg>
               <Reveal className="viewer-profile" delay={0.1}>
                 <div className="viewer-profile__avatar">C</div>
