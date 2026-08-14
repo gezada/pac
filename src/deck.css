@@ -32,7 +32,13 @@
   position: relative;
   z-index: 3;
   max-width: 1180px;
+  margin-inline: auto;
   margin-bottom: clamp(20px, 3.2vh, 38px);
+  text-align: center;
+}
+
+.slide-head .slide-support {
+  margin-inline: auto;
 }
 
 .slide-head h2,
@@ -661,6 +667,8 @@
   left: 0;
   top: 0;
   width: 40%;
+  margin-inline: 0;
+  text-align: left;
 }
 
 .behavior-loop {
@@ -1471,7 +1479,13 @@
 }
 
 .dashboard-slide .slide-head {
+  margin-inline: 0;
   margin-bottom: 0;
+  text-align: left;
+}
+
+.dashboard-slide .slide-support {
+  margin-inline: 0;
 }
 
 .creator-ui-wrap {
@@ -1820,6 +1834,7 @@
   grid-template-columns: 1fr 1fr;
   gap: clamp(24px, 4vw, 68px);
   align-items: end;
+  text-align: center;
 }
 
 .wrap-up-head h2 {
