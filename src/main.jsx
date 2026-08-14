@@ -325,30 +325,6 @@ function App() {
           </div>
         </section>
 
-        <section className="deck-slide economy-new-slide" aria-label="Economia da Cass Platform">
-          <div className="deck-slide__inner">
-            <SlideHead>PROGRESSÃO E VALOR<br /><span>NÃO SÃO A MESMA COISA</span></SlideHead>
-            <div className="economy-roles">
-              <Reveal className="economy-role economy-role--xp" delay={0.08}>
-                <div className="economy-role__head"><small>XP</small><strong>STATUS</strong></div>
-                <div className="economy-role__list"><span>LEVEL</span><span>RANKING</span><span>PROGRESSÃO</span><span>DESBLOQUEIOS</span></div>
-                <div className="economy-role__flag">NÃO É DINHEIRO</div>
-              </Reveal>
-              <div className="economy-divider"><i /><span>≠</span><i /></div>
-              <Reveal className="economy-role economy-role--coin" delay={0.12}>
-                <div className="economy-role__head"><small>CASSCOIN</small><strong>VALOR ECONÔMICO</strong></div>
-                <div className="economy-role__list"><span>STORE</span><span>RAFFLES</span><span>REWARDS</span><span>FUTURAMENTE PAC</span></div>
-                <div className="economy-role__rate">1.000 CC = R$1</div>
-              </Reveal>
-            </div>
-            <Reveal className="rewards-rail" delay={0.18}>
-              <div className="rewards-rail__intro"><small>REWARDS</small><strong>PODEM ASSUMIR VÁRIAS FORMAS</strong></div>
-              <div className="rewards-rail__items">
-                {[["bankroll", "BANCA"], ["free-spins", "FREE SPINS"], ["merch", "MERCH"], ["hardware", "HARDWARE"], ["tickets", "TICKETS"], ["experiences", "EXPERIÊNCIAS"]].map(([icon, item]) => <div className="reward-form" key={item}><PresentationIcon name={icon} /><span>{item}</span></div>)}
-              </div>
-            </Reveal>
-          </div>
-        </section>
 
         <section className="deck-slide live-layer-slide" aria-label="Live engagement">
           <div className="deck-slide__inner">
