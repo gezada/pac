@@ -61,6 +61,11 @@
   margin-bottom: clamp(10px, 1.8vh, 18px);
 }
 
+.reality-slide .slide-head h2 span {
+  position: relative;
+  z-index: 1;
+}
+
 .reality-map {
   position: relative;
   display: grid;
