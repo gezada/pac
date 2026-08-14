@@ -1,11 +1,12 @@
 const PRESENTATION_SELECTOR = "main > section:not(.marquee)";
 const FORWARD_KEYS = new Set(["ArrowDown", "ArrowRight", "PageDown", " "]);
 const BACKWARD_KEYS = new Set(["ArrowUp", "ArrowLeft", "PageUp"]);
+const KEYBOARD_TRANSITION_MS = 170;
 
 let locked = false;
 let unlockTimer = null;
 let keyboardTargetIndex = null;
-let keyboardTargetTimer = null;
+let keyboardAnimationFrame = null;
 
 function getScroller() {
   return document.querySelector("main");
@@ -46,15 +47,50 @@ function lockNavigation(duration = 720) {
   }, duration);
 }
 
-function holdKeyboardTarget(index) {
-  keyboardTargetIndex = index;
-  window.clearTimeout(keyboardTargetTimer);
-  keyboardTargetTimer = window.setTimeout(() => {
-    keyboardTargetIndex = null;
-  }, 900);
+function restoreScrollStyles(scroller) {
+  scroller.style.removeProperty("scroll-behavior");
+  scroller.style.removeProperty("scroll-snap-type");
 }
 
-function scrollToSlide(slides, scroller, index) {
+function cancelKeyboardAnimation(scroller) {
+  if (keyboardAnimationFrame !== null) {
+    window.cancelAnimationFrame(keyboardAnimationFrame);
+    keyboardAnimationFrame = null;
+  }
+
+  if (scroller) restoreScrollStyles(scroller);
+}
+
+function animateKeyboardToSlide(slides, scroller, index) {
+  cancelKeyboardAnimation(null);
+
+  const startY = scroller.scrollTop;
+  const destinationY = slides[index].offsetTop;
+  const startedAt = performance.now();
+
+  scroller.style.setProperty("scroll-behavior", "auto");
+  scroller.style.setProperty("scroll-snap-type", "none");
+
+  const tick = (now) => {
+    const progress = Math.min(1, (now - startedAt) / KEYBOARD_TRANSITION_MS);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    scroller.scrollTop = startY + (destinationY - startY) * eased;
+
+    if (progress < 1) {
+      keyboardAnimationFrame = window.requestAnimationFrame(tick);
+      return;
+    }
+
+    scroller.scrollTop = destinationY;
+    keyboardAnimationFrame = null;
+    keyboardTargetIndex = null;
+    restoreScrollStyles(scroller);
+  };
+
+  keyboardAnimationFrame = window.requestAnimationFrame(tick);
+}
+
+function scrollToSlideSmooth(slides, scroller, index) {
   scroller.scrollTo({
     top: slides[index].offsetTop,
     behavior: "smooth",
@@ -72,10 +108,16 @@ function goToSlide(direction, { keyboard = false } = {}) {
   const next = Math.max(0, Math.min(slides.length - 1, current + direction));
   if (next === current) return;
 
-  if (keyboard) holdKeyboardTarget(next);
-  else lockNavigation();
+  if (keyboard) {
+    keyboardTargetIndex = next;
+    animateKeyboardToSlide(slides, scroller, next);
+    return;
+  }
 
-  scrollToSlide(slides, scroller, next);
+  keyboardTargetIndex = null;
+  cancelKeyboardAnimation(scroller);
+  lockNavigation();
+  scrollToSlideSmooth(slides, scroller, next);
 }
 
 function handleWheel(event) {
@@ -84,8 +126,6 @@ function handleWheel(event) {
   event.preventDefault();
   if (locked) return;
 
-  keyboardTargetIndex = null;
-  window.clearTimeout(keyboardTargetTimer);
   goToSlide(event.deltaY > 0 ? 1 : -1);
 }
 
@@ -111,14 +151,14 @@ function handleKeydown(event) {
 
   if (event.key === "Home") {
     event.preventDefault();
-    holdKeyboardTarget(0);
-    scrollToSlide(slides, scroller, 0);
+    keyboardTargetIndex = 0;
+    animateKeyboardToSlide(slides, scroller, 0);
   }
 
   if (event.key === "End") {
     event.preventDefault();
-    holdKeyboardTarget(slides.length - 1);
-    scrollToSlide(slides, scroller, slides.length - 1);
+    keyboardTargetIndex = slides.length - 1;
+    animateKeyboardToSlide(slides, scroller, slides.length - 1);
   }
 }
 
