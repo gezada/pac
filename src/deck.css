@@ -637,50 +637,84 @@
 }
 
 /* 07 — account value */
-.account-orbit {
-  position: relative;
-  min-height: clamp(340px, 48dvh, 490px);
+.account-slide .slide-head {
+  margin-bottom: clamp(14px, 2vh, 24px);
 }
 
-.account-orbit::before,
-.account-orbit::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border: 1px solid rgba(32, 217, 255, .11);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+.account-orbit {
+  position: relative;
+  min-height: clamp(390px, 51dvh, 510px);
+  isolation: isolate;
 }
 
 .account-orbit::before {
-  width: 54%;
-  aspect-ratio: 1.8;
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  width: min(42vw, 620px);
+  height: min(32vw, 390px);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(32, 217, 255, .075), rgba(180, 43, 255, .025) 42%, transparent 72%);
+  pointer-events: none;
 }
 
-.account-orbit::after {
-  width: 72%;
-  aspect-ratio: 2.2;
-  border-color: rgba(180, 43, 255, .08);
+.account-connections {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.account-connections line {
+  fill: none;
+  stroke: rgba(75, 190, 224, .34);
+  stroke-width: .32;
+  vector-effect: non-scaling-stroke;
+}
+
+.account-connections line:nth-child(3),
+.account-connections line:nth-child(4) {
+  stroke: rgba(145, 91, 232, .28);
 }
 
 .viewer-profile {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   left: 50%;
   top: 50%;
-  width: clamp(210px, 18vw, 285px);
-  min-height: 250px;
+  width: clamp(225px, 18vw, 285px);
+  min-height: 244px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transform: translate(-50%, -50%);
-  padding: 24px;
-  border: 1px solid rgba(32, 217, 255, .22);
+  padding: 23px;
+  border: 1px solid rgba(32, 217, 255, .3);
   border-radius: 24px;
-  background: linear-gradient(155deg, rgba(17, 22, 29, .98), rgba(8, 10, 14, .98));
-  box-shadow: 0 35px 85px rgba(0, 0, 0, .32), 0 0 60px rgba(32, 217, 255, .05);
+  background: linear-gradient(155deg, rgba(17, 22, 29, .99), rgba(8, 10, 14, .99));
+  box-shadow: 0 35px 85px rgba(0, 0, 0, .38), 0 0 65px rgba(32, 217, 255, .08);
+}
+
+.viewer-profile::before {
+  content: "NÚCLEO DA CONTA";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  border: 1px solid rgba(32, 217, 255, .22);
+  border-radius: 999px;
+  background: #0a0d12;
+  color: #80dce8;
+  font: 600 7px/1 var(--mono);
+  letter-spacing: .14em;
+  white-space: nowrap;
 }
 
 .viewer-profile__avatar {
@@ -697,7 +731,7 @@
 }
 
 .viewer-profile small {
-  color: #79838f;
+  color: #8d98a5;
   font: 500 8px/1 var(--mono);
   letter-spacing: .12em;
 }
@@ -735,22 +769,41 @@
   text-align: center;
   border: 1px solid rgba(255, 255, 255, .08);
   border-radius: 9px;
-  color: #9099a5;
+  color: #a0a9b4;
   font: 500 8px/1 var(--mono);
 }
 
 .orbit-action {
   position: absolute;
-  z-index: 3;
-  width: clamp(210px, 18vw, 280px);
-  min-height: 102px;
+  z-index: 2;
+  width: clamp(225px, 19vw, 295px);
+  min-height: 112px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 18px 20px;
+  align-items: center;
+  gap: clamp(13px, 1.25vw, 20px);
+  padding: 19px 21px;
   border: 1px solid var(--line);
   border-radius: 17px;
-  background: rgba(10, 13, 18, .94);
+  background: linear-gradient(145deg, rgba(13, 17, 23, .97), rgba(8, 10, 14, .95));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .22);
+}
+
+.orbit-action__icon {
+  flex: 0 0 auto;
+  width: clamp(29px, 2.35vw, 38px);
+  height: clamp(29px, 2.35vw, 38px);
+  color: #56dbea;
+}
+
+.orbit-action--2 .orbit-action__icon,
+.orbit-action--4 .orbit-action__icon {
+  color: #9d7aec;
+}
+
+.orbit-action > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .orbit-action strong {
@@ -759,15 +812,14 @@
 
 .orbit-action span {
   margin-top: 7px;
-  color: #87919d;
+  color: #929da9;
   font: 400 10px/1.35 var(--mono);
 }
 
-.orbit-action--1 { left: 4%; top: 4%; }
-.orbit-action--2 { right: 4%; top: 4%; }
-.orbit-action--3 { left: 4%; bottom: 4%; }
-.orbit-action--4 { right: 4%; bottom: 4%; }
-
+.orbit-action--1 { left: 2%; top: 6%; }
+.orbit-action--2 { right: 2%; top: 6%; }
+.orbit-action--3 { left: 2%; bottom: 6%; }
+.orbit-action--4 { right: 2%; bottom: 6%; }
 /* 08 — behavior loop */
 .loop-slide .slide-head {
   position: absolute;
@@ -2621,40 +2673,46 @@
   }
 
   /* 07 */
-  .account-orbit {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 7px;
-    min-height: 0;
+  .account-slide .slide-head {
+    margin-bottom: 8px;
   }
 
-  .account-orbit::before,
-  .account-orbit::after {
-    display: none;
+  .account-orbit {
+    min-height: 460px;
+  }
+
+  .account-orbit::before {
+    width: 110%;
+    height: 58%;
+  }
+
+  .account-connections line {
+    stroke-width: .7;
   }
 
   .viewer-profile {
-    position: relative;
-    left: auto;
-    top: auto;
-    grid-column: 1 / -1;
-    width: 100%;
-    min-height: 150px;
-    transform: none;
-    padding: 14px;
-    border-radius: 15px;
+    width: min(74vw, 280px);
+    min-height: 152px;
+    padding: 15px 18px;
+    border-radius: 17px;
+  }
+
+  .viewer-profile::before {
+    top: -9px;
+    padding: 5px 8px;
+    font-size: 6px;
   }
 
   .viewer-profile__avatar {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     margin-bottom: 7px;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .viewer-profile > strong {
     margin: 5px 0 8px;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .viewer-profile__wallet {
@@ -2667,23 +2725,32 @@
   }
 
   .orbit-action {
-    position: relative;
-    inset: auto;
-    width: auto;
-    min-height: 76px;
-    padding: 10px;
+    width: calc(50% - 5px);
+    min-height: 84px;
+    gap: 8px;
+    padding: 11px;
     border-radius: 12px;
   }
 
+  .orbit-action__icon {
+    width: 23px;
+    height: 23px;
+  }
+
   .orbit-action strong {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .orbit-action span {
-    margin-top: 5px;
-    font-size: 8px;
+    margin-top: 4px;
+    font-size: 7.5px;
+    line-height: 1.25;
   }
 
+  .orbit-action--1 { left: 0; top: 3%; }
+  .orbit-action--2 { right: 0; top: 3%; }
+  .orbit-action--3 { left: 0; bottom: 3%; }
+  .orbit-action--4 { right: 0; bottom: 3%; }
   /* 08 */
   .loop-slide .slide-head {
     position: relative;

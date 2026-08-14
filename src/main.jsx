@@ -274,10 +274,16 @@ function App() {
 
         <section className="deck-slide account-slide" aria-label="Por que criar conta">
           <div className="deck-slide__inner">
-            <SlideHead support="A vantagem precisa existir desde o primeiro acesso">
+            <SlideHead>
               CADASTRAR PRECISA<br /><span>VALER A PENA</span>
             </SlideHead>
             <div className="account-orbit">
+              <svg className="account-connections" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="50" y1="50" x2="20" y2="22" />
+                <line x1="50" y1="50" x2="80" y2="22" />
+                <line x1="50" y1="50" x2="20" y2="78" />
+                <line x1="50" y1="50" x2="80" y2="78" />
+              </svg>
               <Reveal className="viewer-profile" delay={0.1}>
                 <div className="viewer-profile__avatar">C</div>
                 <small>PERFIL DO VIEWER</small>
@@ -286,13 +292,14 @@ function App() {
                 <div className="viewer-profile__wallet"><span>XP</span><span>CASSCOIN</span></div>
               </Reveal>
               {[
-                ["GANHA", "Rewards desde a entrada"],
-                ["EVOLUI", "XP · levels · streaks"],
-                ["TROCA", "Store · raffles · drops"],
-                ["PARTICIPA", "Missions · predictions · campanhas"],
-              ].map(([title, copy], index) => (
+                ["rewards", "GANHA", "Rewards desde a entrada"],
+                ["progress", "EVOLUI", "XP · levels · streaks"],
+                ["store", "TROCA", "Store · raffles · drops"],
+                ["activity", "PARTICIPA", "Missions · predictions · campanhas"],
+              ].map(([icon, title, copy], index) => (
                 <Reveal className={"orbit-action orbit-action--" + (index + 1)} delay={0.14 + index * 0.04} key={title}>
-                  <strong>{title}</strong><span>{copy}</span>
+                  <PresentationIcon name={icon} className="orbit-action__icon" />
+                  <div><strong>{title}</strong><span>{copy}</span></div>
                 </Reveal>
               ))}
             </div>
