@@ -3,39 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080808" />
+    <meta name="theme-color" content="#050608" />
     <meta name="color-scheme" content="dark" />
-    <meta name="robots" content="noindex, nofollow, noarchive" />
-
-    <title>PAC — Em construção</title>
-    <meta
-      name="description"
-      content="O novo site do PAC está em construção."
-    />
-    <link rel="canonical" href="https://pac.bet/" />
-
-    <script type="module" src="/src/main.ts"></script>
+    <meta name="description" content="PAC — Passa a Call. A camada participativa da live." />
+    <meta property="og:title" content="PAC — Passa a Call" />
+    <meta property="og:description" content="A live deixa de ser só conteúdo e vira experiência." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <title>PAC — Passa a Call</title>
   </head>
   <body>
-    <main class="site-shell">
-      <div class="ambient-light" aria-hidden="true"></div>
-      <div class="texture" aria-hidden="true"></div>
-
-      <section class="construction" aria-labelledby="page-title">
-        <p class="domain">PAC.BET</p>
-
-        <div class="title-wrap">
-          <p class="kicker">Passa a Call</p>
-          <h1 id="page-title">Em construção<span aria-hidden="true">.</span></h1>
-        </div>
-
-        <div class="status" role="status">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span>Preparando o próximo call</span>
-        </div>
-      </section>
-
-      <p class="corner-mark" aria-hidden="true">PAC / 2026</p>
-    </main>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
