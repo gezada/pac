@@ -631,6 +631,11 @@
   letter-spacing: .11em;
 }
 
+.product-transition--cass .product-transition__micro {
+  color: #a1abb7;
+  font-size: clamp(11px, .84vw, 14px);
+}
+
 /* 07 — account value */
 .account-orbit {
   position: relative;
@@ -2609,6 +2614,10 @@
 
   .product-transition__micro {
     font-size: 9px;
+  }
+
+  .product-transition--cass .product-transition__micro {
+    font-size: 10px;
   }
 
   /* 07 */

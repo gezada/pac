@@ -32,7 +32,7 @@ function addSlideMetadata(main) {
     footer.className = "presentation-slide__footer";
     footer.textContent = isLast
       ? "PRODUCT PROPOSAL · 2026"
-      : "CASS PLATFORMA + PASSA A CALL";
+      : "CASS PLATAFORM + PASSA A CALL";
 
     if (!isLast) {
       const year = document.createElement("span");
@@ -74,7 +74,7 @@ function buildOpeningSlides() {
   impact.innerHTML = `
     <div class="impact-slide__inner">
       <h1>
-        <span>A AUDIÊNCIA JÁ EXISTE,</span>
+        <span>A AUDIÊNCIA JÁ EXISTE</span>
         <strong>BORA<br class="impact-mobile-break" /> TRANSFORMAR<br />ELA EM ATIVO?</strong>
       </h1>
 

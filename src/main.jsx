@@ -197,7 +197,7 @@ function App() {
         <section className="deck-slide reality-slide" data-deck-start aria-label="A realidade atual">
           <div className="deck-slide__inner">
             <SlideHead kicker="HOJE">
-              O FACEBOOK É O PALCO,<br />O WHATSAPP É A DISTRIBUIÇÃO,<br /><span>MAS NENHUM DOS DOIS É A CASA</span>
+              O FACEBOOK É O PALCO<br />O WHATSAPP É A DISTRIBUIÇÃO<br /><span>MAS NENHUM DOS DOIS É A CASA</span>
             </SlideHead>
             <div className="reality-map">
               <Reveal className="platform-window platform-window--facebook" delay={0.1}>
