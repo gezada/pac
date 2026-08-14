@@ -107,6 +107,16 @@ button {
   -webkit-background-clip: text;
 }
 
+.deck-slide h2 span,
+.product-transition h2 span,
+.closing-slide h2 span {
+  display: inline-block;
+  padding-right: .08em;
+  margin-right: -.08em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .deck-tag {
   display: inline-flex;
   align-items: center;
