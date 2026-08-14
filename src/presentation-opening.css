@@ -163,6 +163,10 @@
   -webkit-background-clip: text;
 }
 
+.impact-mobile-break {
+  display: none;
+}
+
 .impact-slide__objectives {
   width: min(70vw, 930px);
   margin-top: clamp(42px, 6.2vh, 78px);
@@ -259,6 +263,15 @@
     line-height: .92;
     gap: 10px;
     padding-inline: 4px;
+  }
+
+  .impact-slide h1 strong {
+    font-size: clamp(36px, 11vw, 50px);
+    line-height: .92;
+  }
+
+  .impact-mobile-break {
+    display: block;
   }
 
   .impact-slide__objectives {

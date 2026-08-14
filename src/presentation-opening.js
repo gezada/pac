@@ -75,7 +75,7 @@ function buildOpeningSlides() {
     <div class="impact-slide__inner">
       <h1>
         <span>A AUDIÊNCIA JÁ EXISTE,</span>
-        <strong>BORA TRANSFORMAR ELA EM ATIVO?</strong>
+        <strong>BORA<br class="impact-mobile-break" /> TRANSFORMAR<br />ELA EM ATIVO?</strong>
       </h1>
 
       <div class="impact-slide__objectives" aria-label="Principais objetivos">
