@@ -111,8 +111,8 @@ button {
 .product-transition h2 span,
 .closing-slide h2 span {
   display: inline-block;
-  padding-right: .08em;
-  margin-right: -.08em;
+  padding: .14em .08em .08em 0;
+  margin: -.14em -.08em -.08em 0;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }

@@ -161,6 +161,8 @@
   background: var(--gradient);
   background-clip: text;
   -webkit-background-clip: text;
+  padding-block: .14em .08em;
+  margin-block: -.14em -.08em;
 }
 
 .impact-mobile-break {
