@@ -62,7 +62,7 @@
 }
 
 .impact-slide__inner {
-  width: min(88vw, 1380px);
+  width: min(86vw, 1320px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,12 +76,19 @@
   align-items: center;
   gap: clamp(8px, 1.2vh, 16px);
   width: 100%;
+  padding-inline: clamp(8px, 1vw, 18px);
   text-align: center;
-  font-size: clamp(56px, 6.35vw, 108px);
+  font-size: clamp(54px, 6vw, 102px);
   line-height: .9;
-  letter-spacing: -.07em;
+  letter-spacing: -.067em;
   text-transform: uppercase;
   font-weight: 800;
+}
+
+.impact-slide h1 span,
+.impact-slide h1 strong {
+  display: block;
+  width: 100%;
 }
 
 .impact-slide h1 span {
@@ -97,7 +104,7 @@
 }
 
 .impact-slide__objectives {
-  width: min(72vw, 980px);
+  width: min(70vw, 930px);
   margin-top: clamp(42px, 6.2vh, 78px);
 }
 
@@ -122,8 +129,9 @@
   min-height: clamp(118px, 16vh, 165px);
   padding: clamp(20px, 2vw, 30px);
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   border: 1px solid rgba(255, 255, 255, .12);
   border-radius: clamp(17px, 1.4vw, 23px);
   background:
@@ -138,15 +146,8 @@
     rgba(255, 255, 255, .018);
 }
 
-.impact-objective-card > span {
-  font-family: "DM Mono", monospace;
-  font-size: clamp(9px, .68vw, 12px);
-  letter-spacing: .12em;
-  color: #6f7885;
-}
-
 .impact-objective-card > strong {
-  max-width: 92%;
+  max-width: 88%;
   font-size: clamp(18px, 1.55vw, 26px);
   line-height: 1.05;
   letter-spacing: -.038em;
@@ -194,9 +195,10 @@
   }
 
   .impact-slide h1 {
-    font-size: clamp(44px, 13.4vw, 68px);
+    font-size: clamp(42px, 12.8vw, 64px);
     line-height: .92;
     gap: 10px;
+    padding-inline: 4px;
   }
 
   .impact-slide__objectives {
@@ -220,7 +222,7 @@
   }
 
   .impact-objective-card > strong {
-    max-width: 100%;
+    max-width: 92%;
     font-size: clamp(19px, 5.6vw, 25px);
   }
 }
