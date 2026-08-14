@@ -32,7 +32,15 @@ function addSlideMetadata(main) {
     footer.className = "presentation-slide__footer";
     footer.textContent = isLast
       ? "PRODUCT PROPOSAL · 2026"
-      : "CASS PLATFORM + PASSA A CALL · 2026";
+      : "CASS PLATFORMA + PASSA A CALL";
+
+    if (!isLast) {
+      const year = document.createElement("span");
+      year.className = "presentation-slide__year";
+      year.textContent = "2026";
+      meta.appendChild(year);
+    }
+
     meta.appendChild(footer);
 
     if (!isLast) {
@@ -62,12 +70,12 @@ function buildOpeningSlides() {
 
   const impact = document.createElement("section");
   impact.className = "impact-slide presentation-slide";
-  impact.setAttribute("aria-label", "A audiência já existe, agora ela vira ativo");
+  impact.setAttribute("aria-label", "A audiência já existe, bora transformar ela em ativo?");
   impact.innerHTML = `
     <div class="impact-slide__inner">
       <h1>
-        <span>A AUDIÊNCIA JÁ EXISTE</span>
-        <strong>AGORA ELA VIRA ATIVO</strong>
+        <span>A AUDIÊNCIA JÁ EXISTE,</span>
+        <strong>BORA TRANSFORMAR ELA EM ATIVO?</strong>
       </h1>
 
       <div class="impact-slide__objectives" aria-label="Principais objetivos">
