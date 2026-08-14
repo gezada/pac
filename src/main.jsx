@@ -240,7 +240,7 @@ function App() {
               <Reveal className="benchmark-product" delay={0.08}>
                 <div className="benchmark-product__bar"><span>ROSHSTEIN.COM</span><small>ECOSSISTEMA VALIDADO</small></div>
                 <div className="benchmark-ecosystem">
-                  <div className="benchmark-hub"><div className="benchmark-mark">R</div><div><small>ECOSSISTEMA ROSHTEIN</small><strong>MODELO RECORRENTE</strong></div></div>
+                  <div className="benchmark-hub"><div className="benchmark-mark">C</div><div><small>USUÁRIO PREMIUM</small><strong>CASS</strong></div></div>
                   <div className="benchmark-modules">
                     {[["progress", "CONTA + PROGRESSÃO"], ["missions", "MISSIONS"], ["rewards", "REWARDS"], ["store", "STORE"]].map(([icon, label]) => <div className="benchmark-module" key={label}><PresentationIcon name={icon} /><span>{label}</span></div>)}
                   </div>
@@ -249,9 +249,9 @@ function App() {
               </Reveal>
               <div className="benchmark-lessons">
                 {[
-                  ["01", "COPIAR A LÓGICA", "Progressão · Missions · Rewards · Store"],
+                  ["01", "COPIAR A LÓGICA", "Progressão · Missions · Rewards · Store · ..."],
                   ["02", "ADAPTAR O CONTEXTO", "Facebook Live · WhatsApp · Pix · Casas brasileiras"],
-                  ["03", "CRIAR O DIFERENCIAL", "O diferencial próprio: PAC"],
+                  ["03", "CRIAR O DIFERENCIAL", "Passa a Call"],
                 ].map(([number, title, copy], index) => (
                   <Reveal className={index === 2 ? "benchmark-lesson benchmark-lesson--accent" : "benchmark-lesson"} delay={0.12 + index * 0.05} key={title}>
                     <span>{number}</span><div><small>{title}</small><strong>{copy}</strong></div>
@@ -279,10 +279,10 @@ function App() {
             </SlideHead>
             <div className="account-orbit">
               <svg className="account-connections" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <line x1="50" y1="50" x2="18" y2="33" />
-                <line x1="50" y1="50" x2="82" y2="33" />
-                <line x1="50" y1="50" x2="18" y2="67" />
-                <line x1="50" y1="50" x2="82" y2="67" />
+                <line x1="50" y1="50" x2="17" y2="35" />
+                <line x1="50" y1="50" x2="83" y2="35" />
+                <line x1="50" y1="50" x2="17" y2="65" />
+                <line x1="50" y1="50" x2="83" y2="65" />
               </svg>
               <Reveal className="viewer-profile" delay={0.1}>
                 <div className="viewer-profile__avatar">C</div>

@@ -632,21 +632,28 @@
 
 /* 07 — account value */
 .account-slide .deck-slide__inner {
-  height: min(78dvh, 780px);
+  position: static;
+  width: 100%;
+  max-width: none;
+  height: auto;
 }
 
 .account-slide .slide-head {
   position: absolute;
   z-index: 4;
-  top: 0;
-  left: 0;
+  top: clamp(48px, 7.5dvh, 82px);
+  left: 50%;
   width: 100%;
-  margin-bottom: 0;
+  max-width: none;
+  margin: 0;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .account-orbit {
-  position: relative;
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  height: auto;
   min-height: 0;
   isolation: isolate;
 }
@@ -821,10 +828,10 @@
   font: 500 clamp(11px, .82vw, 13px)/1.35 var(--mono);
 }
 
-.orbit-action--1 { left: 2%; top: 24%; }
-.orbit-action--2 { right: 2%; top: 24%; }
-.orbit-action--3 { left: 2%; bottom: 24%; }
-.orbit-action--4 { right: 2%; bottom: 24%; }
+.orbit-action--1 { left: clamp(36px, 6vw, 120px); top: 29%; }
+.orbit-action--2 { right: clamp(36px, 6vw, 120px); top: 29%; }
+.orbit-action--3 { left: clamp(36px, 6vw, 120px); bottom: 29%; }
+.orbit-action--4 { right: clamp(36px, 6vw, 120px); bottom: 29%; }
 /* 08 — behavior loop */
 .loop-slide .slide-head {
   position: absolute;
@@ -2675,6 +2682,9 @@
 
   /* 07 */
   .account-slide .deck-slide__inner {
+    position: relative;
+    width: min(94vw, calc(100dvh * .5625));
+    max-width: 100%;
     height: auto;
   }
 
@@ -2682,7 +2692,9 @@
     position: relative;
     inset: auto;
     width: 100%;
+    max-width: 100%;
     margin-bottom: 18px;
+    transform: none;
   }
 
   .account-slide .slide-head h2 {
@@ -2690,6 +2702,8 @@
   }
 
   .account-orbit {
+    position: relative;
+    inset: auto;
     height: auto;
     min-height: 0;
     display: grid;

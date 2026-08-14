@@ -4,6 +4,8 @@ const BACKWARD_KEYS = new Set(["ArrowUp", "ArrowLeft", "PageUp"]);
 
 let locked = false;
 let unlockTimer = null;
+let keyboardTargetIndex = null;
+let keyboardTargetTimer = null;
 
 function getScroller() {
   return document.querySelector("main");
@@ -44,21 +46,36 @@ function lockNavigation(duration = 720) {
   }, duration);
 }
 
-function goToSlide(direction) {
+function holdKeyboardTarget(index) {
+  keyboardTargetIndex = index;
+  window.clearTimeout(keyboardTargetTimer);
+  keyboardTargetTimer = window.setTimeout(() => {
+    keyboardTargetIndex = null;
+  }, 900);
+}
+
+function scrollToSlide(slides, scroller, index) {
+  scroller.scrollTo({
+    top: slides[index].offsetTop,
+    behavior: "smooth",
+  });
+}
+
+function goToSlide(direction, { keyboard = false } = {}) {
   const scroller = getScroller();
   const slides = getSlides();
   if (!scroller || !slides.length) return;
 
-  const current = getCurrentSlideIndex(slides, scroller);
+  const current = keyboard && keyboardTargetIndex !== null
+    ? keyboardTargetIndex
+    : getCurrentSlideIndex(slides, scroller);
   const next = Math.max(0, Math.min(slides.length - 1, current + direction));
   if (next === current) return;
 
-  lockNavigation();
-  slides[next].scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-    inline: "nearest",
-  });
+  if (keyboard) holdKeyboardTarget(next);
+  else lockNavigation();
+
+  scrollToSlide(slides, scroller, next);
 }
 
 function handleWheel(event) {
@@ -67,6 +84,8 @@ function handleWheel(event) {
   event.preventDefault();
   if (locked) return;
 
+  keyboardTargetIndex = null;
+  window.clearTimeout(keyboardTargetTimer);
   goToSlide(event.deltaY > 0 ? 1 : -1);
 }
 
@@ -76,13 +95,13 @@ function handleKeydown(event) {
 
   if (FORWARD_KEYS.has(event.key)) {
     event.preventDefault();
-    if (!locked) goToSlide(1);
+    goToSlide(1, { keyboard: true });
     return;
   }
 
   if (BACKWARD_KEYS.has(event.key)) {
     event.preventDefault();
-    if (!locked) goToSlide(-1);
+    goToSlide(-1, { keyboard: true });
     return;
   }
 
@@ -92,14 +111,14 @@ function handleKeydown(event) {
 
   if (event.key === "Home") {
     event.preventDefault();
-    lockNavigation();
-    slides[0].scrollIntoView({ behavior: "smooth", block: "start" });
+    holdKeyboardTarget(0);
+    scrollToSlide(slides, scroller, 0);
   }
 
   if (event.key === "End") {
     event.preventDefault();
-    lockNavigation();
-    slides[slides.length - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+    holdKeyboardTarget(slides.length - 1);
+    scrollToSlide(slides, scroller, slides.length - 1);
   }
 }
 
