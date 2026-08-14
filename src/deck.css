@@ -218,8 +218,9 @@
 }
 
 .audience-core span {
-  color: #ff9ca7;
-  font-size: clamp(9px, .7vw, 12px);
+  color: #ffb3bc;
+  font-size: clamp(10px, .76vw, 13px);
+  font-weight: 600;
   letter-spacing: .14em;
 }
 
