@@ -126,7 +126,7 @@ function App() {
                 <Reveal className="vision-node vision-node--channel" delay={0.08}><PresentationIcon name="facebook" /><div><small>FACEBOOK</small><strong>PALCO</strong><span>ALCANCE + LIVE</span></div></Reveal>
                 <Reveal className="vision-node vision-node--channel" delay={0.11}><PresentationIcon name="whatsapp" /><div><small>WHATSAPP</small><strong>DISTRIBUIÇÃO</strong><span>COMUNIDADE + RETORNO</span></div></Reveal>
               </div>
-              <div className="vision-connector"><span>CANAIS EXISTENTES</span><i /></div>
+              <div className="vision-connector" aria-hidden="true"><i /></div>
               <div className="vision-products">
                 {[["platform", "01", "CASS PLATFORM", "CASA", "IDENTIDADE + DADOS"], ["pac", "02", "PAC", "PARTICIPAÇÃO AO VIVO", "EVENTOS + ECONOMIA"], ["play", "03", "CASS PLAY", "ENTRETENIMENTO 24/7", "FASE FUTURA"]].map(([icon, number, product, role, copy], index) => <React.Fragment key={product}><Reveal className={`vision-node vision-node--product vision-node--${number}`} delay={0.14 + index * 0.045}><PresentationIcon name={icon} /><span>{number}</span><div><small>{product}</small><strong>{role}</strong><em>{copy}</em></div></Reveal>{index < 2 && <div className="vision-arrow">→</div>}</React.Fragment>)}
               </div>
