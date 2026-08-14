@@ -46,3 +46,23 @@
 .execution-layout{grid-template-columns:1fr;gap:7px}.milestone-panel,.build-panel{min-height:0;padding:12px;border-radius:14px}.milestone-panel>small,.build-panel>small{font-size:6px}.milestone-track{margin-top:22px}.milestone-track::before{top:27px}.milestone-point span{font-size:13px}.milestone-point i{width:8px;height:8px;margin:10px 0}.milestone-point strong{font-size:5.5px}.build-panel>div{margin:14px 0;gap:4px}.build-panel>div>div{min-height:36px;padding:5px;font-size:6px}.build-panel>strong{font-size:12px}.closing-slide h2{font-size:clamp(32px,9vw,43px)}.closing-slide p{font-size:9px}
 }
 @media (orientation:landscape) and (max-height:760px){.deck-slide__inner{max-height:calc(100dvh - 110px)}.slide-head{margin-bottom:14px}.slide-head h2{font-size:clamp(34px,3.35vw,52px)}.platform-window{min-height:210px}.live-frame{min-height:185px}.vision-node--product{min-height:140px}.benchmark-system{min-height:305px}.benchmark-flow__node{height:82px}.creator-ui{min-height:385px}.play-feature{min-height:290px}.roadmap-stage{min-height:195px}}
+/* 04 — refined channel-to-ecosystem relationship */
+@media (min-width:761px){
+.vision-connector{position:relative;width:100%;height:clamp(46px,5.2vh,58px);justify-content:flex-start;color:#98a4b0;font-size:8px;font-weight:600}
+.vision-connector>span{padding:6px 10px;border:1px solid rgba(255,255,255,.09);border-radius:999px;background:#090c10}
+.vision-connector i{width:2px;margin-top:6px;background:linear-gradient(rgba(32,217,255,.3),rgba(32,217,255,.75));box-shadow:0 0 12px rgba(32,217,255,.16)}
+.vision-products{position:relative;padding-top:18px}
+.vision-products::before{content:"";position:absolute;top:0;left:16.67%;right:16.67%;height:1px;background:linear-gradient(90deg,rgba(100,255,147,.32),rgba(32,217,255,.58),rgba(180,43,255,.42))}
+.vision-node--product::after{content:"";position:absolute;left:50%;top:-18px;width:1px;height:18px;background:rgba(32,217,255,.46)}
+.vision-node--03::after{background:rgba(180,43,255,.44)}
+}
+.vision-node--03{border-color:rgba(180,43,255,.2);background:radial-gradient(circle at 82% 8%,rgba(180,43,255,.08),transparent 35%),linear-gradient(135deg,rgba(32,217,255,.035),rgba(180,43,255,.055))}
+.vision-node--03 em{align-self:flex-start;padding:6px 9px;border:1px solid rgba(180,43,255,.25);border-radius:999px;color:#c9a9ef;background:rgba(180,43,255,.075);font-weight:600}
+@media (orientation:portrait),(max-width:760px){
+.vision-connector{height:30px;color:#98a4b0;font-size:7px;font-weight:600}
+.vision-connector>span{padding:5px 8px;border:1px solid rgba(255,255,255,.09);border-radius:999px;background:#090c10}
+.vision-connector i{margin-top:4px;background:linear-gradient(rgba(32,217,255,.3),rgba(32,217,255,.72))}
+.vision-products{padding-top:0}
+.vision-products::before,.vision-node--product::after{display:none}
+.vision-node--03 em{padding:5px 7px;font-size:6.5px}
+}
