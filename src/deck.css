@@ -71,6 +71,8 @@
 }
 
 .platform-window {
+  position: relative;
+  z-index: 1;
   min-height: clamp(225px, 30dvh, 315px);
   overflow: hidden;
   border: 1px solid var(--line);
@@ -187,7 +189,10 @@
 .audience-core {
   position: relative;
   z-index: 2;
-  min-height: 245px;
+  width: clamp(216px, 13vw, 248px);
+  min-height: 0;
+  aspect-ratio: 1;
+  justify-self: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -195,7 +200,7 @@
   padding: 24px;
   text-align: center;
   border: 1px solid rgba(32, 217, 255, .2);
-  border-radius: 50%;
+  border-radius: 24px;
   background: radial-gradient(circle, rgba(32, 217, 255, .08), rgba(10, 13, 18, .96) 67%);
   box-shadow: 0 0 75px rgba(32, 217, 255, .06);
 }
@@ -226,6 +231,7 @@
 
 .reality-links {
   position: absolute;
+  z-index: 0;
   inset: 50% 25% auto;
   display: flex;
   justify-content: space-between;
@@ -2272,11 +2278,12 @@
 
   .audience-core {
     grid-row: 2;
-    width: 170px;
-    min-height: 106px;
+    width: 150px;
+    min-height: 0;
+    aspect-ratio: 1;
     margin-inline: auto;
     padding: 12px;
-    border-radius: 18px;
+    border-radius: 20px;
   }
 
   .audience-core strong {
