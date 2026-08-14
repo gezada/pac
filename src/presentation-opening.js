@@ -17,6 +17,35 @@ function removeTerminalPeriods(root = document.querySelector("main")) {
   });
 }
 
+function addSlideMetadata(main) {
+  const slides = Array.from(main.querySelectorAll(":scope > section:not(.marquee)"));
+  const total = slides.length;
+
+  slides.forEach((slide, index) => {
+    if (index === 0) return;
+
+    const isLast = index === total - 1;
+    const meta = document.createElement("div");
+    meta.className = "presentation-slide__meta" + (isLast ? " presentation-slide__meta--footer-only" : "");
+
+    const footer = document.createElement("span");
+    footer.className = "presentation-slide__footer";
+    footer.textContent = isLast
+      ? "PRODUCT PROPOSAL · 2026"
+      : "CASS PLATFORM + PASSA A CALL · 2026";
+    meta.appendChild(footer);
+
+    if (!isLast) {
+      const counter = document.createElement("span");
+      counter.className = "presentation-slide__counter";
+      counter.setAttribute("aria-label", "Lâmina " + (index + 1) + " de " + total);
+      counter.innerHTML = "<strong>" + (index + 1) + "</strong><i>/</i><span>" + total + "</span>";
+      meta.appendChild(counter);
+    }
+
+    slide.appendChild(meta);
+  });
+}
 function buildOpeningSlides() {
   const main = document.querySelector("main");
   const hero = main?.querySelector(":scope > .hero");
@@ -64,6 +93,7 @@ function buildOpeningSlides() {
   hero.classList.add("hero-support-slide");
   hero.querySelector(".hero-copy h1")?.remove();
 
+  addSlideMetadata(main);
   removeTerminalPeriods(main);
   return true;
 }
