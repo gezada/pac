@@ -1,6 +1,7 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
 import { motion } from "motion/react"
+import { PresentationIcon } from "./presentation-icons.jsx"
 import "./styles.css"
 import "./deck.css"
 
@@ -82,17 +83,6 @@ function SlideHead({ kicker, children, support, accent }) {
 
 function Arrow({ vertical = false }) {
   return <span className={"diagram-arrow" + (vertical ? " diagram-arrow--vertical" : "")} aria-hidden="true">→</span>
-}
-
-function LayerIcon({ type }) {
-  const icons = {
-    facebook: <><rect x="5" y="8" width="38" height="29" rx="6" /><path d="m20 17 11 5.5L20 28Z" /><path d="M13 42h22M19 37l-2 5m12-5 2 5" /></>,
-    whatsapp: <><path d="M39 23.5a15 15 0 0 1-21.9 13.3L8 40l3.1-8.6A15 15 0 1 1 39 23.5Z" /><path d="M18.2 15.8c.8-.6 1.8-.2 2.2.7l1.5 3.5c.3.8.1 1.7-.5 2.2l-1.2 1c1.7 3.1 3.6 5 6.7 6.7l1-1.2c.5-.6 1.4-.8 2.2-.5l3.5 1.5c.9.4 1.3 1.4.7 2.2-1.1 1.6-3 2.5-4.9 2.2-7.8-1.3-14-7.5-15.3-15.3-.3-1.9.5-3.8 2.1-5Z" /></>,
-    platform: <><path d="m6 22 18-15 18 15" /><path d="M10 19v22h28V19" /><circle cx="24" cy="24" r="5" /><path d="M16.5 36c1.8-4 4.3-6 7.5-6s5.7 2 7.5 6" /></>,
-    pac: <><circle cx="24" cy="24" r="8" /><circle cx="8" cy="13" r="4" /><circle cx="40" cy="13" r="4" /><circle cx="8" cy="36" r="4" /><circle cx="40" cy="36" r="4" /><path d="m11.5 15 5.7 4.2m13.6 0 5.7-4.2M11.7 34l5.6-4.1m13.4 0 5.6 4.1" /><path d="M21 24h6m-3-3v6" /></>,
-  }
-
-  return <svg className="layer-node__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{icons[type]}</svg>
 }
 
 function Tag({ children, accent = false }) {
@@ -230,13 +220,13 @@ function App() {
               NÃO TROCAMOS O QUE JÁ FUNCIONA<br /><span>ADICIONAMOS O QUE AINDA NÃO&nbsp;EXISTE</span>
             </SlideHead>
             <div className="layer-architecture">
-              <Reveal className="layer-node" delay={0.08}><LayerIcon type="facebook" /><small>FACEBOOK</small><strong>PALCO</strong><span>ALCANCE + LIVE</span></Reveal>
+              <Reveal className="layer-node" delay={0.08}><PresentationIcon name="facebook" className="layer-node__icon" /><small>FACEBOOK</small><strong>PALCO</strong><span>ALCANCE + LIVE</span></Reveal>
               <Arrow />
-              <Reveal className="layer-node" delay={0.12}><LayerIcon type="whatsapp" /><small>WHATSAPP</small><strong>DISTRIBUIÇÃO</strong><span>COMUNIDADE + RETORNO</span></Reveal>
+              <Reveal className="layer-node" delay={0.12}><PresentationIcon name="whatsapp" className="layer-node__icon" /><small>WHATSAPP</small><strong>DISTRIBUIÇÃO</strong><span>COMUNIDADE + RETORNO</span></Reveal>
               <Arrow />
-              <Reveal className="layer-node layer-node--owned" delay={0.16}><LayerIcon type="platform" /><small>CASS PLATFORM</small><strong>CASA</strong><span>IDENTIDADE + DADOS</span></Reveal>
+              <Reveal className="layer-node layer-node--owned" delay={0.16}><PresentationIcon name="platform" className="layer-node__icon" /><small>CASS PLATFORM</small><strong>CASA</strong><span>IDENTIDADE + DADOS</span></Reveal>
               <Arrow />
-              <Reveal className="layer-node layer-node--owned layer-node--pac" delay={0.2}><LayerIcon type="pac" /><small>PAC</small><strong>PARTICIPAÇÃO</strong><span>ECONOMIA + TICKET</span></Reveal>
+              <Reveal className="layer-node layer-node--owned layer-node--pac" delay={0.2}><PresentationIcon name="pac" className="layer-node__icon" /><small>PAC</small><strong>PARTICIPAÇÃO</strong><span>ECONOMIA + TICKET</span></Reveal>
             </div>
           </div>
         </section>
