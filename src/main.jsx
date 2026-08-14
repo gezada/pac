@@ -234,7 +234,7 @@ function App() {
         <section className="deck-slide benchmark-new-slide" aria-label="Benchmark Roshtein">
           <div className="deck-slide__inner">
             <SlideHead kicker="BENCHMARK">
-              ROSHSTEIN PROVA O MODELO<br /><span>O CASS ADAPTA PARA O BRASIL</span>
+              ROSHSTEIN PROVOU O MODELO<br /><span>O CASS ADAPTA PARA O BRASIL</span>
             </SlideHead>
             <div className="benchmark-split">
               <Reveal className="benchmark-product" delay={0.08}>
@@ -251,7 +251,7 @@ function App() {
                 {[
                   ["01", "COPIAR A LÓGICA", "Progressão · Missions · Rewards · Store"],
                   ["02", "ADAPTAR O CONTEXTO", "Facebook Live · WhatsApp · Pix · Casas brasileiras"],
-                  ["03", "CRIAR O DIFERENCIAL", "Uma camada própria que o Roshtein não tem: PAC"],
+                  ["03", "CRIAR O DIFERENCIAL", "O diferencial próprio: PAC"],
                 ].map(([number, title, copy], index) => (
                   <Reveal className={index === 2 ? "benchmark-lesson benchmark-lesson--accent" : "benchmark-lesson"} delay={0.12 + index * 0.05} key={title}>
                     <span>{number}</span><div><small>{title}</small><strong>{copy}</strong></div>
