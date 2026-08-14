@@ -234,23 +234,27 @@ function App() {
         <section className="deck-slide benchmark-new-slide" aria-label="Benchmark Roshtein">
           <div className="deck-slide__inner">
             <SlideHead kicker="BENCHMARK">
-              A CATEGORIA JÁ PROVOU QUE FUNCIONA<br /><span>A OPORTUNIDADE É ADAPTAR PARA O CASS</span>
+              ROSHSTEIN PROVA O MODELO<br /><span>O CASS ADAPTA PARA O BRASIL</span>
             </SlideHead>
             <div className="benchmark-split">
               <Reveal className="benchmark-product" delay={0.08}>
-                <div className="benchmark-product__bar"><span>ROSHSTEIN ECOSYSTEM</span><small>PROVA DE CATEGORIA</small></div>
-                <div className="benchmark-profile"><div className="profile-ring">R</div><div><strong>LEVEL XX</strong><span>PROGRESSÃO ATIVA</span></div></div>
-                <div className="benchmark-modules"><span>MISSIONS</span><span>REWARDS</span><span>STORE</span><span>COMMUNITY</span></div>
-                <div className="benchmark-progress"><i /></div>
+                <div className="benchmark-product__bar"><span>ROSHSTEIN.COM</span><small>ECOSSISTEMA VALIDADO</small></div>
+                <div className="benchmark-ecosystem">
+                  <div className="benchmark-hub"><div className="benchmark-mark">R</div><div><small>ECOSSISTEMA ROSHTEIN</small><strong>CONTA + PROGRESSÃO</strong></div></div>
+                  <div className="benchmark-modules">
+                    {[["progress", "PROGRESSÃO"], ["missions", "MISSIONS"], ["rewards", "REWARDS"], ["store", "STORE"]].map(([icon, label]) => <div className="benchmark-module" key={label}><PresentationIcon name={icon} /><span>{label}</span></div>)}
+                  </div>
+                  <div className="benchmark-community"><PresentationIcon name="community" /><div><small>COMUNIDADE</small><strong>HÁBITO + RECORRÊNCIA</strong></div><span>MODELO VALIDADO</span></div>
+                </div>
               </Reveal>
               <div className="benchmark-lessons">
                 {[
-                  ["APRENDER", "Progressão · Missions · Rewards · Store"],
-                  ["ADAPTAR", "Facebook · WhatsApp · Pix · Casas brasileiras"],
-                  ["CRIAR", "Uma camada própria que Roshtein não tem: PAC"],
-                ].map(([title, copy], index) => (
+                  ["01", "COPIAR A LÓGICA", "Progressão · Missions · Rewards · Store"],
+                  ["02", "ADAPTAR O CONTEXTO", "Facebook Live · WhatsApp · Pix · Casas brasileiras"],
+                  ["03", "CRIAR O DIFERENCIAL", "Uma camada própria que o Roshtein não tem: PAC"],
+                ].map(([number, title, copy], index) => (
                   <Reveal className={index === 2 ? "benchmark-lesson benchmark-lesson--accent" : "benchmark-lesson"} delay={0.12 + index * 0.05} key={title}>
-                    <span>{title}</span><strong>{copy}</strong>
+                    <span>{number}</span><div><small>{title}</small><strong>{copy}</strong></div>
                   </Reveal>
                 ))}
               </div>

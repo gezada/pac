@@ -1,5 +1,5 @@
 import React from "react"
-import { House, Waypoints } from "lucide-react"
+import { Gauge, Gift, House, ListChecks, ShoppingBag, Users, Waypoints } from "lucide-react"
 import { siFacebook, siWhatsapp } from "simple-icons"
 
 const brandIcons = {
@@ -10,6 +10,11 @@ const brandIcons = {
 const conceptIcons = {
   platform: House,
   pac: Waypoints,
+  progress: Gauge,
+  missions: ListChecks,
+  rewards: Gift,
+  store: ShoppingBag,
+  community: Users,
 }
 
 export function PresentationIcon({ name, className = "", size = 24, strokeWidth = 1.65 }) {
