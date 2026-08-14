@@ -1,110 +1,98 @@
 function removeTerminalPeriods(root = document.querySelector("main")) {
-  if (!root) return;
+  if (!root) return
 
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-  const nodes = [];
-
-  while (walker.nextNode()) nodes.push(walker.currentNode);
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
+  const nodes = []
+  while (walker.nextNode()) nodes.push(walker.currentNode)
 
   nodes.forEach((node) => {
-    const value = node.nodeValue;
-    if (!value || !value.includes(".")) return;
-
+    const value = node.nodeValue
+    if (!value || !value.includes(".")) return
     node.nodeValue = value.replace(/\.(?=\s|$)/g, (match, offset, source) => {
-      const previous = source[offset - 1] || "";
-      return /\d/.test(previous) ? match : "";
-    });
-  });
+      const previous = source[offset - 1] || ""
+      return /\d/.test(previous) ? match : ""
+    })
+  })
 }
 
 function addSlideMetadata(main) {
-  const slides = Array.from(main.querySelectorAll(":scope > section:not(.marquee)"));
-  const total = slides.length;
+  const slides = Array.from(main.querySelectorAll(":scope > section:not(.marquee)"))
+  const total = slides.length
 
   slides.forEach((slide, index) => {
-    if (index === 0) return;
+    if (index === 0) return
 
-    const isLast = index === total - 1;
-    const meta = document.createElement("div");
-    meta.className = "presentation-slide__meta" + (isLast ? " presentation-slide__meta--footer-only" : "");
+    const isLast = index === total - 1
+    const meta = document.createElement("div")
+    meta.className = "presentation-slide__meta" + (isLast ? " presentation-slide__meta--footer-only" : "")
 
-    const footer = document.createElement("span");
-    footer.className = "presentation-slide__footer";
-    footer.textContent = isLast
-      ? "PRODUCT PROPOSAL · 2026"
-      : "CASS PLATAFORM + PASSA A CALL";
+    const footer = document.createElement("span")
+    footer.className = "presentation-slide__footer"
+    footer.textContent = isLast ? "PRODUCT PROPOSAL · 2026" : "CASS ECOSYSTEM"
 
     if (!isLast) {
-      const year = document.createElement("span");
-      year.className = "presentation-slide__year";
-      year.textContent = "2026";
-      meta.appendChild(year);
+      const year = document.createElement("span")
+      year.className = "presentation-slide__year"
+      year.textContent = "2026"
+      meta.appendChild(year)
     }
 
-    meta.appendChild(footer);
+    meta.appendChild(footer)
 
     if (!isLast) {
-      const counter = document.createElement("span");
-      counter.className = "presentation-slide__counter";
-      counter.setAttribute("aria-label", "Lâmina " + (index + 1) + " de " + total);
-      counter.innerHTML = "<strong>" + (index + 1) + "</strong><i>/</i><span>" + total + "</span>";
-      meta.appendChild(counter);
+      const counter = document.createElement("span")
+      counter.className = "presentation-slide__counter"
+      counter.setAttribute("aria-label", "Lâmina " + (index + 1) + " de " + total)
+      counter.innerHTML = "<strong>" + (index + 1) + "</strong><i>/</i><span>" + total + "</span>"
+      meta.appendChild(counter)
     }
 
-    slide.appendChild(meta);
-  });
+    slide.appendChild(meta)
+  })
 }
+
 function buildOpeningSlides() {
-  const main = document.querySelector("main");
-  const firstDeckSlide = main?.querySelector(":scope > [data-deck-start]");
+  const main = document.querySelector("main")
+  const firstDeckSlide = main?.querySelector(":scope > [data-deck-start]")
+  if (!main || !firstDeckSlide || main.querySelector(".opening-slide")) return false
 
-  if (!main || !firstDeckSlide || main.querySelector(".opening-slide")) return false;
-
-  const cover = document.createElement("section");
-  cover.className = "opening-slide presentation-slide";
-  cover.setAttribute("aria-label", "Capa da proposta comercial");
+  const cover = document.createElement("section")
+  cover.className = "opening-slide presentation-slide"
+  cover.setAttribute("aria-label", "Capa CASS Ecosystem")
   cover.innerHTML = `
-    <div class="opening-slide__center">cass platform + passa a call</div>
+    <div class="opening-slide__center">CASS ECOSYSTEM</div>
     <div class="opening-slide__footer">PRODUCT PROPOSAL · 2026</div>
-  `;
+  `
 
-  const impact = document.createElement("section");
-  impact.className = "impact-slide presentation-slide";
-  impact.setAttribute("aria-label", "A audiência já existe, bora transformar ela em ativo?");
+  const impact = document.createElement("section")
+  impact.className = "impact-slide presentation-slide"
+  impact.setAttribute("aria-label", "A audiência já existe, agora ela vira ativo")
   impact.innerHTML = `
     <div class="impact-slide__inner">
       <h1>
         <span>A AUDIÊNCIA JÁ EXISTE</span>
-        <strong>BORA<br class="impact-mobile-break" /> TRANSFORMAR<br />ELA EM ATIVO?</strong>
+        <strong>AGORA ELA<br class="impact-mobile-break" /> VIRA ATIVO</strong>
       </h1>
-
       <div class="impact-slide__objectives" aria-label="Principais objetivos">
         <div class="impact-slide__label">PRINCIPAIS OBJETIVOS</div>
         <div class="impact-slide__cards">
-          <article class="impact-objective-card">
-            <strong>AUMENTAR O<br />TICKET MÉDIO</strong>
-          </article>
-          <article class="impact-objective-card">
-            <strong>SER PROPRIETÁRIO<br />DOS LEADS</strong>
-          </article>
+          <article class="impact-objective-card"><strong>AUMENTAR O<br />TICKET MÉDIO</strong></article>
+          <article class="impact-objective-card"><strong>CONSTRUIR<br />BASE PRÓPRIA</strong></article>
         </div>
       </div>
     </div>
-  `;
+  `
 
-  main.insertBefore(cover, firstDeckSlide);
-  main.insertBefore(impact, firstDeckSlide);
-
-
-  addSlideMetadata(main);
-  removeTerminalPeriods(main);
-  return true;
+  main.insertBefore(cover, firstDeckSlide)
+  main.insertBefore(impact, firstDeckSlide)
+  addSlideMetadata(main)
+  removeTerminalPeriods(main)
+  return true
 }
 
 if (!buildOpeningSlides()) {
   const observer = new MutationObserver(() => {
-    if (buildOpeningSlides()) observer.disconnect();
-  });
-
-  observer.observe(document.documentElement, { childList: true, subtree: true });
+    if (buildOpeningSlides()) observer.disconnect()
+  })
+  observer.observe(document.documentElement, { childList: true, subtree: true })
 }
