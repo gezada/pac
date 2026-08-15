@@ -232,23 +232,10 @@ function App() {
         </section>
 
         <section className="deck-slide investment-slide" aria-label="Investimento">
-          <div className="deck-slide__inner"><SlideHead kicker="INVESTIMENTO">RECOMENDAMOS COMEÇAR POR<br /><span>CASS PLATFORM + PAC</span></SlideHead><div className="investment-layout"><div className="offer-grid"><Reveal className="offer-card" delay={0.07}><small>CASS PLATFORM</small><strong>R$ 85.000</strong><span>PRODUTO 01</span></Reveal><Reveal className="offer-card" delay={0.11}><small>PAC</small><strong>R$ 165.000</strong><span>PRODUTO 02</span></Reveal><Reveal className="offer-card offer-card--featured" delay={0.15}><div>RECOMENDADO</div><small>CASS PLATFORM + PAC</small><strong>R$ 220.000</strong><span>FASES 01 + 02</span></Reveal></div><Reveal className="future-offer" delay={0.18}><span>FASE FUTURA</span><strong>CASS PLAY</strong><small>ESCOPO + ORÇAMENTO APÓS VALIDAÇÃO DAS FASES 01 + 02</small></Reveal></div></div>
+          <div className="deck-slide__inner"><SlideHead kicker="INVESTIMENTO">RECOMENDAMOS COMEÇAR POR<br /><span>CASS PLATFORM + PAC</span></SlideHead><div className="investment-layout"><div className="offer-grid"><Reveal className="offer-card" delay={0.07}><small>CASS PLATFORM</small><strong>R$ 85.000</strong><span>PRODUTO 01</span></Reveal><Reveal className="offer-card" delay={0.11}><small>PAC</small><strong>R$ 165.000</strong><span>PRODUTO 02</span></Reveal><Reveal className="offer-card offer-card--featured" delay={0.15}><div>RECOMENDADO</div><small>CASS PLATFORM + PAC</small><strong>R$ 220.000</strong><span>PRODUTOS 01 + 02</span></Reveal></div><Reveal className="future-offer" delay={0.18}><span>FASE FUTURA</span><strong>CASS PLAY</strong><small>ESCOPO + ORÇAMENTO APÓS VALIDAÇÃO DAS FASES 01 + 02</small></Reveal></div></div>
         </section>
 
-        <section className="deck-slide execution-slide" aria-label="Escopo e execução">
-          <div className="deck-slide__inner">
-            <SlideHead>O ESCOPO DEFINE<br /><span>O CAMINHO DO BUILD</span></SlideHead>
-            <div className="scope-build">
-              <div className="scope-paths">
-                <Reveal className="scope-path" delay={0.07}><small>01</small><strong>CASS PLATFORM</strong><div><span>FOUNDATION</span><i>→</i><span>LAUNCH</span></div></Reveal>
-                <Reveal className="scope-path" delay={0.11}><small>02</small><strong>PAC</strong><div><span>DISCOVERY</span><i>→</i><span>FOUNDATION</span><i>→</i><span>LAUNCH</span></div></Reveal>
-                <Reveal className="scope-path scope-path--featured" delay={0.15}><em>RECOMENDADO</em><small>03</small><strong>CASS PLATFORM + PAC</strong><div><span>PLATFORM</span><i>→</i><span>PAC COMO GRANDE ATUALIZAÇÃO</span></div></Reveal>
-              </div>
-              <Reveal className="scope-process" delay={0.19}><small>PROCESSO COMUM</small><div>{["APROVA", "KICKOFF", "DISCOVERY", "BUILD"].map((item, index) => <React.Fragment key={item}><span>{item}</span>{index < 3 && <i>→</i>}</React.Fragment>)}</div></Reveal>
-              <Reveal className="scope-callout" delay={0.23}><strong>PAGAMENTO E MILESTONES</strong><span>ACOMPANHAM O ESCOPO APROVADO</span></Reveal>
-            </div>
-          </div>
-        </section>
+
 
         <section className="deck-slide closing-slide" aria-label="Encerramento"><div className="closing-slide__glow" aria-hidden="true" /><div className="deck-slide__inner closing-slide__inner"><Reveal><h2>A AUDIÊNCIA JÁ EXISTE<br /><span>AGORA VAMOS CONSTRUIR O ATIVO</span></h2></Reveal><Reveal delay={0.08}><p>CASS ECOSYSTEM</p></Reveal></div></section>
       </main>
