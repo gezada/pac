@@ -231,3 +231,20 @@
 .engine-horizon{min-height:60px;grid-template-columns:auto 18px 1fr;margin-top:6px;padding:6px;opacity:.68}.engine-horizon small{font-size:5px}.engine-horizon strong{font-size:6px}.engine-horizon__now strong{font-size:9px}
 .creator-slide .deck-kicker{margin-bottom:13px}.creator-slide .slide-head{margin-bottom:20px}
 }
+/* 15 — current scope versus future expansion */
+.ecosystem-roadmap__track{background:linear-gradient(90deg,#64ff93 0,#20d9ff 40%,rgba(180,43,255,.38) 40%,rgba(180,43,255,.16) 100%);opacity:.78}
+.roadmap-stage--1,.roadmap-stage--2{border-left-color:rgba(32,217,255,.28);background:linear-gradient(180deg,rgba(32,217,255,.055),transparent 72%)}
+.roadmap-stage--3,.roadmap-stage--4,.roadmap-stage--5{border-left-color:rgba(255,255,255,.075)}
+.roadmap-stage--3{background:linear-gradient(180deg,rgba(180,43,255,.025),transparent 72%)}
+.roadmap-stage--1::before,.roadmap-stage--2::before{width:11px;height:11px;left:-6px;background:#68e6e8;box-shadow:0 0 19px rgba(32,217,255,.55)}
+.roadmap-stage--3::before{background:#9a7ac9;box-shadow:0 0 13px rgba(180,43,255,.25)}
+.roadmap-stage--4::before,.roadmap-stage--5::before{background:#596572;box-shadow:none}
+.roadmap-stage--1::after,.roadmap-stage--3::after{position:absolute;top:17px;left:17px;font:700 9px/1 var(--mono);letter-spacing:.12em}
+.roadmap-stage--1::after{content:"PROPOSTA ATUAL";color:#7ee5ec}
+.roadmap-stage--3::after{content:"EXPANSÃO FUTURA";color:#aa93cf}
+.roadmap-stage small{margin-top:40px}
+@media (orientation:portrait),(max-width:760px){
+.ecosystem-roadmap__track{background:linear-gradient(180deg,#64ff93 0,#20d9ff 40%,rgba(180,43,255,.38) 40%,rgba(180,43,255,.16) 100%)}
+.roadmap-stage small{margin:0}
+.roadmap-stage--1::after,.roadmap-stage--3::after{top:auto;right:auto;bottom:7px;left:44px;font-size:5.5px;letter-spacing:.07em}
+}
