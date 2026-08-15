@@ -7,6 +7,12 @@ import "./deck.css"
 
 const ease = [0.22, 1, 0.36, 1]
 const behaviorLoop = ["ASSISTE", "ENTRA", "GANHA", "ACUMULA", "EVOLUI", "TROCA", "PARTICIPA", "VOLTA"]
+const flywheelArcs = [
+  "M 380 54 A 300 206 0 0 1 680 260",
+  "M 680 260 A 300 206 0 0 1 380 466",
+  "M 380 466 A 300 206 0 0 1 80 260",
+  "M 80 260 A 300 206 0 0 1 380 54",
+]
 const benchmarkLoop = ["STREAM", "CONTA", "PROGRESSÃO", "REWARDS", "STORE", "PLAY", "RETORNO"]
 const milestones = [["25%", "KICKOFF"], ["25%", "CASS FOUNDATION"], ["20%", "CASS LAUNCH"], ["20%", "PAC FOUNDATION"], ["10%", "PAC LAUNCH"]]
 
@@ -160,7 +166,18 @@ function App() {
         <section className="deck-slide loop-slide" aria-label="Loop de hábito">
           <div className="deck-slide__inner">
             <div className="loop-copy"><SlideHead>DE AUDIÊNCIA<br /><span>PARA HÁBITO</span></SlideHead><Reveal className="loop-support" delay={0.05}>CADA VOLTA GERA MAIS DADOS, RELAÇÃO E VALOR</Reveal></div>
-            <div className="behavior-loop"><div className="behavior-loop__ring" aria-hidden="true"><span>→</span><span>↓</span><span>←</span><span>↑</span></div>{behaviorLoop.map((item, index) => <Reveal className={`behavior-loop__item behavior-loop__item--${index + 1}`} delay={0.07 + index * 0.035} key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></Reveal>)}<div className="behavior-loop__center"><small>LOOP</small><strong>MAIS<br />VALOR</strong></div><div className="behavior-loop__return">VOLTA <span>→</span> ASSISTE</div></div>
+            <div className="behavior-loop">
+              <svg className="behavior-loop__track" viewBox="0 0 760 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <defs>
+                  <linearGradient id="behavior-loop-gradient" x1="80" y1="54" x2="680" y2="466" gradientUnits="userSpaceOnUse"><stop stopColor="#64ff93" /><stop offset=".48" stopColor="#20d9ff" /><stop offset="1" stopColor="#b42bff" /></linearGradient>
+                  <marker id="behavior-loop-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 9 4.5 0 9Z" fill="#69e7ee" /></marker>
+                </defs>
+                <ellipse className="behavior-loop__track-glow" cx="380" cy="260" rx="300" ry="206" />
+                {flywheelArcs.map((path, index) => <path className="behavior-loop__track-arc" d={path} markerEnd="url(#behavior-loop-arrow)" key={index} />)}
+              </svg>
+              {behaviorLoop.map((item, index) => <Reveal className={"behavior-loop__item behavior-loop__item--" + (index + 1)} delay={0.07 + index * 0.035} key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></Reveal>)}
+              <div className="behavior-loop__center"><small>LOOP</small><strong>MAIS<br />VALOR</strong></div>
+            </div>
           </div>
         </section>
 
