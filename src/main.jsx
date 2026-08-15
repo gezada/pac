@@ -192,12 +192,22 @@ function App() {
           <div className="deck-slide__inner"><SlideHead kicker="PAINEL DO CASS">SEM DEV<br /><span>CASS MONTA A EXPERIÊNCIA</span></SlideHead><Reveal className="creator-ui-wrap" delay={0.08}><DashboardInterface /></Reveal></div>
         </section>
 
-        <section className="deck-slide finance-slide" aria-label="Financeiro e discovery">
-          <div className="deck-slide__inner">
-            <SlideHead>PRODUTO COM A GENTE<br /><span>DINHEIRO COM PARCEIROS REGULADOS</span></SlideHead>
-            <div className="money-flow">{["USUÁRIO", "PSP / BAAS", "PAC", "CASS / BET"].map((item, index) => <React.Fragment key={item}><Reveal className={index === 1 || index === 2 ? "money-node money-node--accent" : "money-node"} delay={0.07 + index * 0.04}>{item}</Reveal>{index < 3 && <span>↔</span>}</React.Fragment>)}</div>
-            <div className="finance-roles">{[["PSP / BAAS", "KYC · PIX · CUSTÓDIA · SALDO · SAQUE"], ["PAC", "UX · REGRAS · LEDGER · RESERVA · SETTLEMENT"], ["CASS / BET", "EXECUÇÃO DA EXPERIÊNCIA"]].map(([title, copy], index) => <Reveal delay={0.13 + index * 0.04} key={title}><small>{title}</small><strong>{copy}</strong></Reveal>)}</div>
-            <div className="discovery-line"><span>DISCOVERY</span>{["JURÍDICO", "PSP / BAAS", "INTEGRAÇÕES"].map((item) => <Tag key={item}>{item}</Tag>)}<strong>PAC NÃO PRECISA CUSTODIAR DINHEIRO EM CONTA PRÓPRIA</strong></div>
+        <section className="deck-slide pac-impact-slide" aria-label="PAC como produto e negócio">
+          <div className="deck-slide__inner pac-impact-layout">
+            <SlideHead>A LIVE DEIXA DE SER SÓ CONTEÚDO<br /><span>VIRA PRODUTO</span></SlideHead>
+            <div className="pac-impact-pillars">
+              {[
+                ["community", "PARTICIPAÇÃO", "O viewer deixa de só assistir"],
+                ["recurrence", "RECORRÊNCIA", "Cada experiência cria motivo para voltar"],
+                ["revenue", "NOVA RECEITA", "Novas formas de ativar comunidade e parceiros"],
+              ].map(([icon, title, copy], index) => (
+                <Reveal className="pac-impact-pillar" delay={0.08 + index * 0.06} key={title}>
+                  <PresentationIcon name={icon} />
+                  <div><strong>{title}</strong><span>{copy}</span></div>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal className="pac-impact-callout" delay={0.3}>E O MOTOR CONTINUA GANHANDO <strong>NOVAS MECÂNICAS</strong></Reveal>
           </div>
         </section>
 
