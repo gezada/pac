@@ -1,5 +1,5 @@
 import React from "react"
-import { Activity, Gamepad2, Gauge, Gift, House, ListChecks, RefreshCw, ShoppingBag, Sparkles, TrendingUp, Users, Waypoints } from "lucide-react"
+import { Activity, Gamepad2, Gauge, Gift, House, ListChecks, Network, RefreshCw, ShoppingBag, Sparkles, TrendingUp, Users, Waypoints } from "lucide-react"
 import { siFacebook, siWhatsapp } from "simple-icons"
 
 const brandIcons = {
@@ -20,6 +20,7 @@ const conceptIcons = {
   activity: Activity,
   recurrence: RefreshCw,
   revenue: TrendingUp,
+  ecosystem: Network,
 }
 
 export function PresentationIcon({ name, className = "", size = 24, strokeWidth = 1.65 }) {
