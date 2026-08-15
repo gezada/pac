@@ -278,3 +278,53 @@
 .wrap-product small,.wrap-result small{grid-column:2;font-size:5.5px}
 .wrap-product strong,.wrap-result strong{grid-column:2;margin:0;font-size:10px;line-height:1.15}
 }
+
+/* 17–18 — final commercial legibility */
+/* 17 — recommended package and post-launch readability */
+.investment-slide .slide-head{margin-bottom:clamp(16px,2.2vh,24px)}
+.offer-card small{color:#a4afba;font-size:clamp(10px,.72vw,12px)}
+.offer-card>span{color:#929da8;font-size:clamp(9px,.65vw,11px)}
+.offer-card--featured>div{top:13px;right:13px;padding:9px 12px;font-size:9px;letter-spacing:.08em;box-shadow:0 0 22px rgba(32,217,255,.2)}
+.offer-card--featured small{font-size:clamp(11px,.8vw,13px)}
+.future-offer>span{color:#c0a3e8;font-size:10px}
+.future-offer small{margin-top:16px;color:#b2bdc8;font-size:clamp(10px,.72vw,12px);line-height:1.45}
+.post-launch{min-height:76px}
+.post-launch>small{color:#a5b0bb;font-size:10px}
+.post-launch span{color:#aab4bf;font-size:9px}
+.post-launch strong{font-size:clamp(15px,1.1vw,19px)}
+
+/* 18 — larger payment timeline and execution flow */
+.milestone-panel,.build-panel{display:flex;flex-direction:column}
+.milestone-panel>small,.build-panel>small{color:#9ca7b3;font-size:10px}
+.milestone-track{width:100%;margin:auto 0}
+.milestone-track::before{left:8%;right:8%;top:60px;height:3px;box-shadow:0 0 18px rgba(32,217,255,.18)}
+.milestone-point span{font-size:clamp(27px,2vw,34px)}
+.milestone-point i{width:15px;height:15px;margin:20px 0 17px;border-width:3px;box-shadow:0 0 20px rgba(32,217,255,.5)}
+.milestone-point strong{max-width:120px;color:#c0c8d0;font-size:clamp(10px,.72vw,12px);line-height:1.35}
+.build-panel>div{gap:9px;margin:auto 0 20px}
+.build-panel>div>div{min-height:76px;padding:12px;border-color:rgba(255,255,255,.13);border-radius:13px;font-size:clamp(10px,.72vw,12px)}
+.build-panel>div>span{font-size:18px}
+.build-panel>strong{margin-top:0;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-size:clamp(18px,1.35vw,23px)}
+
+@media (orientation:portrait),(max-width:760px){
+.offer-card small{font-size:7px}
+.offer-card>span{font-size:6.5px}
+.offer-card--featured>div{top:8px;right:8px;padding:6px 8px;font-size:6.5px}
+.offer-card--featured small{font-size:7.5px}
+.future-offer>span{font-size:6.5px}
+.future-offer small{margin-top:6px;font-size:7px;line-height:1.35}
+.post-launch{min-height:0}
+.post-launch>small{font-size:7px}
+.post-launch span{font-size:6.5px}
+.post-launch strong{font-size:10px}
+.milestone-panel>small,.build-panel>small{font-size:7px}
+.milestone-track{margin:18px 0 3px}
+.milestone-track::before{top:31px;height:2px}
+.milestone-point span{font-size:15px}
+.milestone-point i{width:9px;height:9px;margin:10px 0;border-width:2px}
+.milestone-point strong{font-size:6.5px}
+.build-panel>div{gap:4px;margin:12px 0 9px}
+.build-panel>div>div{min-height:39px;padding:6px;font-size:7px}
+.build-panel>div>span{font-size:10px}
+.build-panel>strong{padding-top:9px;font-size:12px}
+}
