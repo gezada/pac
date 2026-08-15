@@ -166,3 +166,41 @@
 .call-ui__metrics small{font-size:5.5px}.call-ui__metrics strong{font-size:9.5px}
 .call-ui__actions button{min-height:37px;font-size:6.5px}
 }
+/* 10 — final interface legibility */
+.call-ui__hero small{font-size:9px}.call-ui__hero>span{font-size:10px;color:#bac4ce}
+.call-ui__progress-head small,.call-ui__progress-head span{font-size:9px}
+.call-ui__progress-legend{font-size:8px;color:#909ca8}
+.call-ui__metrics small{font-size:9px;color:#8e9aa6}
+/* 11 — product thesis equation */
+.engine-slide .slide-head{margin-bottom:clamp(22px,3vh,32px)}
+.engine-equation{display:grid;grid-template-columns:.82fr 48px 1.18fr 48px .86fr;align-items:stretch;width:100%}
+.engine-factor,.engine-outcome{min-height:clamp(220px,28dvh,290px);padding:clamp(20px,1.7vw,28px);border:1px solid rgba(255,255,255,.1);border-radius:20px;background:rgba(255,255,255,.018)}
+.engine-factor{display:flex;flex-direction:column;justify-content:center}.engine-factor>small,.engine-outcome>small{margin-bottom:20px;color:#7f8b97;font:600 9px/1 var(--mono);letter-spacing:.13em}
+.engine-factor>div{display:flex;flex-wrap:wrap;align-content:center;gap:9px}
+.engine-factor span{padding:10px 12px;border:1px solid rgba(255,255,255,.095);border-radius:99px;color:#bec7d0;background:rgba(6,9,13,.62);font:600 clamp(9px,.68vw,11px)/1 var(--mono)}
+.engine-factor--calls>div{display:grid}.engine-factor--calls span{border-radius:10px}
+.engine-factor--distribution{border-color:rgba(32,217,255,.17);background:linear-gradient(135deg,rgba(32,217,255,.035),rgba(180,43,255,.025))}
+.engine-operator{display:grid;place-items:center;color:rgba(100,226,238,.72);font:400 30px/1 var(--mono)}
+.engine-outcome{display:flex;flex-direction:column;justify-content:center;border-color:rgba(32,217,255,.28);background:radial-gradient(circle at 78% 14%,rgba(32,217,255,.15),transparent 40%),var(--gradient-soft);box-shadow:0 0 55px rgba(32,217,255,.06)}
+.engine-outcome strong{font-size:clamp(23px,1.8vw,31px);line-height:.94;letter-spacing:-.045em}
+.engine-horizon{min-height:78px;display:grid;grid-template-columns:auto 44px 1fr;align-items:center;gap:14px;margin-top:15px;padding:13px 18px;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.06)}
+.engine-horizon__now,.engine-horizon__future{display:grid;gap:7px}.engine-horizon small{color:#788490;font:600 8px/1 var(--mono);letter-spacing:.12em}.engine-horizon strong{color:#c4ccd4;font:600 clamp(9px,.7vw,11px)/1.4 var(--mono)}
+.engine-horizon__now strong{font-size:15px;color:#7ce1eb}.engine-horizon>span{color:#5acbd8;text-align:center}
+/* 12 — PT-BR interface polish */
+.creator-ui__header small,.creator-ui__header>span{font-size:9px;color:#8995a1}
+.creator-ui__fields small,.creator-ui__preview>small{font-size:8px;color:#87939f}
+.creator-ui__fields span{font-size:clamp(12px,.86vw,15px)}
+.preview-orbit span{font-size:8px}.preview-orbit strong{font-size:21px}
+.creator-ui__start-note{font-size:8px;line-height:1.25;text-align:center}
+@media (orientation:portrait),(max-width:760px){
+.call-ui__hero small{font-size:6.5px}.call-ui__hero>span{font-size:7.5px}
+.call-ui__progress-head small,.call-ui__progress-head span{font-size:6.5px}.call-ui__progress-legend{font-size:6.5px}.call-ui__metrics small{font-size:6.5px}
+.engine-slide .slide-head{margin-bottom:13px}
+.engine-equation{grid-template-columns:1fr 25px 1fr;gap:6px}
+.engine-factor,.engine-outcome{min-height:0;padding:10px;border-radius:13px}
+.engine-factor{min-height:142px}.engine-factor>small,.engine-outcome>small{margin-bottom:9px;font-size:6.5px}
+.engine-factor>div{gap:5px}.engine-factor span{padding:6px 7px;font-size:6.5px}.engine-factor--calls span{border-radius:7px}
+.engine-operator{font-size:18px}.engine-operator--equals{grid-column:1/-1;height:16px}.engine-outcome{grid-column:1/-1;min-height:65px;text-align:center}.engine-outcome strong{font-size:18px}.engine-outcome strong br{display:none}
+.engine-horizon{min-height:75px;grid-template-columns:auto 22px 1fr;gap:7px;margin-top:8px;padding:8px 9px}.engine-horizon small{font-size:5.5px}.engine-horizon strong{font-size:6.5px}.engine-horizon__now strong{font-size:10px}
+.creator-ui__header small,.creator-ui__header>span{font-size:6.5px}.creator-ui__fields small,.creator-ui__preview>small{font-size:6px}.creator-ui__fields span{font-size:8px}.creator-ui__start-note{font-size:6px}
+}

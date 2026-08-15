@@ -75,15 +75,15 @@ function CallInterface() {
 }
 
 function DashboardInterface() {
-  const fields = [["TEMPLATE", "MATCH CALL"], ["ENTRADA", "R$ XX"], ["META", "R$ XX.XXX"], ["APORTE CASS", "XX%"], ["PROTEÇÃO", "ATIVA"], ["DISTRIBUIÇÃO", "PROPORCIONAL"], ["ELEGIBILIDADE", "LEVEL X+"], ["DURAÇÃO", "XX MIN"], ["PARCEIRO", "SELECIONAR"], ["REWARD", "SELECIONAR"], ["AGENDAMENTO", "DEFINIR"]]
+  const fields = [["MODELO", "MATCH CALL"], ["ENTRADA", "R$ XX"], ["META", "R$ XX.XXX"], ["APORTE CASS", "XX%"], ["PROTEÇÃO", "ATIVA"], ["DISTRIBUIÇÃO", "PROPORCIONAL"], ["ELEGIBILIDADE", "LEVEL X+"], ["DURAÇÃO", "XX MIN"], ["PARCEIRO", "SELECIONAR"], ["RECOMPENSA", "SELECIONAR"], ["AGENDAMENTO", "DEFINIR"]]
   return (
     <div className="creator-ui">
       <aside className="creator-ui__rail"><div className="mini-mark">C</div>{[0, 1, 2, 3].map((item) => <span className={item === 0 ? "active" : ""} key={item} />)}</aside>
       <div className="creator-ui__main">
-        <div className="creator-ui__header"><div><small>CREATOR CONTROL</small><strong>NOVA EXPERIÊNCIA</strong></div><span>PREVIEW AO VIVO</span></div>
+        <div className="creator-ui__header"><div><small>PAINEL DO CASS</small><strong>NOVA EXPERIÊNCIA</strong></div><span>PRÉVIA AO VIVO</span></div>
         <div className="creator-ui__body">
           <div className="creator-ui__fields">{fields.map(([label, value], index) => <div className={index === 0 ? "wide" : ""} key={label}><small>{label}</small><span>{value}</span></div>)}</div>
-          <div className="creator-ui__preview"><small>PREVIEW</small><div className="preview-orbit"><span>EVENT</span><strong>READY</strong></div><div className="creator-ui__start-note">START = REGRA CONGELADA</div><button type="button">INICIAR</button></div>
+          <div className="creator-ui__preview"><small>PRÉVIA</small><div className="preview-orbit"><span>EXPERIÊNCIA</span><strong>PRONTA</strong></div><div className="creator-ui__start-note">REGRA CONGELADA AO INICIAR</div><button type="button">INICIAR</button></div>
         </div>
       </div>
     </div>
@@ -183,25 +183,27 @@ function App() {
 
         <section className="deck-slide pac-screen-slide" aria-label="PAC em uma tela">
           <div className="deck-slide__inner pac-screen-layout">
-            <SlideHead>COMUNIDADE ENTRA<br />CASS EXECUTA<br /><span>PAC ORQUESTRA</span></SlideHead>
+            <SlideHead>COMUNIDADE ENTRA<br />CASS EXECUTA<br /><span>PAC ORGANIZA</span></SlideHead>
             <Reveal className="call-ui-wrap" delay={0.08}><CallInterface /></Reveal>
           </div>
         </section>
 
         <section className="deck-slide engine-slide" aria-label="Motor de experiências">
           <div className="deck-slide__inner">
-            <SlideHead>UM MOTOR<br /><span>MUITAS EXPERIÊNCIAS</span></SlideHead>
-            <div className="engine-matrix">
-              <Reveal className="engine-panel" delay={0.08}><small>TIPO DE EVENTO</small>{["COMMUNITY CALL", "MATCH CALL", "PROTECTED / BOOSTED"].map((item) => <strong key={item}>{item}</strong>)}</Reveal>
-              <div className="engine-times">×</div>
-              <Reveal className="engine-panel engine-panel--accent" delay={0.12}><small>REGRA DE DISTRIBUIÇÃO</small><div>{["PROPORCIONAL", "IGUALITÁRIA", "1 VENCEDOR", "X VENCEDORES", "RANKING", "PATROCINADA", "OUTRAS"].map((item) => <span key={item}>{item}</span>)}</div></Reveal>
+            <SlideHead>UM MOTOR<br /><span>MÚLTIPLAS EXPERIÊNCIAS</span></SlideHead>
+            <div className="engine-equation">
+              <Reveal className="engine-factor engine-factor--calls" delay={0.08}><small>TIPO DE CALL</small><div>{["CALL DA COMUNIDADE", "CALL COM APORTE", "CALL PROTEGIDA"].map((item) => <span key={item}>{item}</span>)}</div></Reveal>
+              <div className="engine-operator engine-operator--times">×</div>
+              <Reveal className="engine-factor engine-factor--distribution" delay={0.12}><small>REGRA DE DISTRIBUIÇÃO</small><div>{["PROPORCIONAL", "IGUALITÁRIA", "1 VENCEDOR", "X VENCEDORES", "RANKING", "PATROCINADA", "..."].map((item) => <span key={item}>{item}</span>)}</div></Reveal>
+              <div className="engine-operator engine-operator--equals">=</div>
+              <Reveal className="engine-outcome" delay={0.16}><small>RESULTADO</small><strong>MÚLTIPLAS<br />EXPERIÊNCIAS</strong></Reveal>
             </div>
-            <Reveal className="engine-evolution" delay={0.18}><span>CALLS HOJE</span><i>→</i>{["PREDICTIONS", "BONUS HUNTS", "RAFFLES", "COMMUNITY CHALLENGES", "SPONSORED EVENTS", "..."].map((item) => <Tag key={item}>{item}</Tag>)}</Reveal>
+            <Reveal className="engine-horizon" delay={0.2}><div className="engine-horizon__now"><small>HOJE</small><strong>CALLS</strong></div><span>→</span><div className="engine-horizon__future"><small>AMANHÃ · EVOLUÇÃO POSSÍVEL</small><strong>PALPITES · BONUS HUNTS · SORTEIOS · DESAFIOS · EVENTOS PATROCINADOS · ...</strong></div></Reveal>
           </div>
         </section>
 
-        <section className="deck-slide creator-slide" aria-label="Creator Control">
-          <div className="deck-slide__inner"><SlideHead kicker="CREATOR CONTROL">SEM DEV<br /><span>CASS MONTA A EXPERIÊNCIA</span></SlideHead><Reveal className="creator-ui-wrap" delay={0.08}><DashboardInterface /></Reveal></div>
+        <section className="deck-slide creator-slide" aria-label="Painel do Cass">
+          <div className="deck-slide__inner"><SlideHead kicker="PAINEL DO CASS">SEM DEV<br /><span>CASS MONTA A EXPERIÊNCIA</span></SlideHead><Reveal className="creator-ui-wrap" delay={0.08}><DashboardInterface /></Reveal></div>
         </section>
 
         <section className="deck-slide finance-slide" aria-label="Financeiro e discovery">
