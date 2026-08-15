@@ -93,11 +93,11 @@ function DashboardInterface() {
 function PlayInterface() {
   return (
     <div className="play-ui">
-      <div className="play-ui__top"><div><small>CASS PLAY</small><strong>PLAYGROUND</strong></div><div className="play-balance"><small>SALDO CASSCOIN</small><strong>XX.XXX CC</strong></div></div>
+      <div className="play-ui__top"><div><small>CASS PLAY</small><strong>LOBBY</strong></div><div className="play-balance"><small>SALDO CASSCOIN</small><strong>XX.XXX CC</strong></div></div>
       <div className="play-ui__content">
-        <div className="play-feature"><span>EVENTO ATIVO</span><PresentationIcon name="play" /><strong>COMMUNITY<br />ARCADE</strong><small>MISSIONS + REWARDS</small><button type="button">JOGAR</button></div>
-        <div className="play-games">{["DAILY DROP", "CASS QUEST", "RANK RUSH"].map((item, index) => <div key={item}><span>0{index + 1}</span><PresentationIcon name={index === 1 ? "missions" : "game"} /><strong>{item}</strong><small>LEVEL XX</small></div>)}</div>
-        <div className="play-ranking"><small>RANKING</small>{["01 · PLAYER", "02 · PLAYER", "03 · PLAYER"].map((item) => <span key={item}>{item}<i>XX XP</i></span>)}</div>
+        <div className="play-feature"><span>EVENTO ATIVO</span><PresentationIcon name="play" /><strong>ARCADE DA<br />COMUNIDADE</strong><small>MISSÕES + REWARDS</small><button type="button">JOGAR</button></div>
+        <div className="play-games">{["DROP DIÁRIO", "MISSÃO CASS", "RANK RUSH"].map((item, index) => <div key={item}><span>0{index + 1}</span><PresentationIcon name={index === 1 ? "missions" : "game"} /><strong>{item}</strong><small>NÍVEL XX</small></div>)}</div>
+        <div className="play-ranking"><small>RANKING</small>{["01 · JOGADOR", "02 · JOGADOR", "03 · JOGADOR"].map((item) => <span key={item}>{item}<i>XX XP</i></span>)}</div>
       </div>
     </div>
   )
@@ -211,11 +211,11 @@ function App() {
           </div>
         </section>
 
-        <ProductTransition kicker="PRODUTO 03 · FASE FUTURA" title={["CASS", "PLAY"]} future support={<strong>QUANDO A LIVE ACABA<br />O ECOSSISTEMA CONTINUA</strong>} />
+        <ProductTransition kicker="PRODUTO 03 · FASE FUTURA" title={["CASS", "PLAY"]} future support={<strong>QUANDO A LIVE ACABA<br />O ENTRETENIMENTO CONTINUA</strong>} />
 
         <section className="deck-slide play-slide" aria-label="Cass Play em uma tela">
           <div className="deck-slide__inner play-layout">
-            <div className="play-copy"><SlideHead>CASSCOIN VIRA<br /><span>ENTRETENIMENTO 24/7</span></SlideHead><div className="play-loop">{["GANHA CASSCOIN", "JOGA", "RANKINGS · MISSIONS · EVENTS", "GANHA REWARDS", "VOLTA"].map((item, index) => <React.Fragment key={item}><Reveal delay={0.07 + index * 0.025}>{item}</Reveal>{index < 4 && <span>↓</span>}</React.Fragment>)}</div><Reveal className="play-callout" delay={0.19}>SEM DEPENDER DO CASS ESTAR AO VIVO</Reveal></div>
+            <div className="play-copy"><SlideHead>CASSCOIN VIRA<br /><span>ENTRETENIMENTO<br />24/7</span></SlideHead><div className="play-loop">{["GANHA CASSCOIN", "JOGA", "GANHA + EVOLUI", "VOLTA"].map((item, index) => <React.Fragment key={item}><Reveal delay={0.07 + index * 0.03}>{item}</Reveal>{index < 3 && <span aria-hidden="true" />}</React.Fragment>)}</div><Reveal className="play-callout" delay={0.19}>SEM DEPENDER DO CASS ESTAR AO VIVO</Reveal></div>
             <Reveal className="play-ui-wrap" delay={0.1}><PlayInterface /></Reveal>
           </div>
         </section>
