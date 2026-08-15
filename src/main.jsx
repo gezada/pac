@@ -80,7 +80,7 @@ function DashboardInterface() {
     <div className="creator-ui">
       <aside className="creator-ui__rail"><div className="mini-mark">C</div>{[0, 1, 2, 3].map((item) => <span className={item === 0 ? "active" : ""} key={item} />)}</aside>
       <div className="creator-ui__main">
-        <div className="creator-ui__header"><div><small>PAINEL DO CASS</small><strong>NOVA EXPERIÊNCIA</strong></div><span>PRÉVIA AO VIVO</span></div>
+        <div className="creator-ui__header"><div><strong>NOVA EXPERIÊNCIA</strong></div><span>PRÉVIA AO VIVO</span></div>
         <div className="creator-ui__body">
           <div className="creator-ui__fields">{fields.map(([label, value], index) => <div className={index === 0 ? "wide" : ""} key={label}><small>{label}</small><span>{value}</span></div>)}</div>
           <div className="creator-ui__preview"><small>PRÉVIA</small><div className="preview-orbit"><span>EXPERIÊNCIA</span><strong>PRONTA</strong></div><div className="creator-ui__start-note">REGRA CONGELADA AO INICIAR</div><button type="button">INICIAR</button></div>
@@ -185,20 +185,6 @@ function App() {
           <div className="deck-slide__inner pac-screen-layout">
             <SlideHead>COMUNIDADE ENTRA<br />CASS EXECUTA<br /><span>PAC ORGANIZA</span></SlideHead>
             <Reveal className="call-ui-wrap" delay={0.08}><CallInterface /></Reveal>
-          </div>
-        </section>
-
-        <section className="deck-slide engine-slide" aria-label="Motor de experiências">
-          <div className="deck-slide__inner">
-            <SlideHead>UM MOTOR<br /><span>MÚLTIPLAS EXPERIÊNCIAS</span></SlideHead>
-            <div className="engine-equation">
-              <Reveal className="engine-factor engine-factor--calls" delay={0.08}><small>TIPO DE CALL</small><div>{["CALL DA COMUNIDADE", "CALL COM APORTE", "CALL PROTEGIDA"].map((item) => <span key={item}>{item}</span>)}</div></Reveal>
-              <div className="engine-operator engine-operator--times"><span>×</span></div>
-              <Reveal className="engine-factor engine-factor--distribution" delay={0.12}><small>REGRA DE DISTRIBUIÇÃO</small><div>{["PROPORCIONAL", "IGUALITÁRIA", "1 VENCEDOR", "X VENCEDORES", "RANKING", "PATROCINADA", ".."].map((item) => <span key={item}>{item}</span>)}</div></Reveal>
-              <div className="engine-operator engine-operator--equals"><span>=</span></div>
-              <Reveal className="engine-outcome" delay={0.16}><small>RESULTADO</small><strong>NOVAS<br />EXPERIÊNCIAS</strong></Reveal>
-            </div>
-            <Reveal className="engine-horizon" delay={0.2}><div className="engine-horizon__now"><small>HOJE</small><strong>CALLS</strong></div><span>→</span><div className="engine-horizon__future"><small>DEPOIS · POSSIBILIDADES</small><strong>PALPITES · BONUS HUNTS · SORTEIOS · DESAFIOS · EVENTOS PATROCINADOS · ...</strong></div></Reveal>
           </div>
         </section>
 
