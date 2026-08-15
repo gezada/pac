@@ -364,3 +364,57 @@
 .wrap-product strong,.wrap-result strong{grid-column:2;margin:0;font-size:10px}
 .wrap-equation>span,.wrap-equation>span:nth-of-type(3){font-size:19px;color:#84919e}
 }
+
+/* 17–18 — scope-led commercial close */
+/* 17 — initial investment focus */
+.investment-slide .slide-head{margin-bottom:clamp(28px,4vh,44px)}
+.investment-slide .slide-head h2{font-size:clamp(34px,2.95vw,50px)}
+.investment-layout{align-items:stretch}
+.investment-layout .offer-card,.investment-layout .future-offer{min-height:clamp(210px,28dvh,285px)}
+
+/* 18 — build paths by approved scope */
+.execution-slide .slide-head{margin-bottom:clamp(22px,3vh,32px)}
+.execution-slide .slide-head h2{font-size:clamp(38px,3.35vw,57px)}
+.scope-build{display:grid;gap:clamp(12px,1.7vh,18px)}
+.scope-paths{display:grid;grid-template-columns:1fr 1fr 1.18fr;gap:clamp(12px,1.25vw,18px)}
+.scope-path{position:relative;min-height:clamp(170px,21dvh,220px);display:flex;flex-direction:column;padding:clamp(20px,1.65vw,27px);border:1px solid rgba(255,255,255,.1);border-radius:19px;background:linear-gradient(150deg,rgba(17,22,29,.96),rgba(8,10,14,.96))}
+.scope-path>small{color:#6fdfe9;font:650 clamp(10px,.75vw,12px)/1 var(--mono);letter-spacing:.11em}
+.scope-path>strong{margin-top:clamp(15px,2vh,21px);font-size:clamp(20px,1.55vw,27px);line-height:1;letter-spacing:-.035em}
+.scope-path>div{display:flex;align-items:center;gap:clamp(7px,.7vw,11px);margin-top:auto;color:#b4bec8;font:650 clamp(9px,.68vw,11px)/1.3 var(--mono);letter-spacing:.055em}
+.scope-path>div i{color:#5ddbe7;font-style:normal}
+.scope-path--featured{border-color:rgba(32,217,255,.29);background:radial-gradient(circle at 84% 12%,rgba(32,217,255,.14),transparent 40%),var(--gradient-soft);box-shadow:0 0 50px rgba(32,217,255,.07)}
+.scope-path--featured>em{position:absolute;top:14px;right:14px;padding:8px 10px;border-radius:999px;background:var(--gradient);color:#071015;font:800 8px/1 var(--mono);font-style:normal;letter-spacing:.07em}
+.scope-path--featured>small{color:#b9f5fa}
+.scope-process{min-height:clamp(76px,9.5dvh,98px);display:grid;grid-template-columns:minmax(130px,.24fr) 1fr;align-items:center;gap:clamp(18px,2vw,32px);padding:clamp(13px,1.25vw,19px);border:1px solid rgba(255,255,255,.09);border-radius:16px;background:rgba(255,255,255,.016)}
+.scope-process>small{color:#96a2ae;font:650 clamp(8px,.62vw,10px)/1 var(--mono);letter-spacing:.13em}
+.scope-process>div{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:clamp(7px,.85vw,13px)}
+.scope-process>div span{min-height:42px;display:grid;place-items:center;padding:8px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#d3dae1;font:700 clamp(9px,.68vw,11px)/1 var(--mono)}
+.scope-process>div i{color:#61dce8;font-style:normal;font-size:16px}
+.scope-callout{width:max-content;max-width:100%;display:grid;justify-items:center;gap:6px;margin-inline:auto;padding:11px 21px;border:1px solid rgba(32,217,255,.17);border-radius:999px;background:rgba(8,12,16,.76);text-align:center}
+.scope-callout strong{font:750 clamp(9px,.72vw,12px)/1 var(--mono);letter-spacing:.08em}
+.scope-callout span{color:#9da8b3;font:600 clamp(8px,.62vw,10px)/1 var(--mono);letter-spacing:.08em}
+
+@media (orientation:portrait),(max-width:760px){
+.investment-slide .slide-head{margin-bottom:16px}
+.investment-slide .slide-head h2{font-size:clamp(27px,7.5vw,33px)}
+.investment-layout .offer-card{min-height:101px}
+.investment-layout .future-offer{min-height:73px}
+.execution-slide .slide-head{margin-bottom:13px}
+.execution-slide .slide-head h2{font-size:clamp(28px,7.8vw,35px)}
+.scope-build{gap:7px}
+.scope-paths{grid-template-columns:1fr;gap:6px}
+.scope-path{min-height:82px;display:grid;grid-template-columns:29px 1fr;grid-template-rows:auto auto;align-content:center;gap:7px 10px;padding:10px 12px;border-radius:12px}
+.scope-path>small{grid-row:1/3;align-self:center;font-size:7.5px}
+.scope-path>strong{margin:0;font-size:14px}
+.scope-path>div{margin:0;gap:6px;font-size:6.5px}
+.scope-path--featured>em{top:8px;right:8px;padding:5px 7px;font-size:5.5px}
+.scope-path--featured>strong{padding-right:80px}
+.scope-process{min-height:70px;display:block;padding:9px 10px;border-radius:11px}
+.scope-process>small{font-size:6px}
+.scope-process>div{gap:4px;margin-top:8px}
+.scope-process>div span{min-height:31px;padding:5px 4px;border-radius:7px;font-size:6px}
+.scope-process>div i{font-size:9px}
+.scope-callout{width:100%;gap:4px;padding:9px 10px;border-radius:11px}
+.scope-callout strong{font-size:7px}
+.scope-callout span{font-size:6.5px}
+}
