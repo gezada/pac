@@ -328,3 +328,39 @@
 .build-panel>div>span{font-size:10px}
 .build-panel>strong{padding-top:9px;font-size:12px}
 }
+
+/* 15–16 — final roadmap and equation polish */
+/* 15 — exact continuous-to-dashed timeline */
+.ecosystem-roadmap__track{left:0;right:calc(20% - 11.2px);top:6px;height:2px;opacity:1}
+.ecosystem-roadmap__track::before,.ecosystem-roadmap__track::after{background-image:linear-gradient(90deg,#64ff93 0%,#20d9ff 50%,#b42bff 100%)}
+.ecosystem-roadmap__track::before{left:0;right:auto;width:50%;background-size:200% 100%;background-position:left center}
+.ecosystem-roadmap__track::after{left:50%;right:0;width:auto;background-size:200% 100%;background-position:right center;-webkit-mask:repeating-linear-gradient(90deg,#000 0 9px,transparent 9px 15px);mask:repeating-linear-gradient(90deg,#000 0 9px,transparent 9px 15px)}
+.roadmap-stage::before{z-index:2}
+.roadmap-stage>span{font-size:clamp(11px,.8vw,13px)}
+.roadmap-stage small{font-size:clamp(9px,.68vw,11px)}
+.roadmap-stage strong{min-height:2.1em;display:flex;align-items:flex-start}
+.roadmap-stage p{margin:10px 0 0}
+
+/* 16 — unified card rhythm and clearer operators */
+.wrap-product,.wrap-result{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(20px,1.7vw,28px)}
+.wrap-product .presentation-icon,.wrap-result .presentation-icon{width:46px;height:46px;margin:0 0 28px}
+.wrap-product small,.wrap-result small{color:#a4afba;font-size:clamp(10px,.72vw,12px);line-height:1}
+.wrap-product strong,.wrap-result strong{margin:10px 0 0;font-size:clamp(15px,1.05vw,18px);line-height:1.2}
+.wrap-equation>span{color:#84919e;font-size:clamp(30px,2.35vw,40px);text-shadow:0 0 18px rgba(32,217,255,.12)}
+
+@media (orientation:portrait),(max-width:760px){
+.ecosystem-roadmap{grid-auto-rows:1fr}
+.ecosystem-roadmap__track{left:3px;right:auto;top:calc((100% - 16px)/10);bottom:calc((100% - 16px)/10);width:2px;height:auto}
+.ecosystem-roadmap__track::before,.ecosystem-roadmap__track::after{left:0;right:0;width:auto;background-image:linear-gradient(180deg,#64ff93 0%,#20d9ff 50%,#b42bff 100%)}
+.ecosystem-roadmap__track::before{top:0;bottom:auto;height:50%;background-size:100% 200%;background-position:center top}
+.ecosystem-roadmap__track::after{top:50%;bottom:0;height:auto;background-size:100% 200%;background-position:center bottom;-webkit-mask:repeating-linear-gradient(180deg,#000 0 8px,transparent 8px 14px);mask:repeating-linear-gradient(180deg,#000 0 8px,transparent 8px 14px)}
+.roadmap-stage>span{font-size:8.5px}
+.roadmap-stage small{font-size:7.2px}
+.roadmap-stage strong{min-height:0;display:block}
+.roadmap-stage p{margin:0}
+.wrap-product,.wrap-result{display:grid;grid-template-columns:30px 1fr;grid-template-rows:auto auto;align-content:center;align-items:center;gap:4px 10px;padding:11px}
+.wrap-product .presentation-icon,.wrap-result .presentation-icon{grid-row:1/3;width:27px;height:27px;margin:0}
+.wrap-product small,.wrap-result small{grid-column:2;font-size:7px}
+.wrap-product strong,.wrap-result strong{grid-column:2;margin:0;font-size:10px}
+.wrap-equation>span,.wrap-equation>span:nth-of-type(3){font-size:19px;color:#84919e}
+}

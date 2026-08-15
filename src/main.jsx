@@ -223,7 +223,7 @@ function App() {
         <section className="deck-slide roadmap-slide" aria-label="Roadmap do ecossistema">
           <div className="deck-slide__inner">
             <SlideHead>PRIMEIRO A CASA<br />DEPOIS A PARTICIPAÇÃO<br /><span>DEPOIS 24/7</span></SlideHead>
-            <div className="ecosystem-roadmap"><div className="ecosystem-roadmap__track" />{[["01", "CASA", "CASS PLATFORM", "Conta · perfil · rewards · dados"], ["02", "PARTICIPAÇÃO", "PAC", "Calls · Event Engine · wallet · settlement"], ["03", "24/7", "CASS PLAY", "Jogos · CassCoin · rankings · eventos"], ["04", "ESCALA", "ECOSSISTEMA", "Mobile · CRM · parceiros · automação"], ["05", "NOVOS NEGÓCIOS", "", "EXCLUSIVO · MULTI-CREATOR · WHITE-LABEL · BET PARTNERSHIP"]].map(([number, phase, title, copy], index) => <Reveal className={`roadmap-stage roadmap-stage--${index + 1}`} delay={0.07 + index * 0.045} key={phase}><span>{number}</span><small>{phase}</small>{title && <strong>{title}</strong>}<p>{copy}</p></Reveal>)}</div>
+            <div className="ecosystem-roadmap"><div className="ecosystem-roadmap__track" />{[["01", "CASA", "CASS PLATFORM", "Conta · perfil · rewards · dados"], ["02", "PARTICIPAÇÃO", "PAC", "Calls · Event Engine · wallet · settlement"], ["03", "24/7", "CASS PLAY", "Jogos · CassCoin · rankings · eventos"], ["04", "ESCALA", "ECOSSISTEMA", "Mobile · CRM · parceiros · automação"], ["05", "EXPANSÃO", "NOVOS NEGÓCIOS", "EXCLUSIVO · MULTI-CREATOR · WHITE-LABEL · BET PARTNERSHIP"]].map(([number, phase, title, copy], index) => <Reveal className={`roadmap-stage roadmap-stage--${index + 1}`} delay={0.07 + index * 0.045} key={phase}><span>{number}</span><small>{phase}</small>{title && <strong>{title}</strong>}<p>{copy}</p></Reveal>)}</div>
           </div>
         </section>
 
