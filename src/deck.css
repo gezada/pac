@@ -204,3 +204,30 @@
 .engine-horizon{min-height:75px;grid-template-columns:auto 22px 1fr;gap:7px;margin-top:8px;padding:8px 9px}.engine-horizon small{font-size:5.5px}.engine-horizon strong{font-size:6.5px}.engine-horizon__now strong{font-size:10px}
 .creator-ui__header small,.creator-ui__header>span{font-size:6.5px}.creator-ui__fields small,.creator-ui__preview>small{font-size:6px}.creator-ui__fields span{font-size:8px}.creator-ui__start-note{font-size:6px}
 }
+/* 11 — final equation clarity */
+.engine-equation{grid-template-columns:.82fr 66px 1.18fr 66px .72fr}
+.engine-factor,.engine-outcome{min-height:clamp(210px,27dvh,275px)}
+.engine-factor{border-color:rgba(255,255,255,.07);background:rgba(255,255,255,.01)}
+.engine-factor--calls span{padding:12px 0;border:0;border-bottom:1px solid rgba(255,255,255,.075);border-radius:0;background:none}
+.engine-factor--calls span:last-child{border-bottom:0}
+.engine-factor--distribution{border-color:rgba(32,217,255,.11);background:rgba(32,217,255,.018)}
+.engine-operator{position:relative;font-size:28px}
+.engine-operator::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(32,217,255,.35),rgba(255,255,255,.08))}
+.engine-operator>span{position:relative;z-index:1;width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(32,217,255,.2);border-radius:50%;background:#070a0e;color:#78dfe9}
+.engine-outcome{align-items:flex-start;border-color:rgba(32,217,255,.32);background:radial-gradient(circle at 70% 20%,rgba(32,217,255,.19),transparent 44%),var(--gradient-soft);box-shadow:0 0 70px rgba(32,217,255,.09)}
+.engine-outcome strong{font-size:clamp(25px,1.95vw,33px)}
+.engine-horizon{min-height:56px;grid-template-columns:auto 30px 1fr;gap:10px;margin-top:10px;padding:8px 10px;border-top-color:rgba(255,255,255,.065);border-bottom:0;opacity:.72}
+.engine-horizon__now,.engine-horizon__future{gap:5px}.engine-horizon small{font-size:7px}.engine-horizon strong{font-size:clamp(8px,.62vw,10px)}.engine-horizon__now strong{font-size:13px}
+/* 12 — final vertical breathing room */
+.creator-slide .deck-kicker{margin-bottom:clamp(16px,2.1vh,22px)}
+.creator-slide .slide-head{margin-bottom:clamp(24px,3.2vh,34px)}
+@media (orientation:portrait),(max-width:760px){
+.engine-equation{grid-template-columns:1fr 30px 1fr}
+.engine-factor{min-height:132px}.engine-factor,.engine-outcome{padding:9px}
+.engine-factor--calls span{padding:8px 0}
+.engine-operator>span{width:27px;height:27px}
+.engine-operator--equals{height:24px}.engine-operator--equals::before{left:50%;right:auto;top:0;bottom:0;width:1px;height:auto}.engine-operator--equals>span{width:27px;height:27px}
+.engine-outcome{min-height:62px;align-items:center}.engine-outcome strong{font-size:18px}
+.engine-horizon{min-height:60px;grid-template-columns:auto 18px 1fr;margin-top:6px;padding:6px;opacity:.68}.engine-horizon small{font-size:5px}.engine-horizon strong{font-size:6px}.engine-horizon__now strong{font-size:9px}
+.creator-slide .deck-kicker{margin-bottom:13px}.creator-slide .slide-head{margin-bottom:20px}
+}

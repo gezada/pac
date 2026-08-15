@@ -193,12 +193,12 @@ function App() {
             <SlideHead>UM MOTOR<br /><span>MÚLTIPLAS EXPERIÊNCIAS</span></SlideHead>
             <div className="engine-equation">
               <Reveal className="engine-factor engine-factor--calls" delay={0.08}><small>TIPO DE CALL</small><div>{["CALL DA COMUNIDADE", "CALL COM APORTE", "CALL PROTEGIDA"].map((item) => <span key={item}>{item}</span>)}</div></Reveal>
-              <div className="engine-operator engine-operator--times">×</div>
-              <Reveal className="engine-factor engine-factor--distribution" delay={0.12}><small>REGRA DE DISTRIBUIÇÃO</small><div>{["PROPORCIONAL", "IGUALITÁRIA", "1 VENCEDOR", "X VENCEDORES", "RANKING", "PATROCINADA", "..."].map((item) => <span key={item}>{item}</span>)}</div></Reveal>
-              <div className="engine-operator engine-operator--equals">=</div>
-              <Reveal className="engine-outcome" delay={0.16}><small>RESULTADO</small><strong>MÚLTIPLAS<br />EXPERIÊNCIAS</strong></Reveal>
+              <div className="engine-operator engine-operator--times"><span>×</span></div>
+              <Reveal className="engine-factor engine-factor--distribution" delay={0.12}><small>REGRA DE DISTRIBUIÇÃO</small><div>{["PROPORCIONAL", "IGUALITÁRIA", "1 VENCEDOR", "X VENCEDORES", "RANKING", "PATROCINADA", ".."].map((item) => <span key={item}>{item}</span>)}</div></Reveal>
+              <div className="engine-operator engine-operator--equals"><span>=</span></div>
+              <Reveal className="engine-outcome" delay={0.16}><small>RESULTADO</small><strong>NOVAS<br />EXPERIÊNCIAS</strong></Reveal>
             </div>
-            <Reveal className="engine-horizon" delay={0.2}><div className="engine-horizon__now"><small>HOJE</small><strong>CALLS</strong></div><span>→</span><div className="engine-horizon__future"><small>AMANHÃ · EVOLUÇÃO POSSÍVEL</small><strong>PALPITES · BONUS HUNTS · SORTEIOS · DESAFIOS · EVENTOS PATROCINADOS · ...</strong></div></Reveal>
+            <Reveal className="engine-horizon" delay={0.2}><div className="engine-horizon__now"><small>HOJE</small><strong>CALLS</strong></div><span>→</span><div className="engine-horizon__future"><small>DEPOIS · POSSIBILIDADES</small><strong>PALPITES · BONUS HUNTS · SORTEIOS · DESAFIOS · EVENTOS PATROCINADOS · ...</strong></div></Reveal>
           </div>
         </section>
 
