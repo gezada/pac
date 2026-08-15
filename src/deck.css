@@ -119,3 +119,22 @@
 .behavior-loop__center::before{inset:-17px}
 .behavior-loop__center small{font-size:6px}.behavior-loop__center strong{margin-top:6px;font-size:clamp(21px,6.2vw,27px);line-height:.9}.behavior-loop__center strong br{display:block}
 }
+/* 05 — final spacing refinement */
+.benchmark-slide .slide-head{margin-bottom:clamp(20px,2.7vh,30px)}
+/* 08 — stronger flywheel hierarchy */
+.behavior-loop__track{filter:drop-shadow(0 0 16px rgba(32,217,255,.18))}
+.behavior-loop__track-glow{stroke:rgba(32,217,255,.1);stroke-width:20}
+.behavior-loop__track-arc{stroke-width:2.4}
+.behavior-loop__item{gap:9px;padding:8px 12px;background:linear-gradient(135deg,rgba(9,14,20,.96),rgba(5,8,12,.9));box-shadow:0 0 0 1px rgba(32,217,255,.1),0 10px 26px rgba(0,0,0,.27)}
+.behavior-loop__item span{font-size:10px;color:#7de7ef}
+.behavior-loop__item strong{font-size:clamp(15px,1.05vw,18px)}
+.behavior-loop__center{width:clamp(205px,15vw,240px);height:clamp(205px,15vw,240px);border-color:rgba(32,217,255,.32);box-shadow:0 0 0 20px rgba(32,217,255,.022),0 0 100px rgba(32,217,255,.19)}
+.behavior-loop__center small{font-size:11px;color:#9eabb6}
+.behavior-loop__center strong{margin-top:11px;font-size:clamp(31px,2.3vw,38px);line-height:.94}
+@media (orientation:portrait),(max-width:760px){
+.benchmark-slide .slide-head{margin-bottom:20px}
+.behavior-loop__item{gap:6px;padding:6px 8px}
+.behavior-loop__item span{font-size:7.5px}.behavior-loop__item strong{font-size:clamp(10px,2.9vw,12.5px)}
+.behavior-loop__center{width:clamp(130px,36vw,150px);height:clamp(130px,36vw,150px)}
+.behavior-loop__center small{font-size:7px}.behavior-loop__center strong{margin-top:7px;font-size:clamp(19px,5.4vw,23px);line-height:.95}
+}

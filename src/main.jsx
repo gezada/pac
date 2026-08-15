@@ -170,13 +170,13 @@ function App() {
               <svg className="behavior-loop__track" viewBox="0 0 760 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                 <defs>
                   <linearGradient id="behavior-loop-gradient" x1="80" y1="54" x2="680" y2="466" gradientUnits="userSpaceOnUse"><stop stopColor="#64ff93" /><stop offset=".48" stopColor="#20d9ff" /><stop offset="1" stopColor="#b42bff" /></linearGradient>
-                  <marker id="behavior-loop-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 9 4.5 0 9Z" fill="#69e7ee" /></marker>
+                  <marker id="behavior-loop-arrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 11 5.5 0 11Z" fill="#78e8ef" /></marker>
                 </defs>
                 <ellipse className="behavior-loop__track-glow" cx="380" cy="260" rx="300" ry="206" />
                 {flywheelArcs.map((path, index) => <path className="behavior-loop__track-arc" d={path} markerEnd="url(#behavior-loop-arrow)" key={index} />)}
               </svg>
               {behaviorLoop.map((item, index) => <Reveal className={"behavior-loop__item behavior-loop__item--" + (index + 1)} delay={0.07 + index * 0.035} key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></Reveal>)}
-              <div className="behavior-loop__center"><small>LOOP</small><strong>MAIS<br />VALOR</strong></div>
+              <div className="behavior-loop__center"><small>CICLO</small><strong>DE HÁBITO</strong></div>
             </div>
           </div>
         </section>
