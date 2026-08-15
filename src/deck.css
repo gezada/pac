@@ -138,3 +138,31 @@
 .behavior-loop__center{width:clamp(130px,36vw,150px);height:clamp(130px,36vw,150px)}
 .behavior-loop__center small{font-size:7px}.behavior-loop__center strong{margin-top:7px;font-size:clamp(19px,5.4vw,23px);line-height:.95}
 }
+/* 09 — tighter product transition */
+.product-transition[aria-label="PASSA A CALL"] .product-transition__support{margin-top:clamp(22px,3vh,32px)}
+/* 10 — operational call interface */
+.pac-screen-layout{grid-template-columns:minmax(360px,.7fr) minmax(0,1.3fr);gap:clamp(44px,4.5vw,72px)}
+.call-ui{border-color:rgba(32,217,255,.27);box-shadow:0 34px 86px rgba(0,0,0,.4),0 0 64px rgba(32,217,255,.075)}
+.call-ui__hero{padding-top:24px;padding-bottom:15px}
+.call-ui__hero small{color:#95a2ae}.call-ui__hero strong{font-size:clamp(29px,2.25vw,38px)}
+.call-ui__progress{padding:15px 24px 22px}
+.call-ui__progress-head,.call-ui__progress-legend{display:flex;align-items:center;justify-content:space-between}
+.call-ui__progress-head small{color:#9ba7b3;font:600 8px/1 var(--mono);letter-spacing:.12em}
+.call-ui__progress-head span{color:#75dce6;font:600 8px/1 var(--mono);letter-spacing:.08em}
+.call-ui__progress-track{height:8px;margin:13px 0 10px;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.07)}
+.call-ui__progress-track i{display:block;width:68%;height:100%;border-radius:inherit;background:var(--gradient);box-shadow:0 0 18px rgba(32,217,255,.24)}
+.call-ui__progress-legend{color:#7f8b97;font:600 7px/1 var(--mono);letter-spacing:.08em}
+.call-ui__metrics div:nth-child(1){border-color:rgba(100,255,147,.14)}.call-ui__metrics div:nth-child(2){border-color:rgba(32,217,255,.17)}.call-ui__metrics div:nth-child(3){border-color:rgba(180,43,255,.16)}
+.call-ui__metrics small{font-size:8px}.call-ui__metrics strong{font-size:clamp(14px,1.08vw,18px)}
+.call-ui__actions button{min-height:51px;border-color:rgba(32,217,255,.3);font-size:9px}
+@media (orientation:portrait),(max-width:760px){
+.product-transition[aria-label="PASSA A CALL"] .product-transition__support{margin-top:20px}
+.pac-screen-layout{display:block}
+.call-ui__hero{padding:14px 13px 9px}.call-ui__hero strong{font-size:22px}
+.call-ui__progress{padding:9px 13px 12px}
+.call-ui__progress-head small,.call-ui__progress-head span{font-size:5.5px}
+.call-ui__progress-track{height:6px;margin:8px 0 7px}
+.call-ui__progress-legend{font-size:5.5px}
+.call-ui__metrics small{font-size:5.5px}.call-ui__metrics strong{font-size:9.5px}
+.call-ui__actions button{min-height:37px;font-size:6.5px}
+}

@@ -66,11 +66,9 @@ function CallInterface() {
   return (
     <div className="call-ui">
       <div className="call-ui__bar"><span className="status-live"><i /> CALL AO VIVO</span><span>EXEMPLO DE INTERFACE</span></div>
-      <div className="call-ui__hero"><div><small>COMMUNITY MATCH</small><strong>PASSA A CALL</strong></div><span>X PARTICIPANTES</span></div>
-      <div className="call-ui__chart" aria-hidden="true">
-        <svg viewBox="0 0 600 120" preserveAspectRatio="none"><defs><linearGradient id="callLine" x1="0" x2="1"><stop offset="0" stopColor="#64ff93" /><stop offset=".52" stopColor="#20d9ff" /><stop offset="1" stopColor="#b42bff" /></linearGradient></defs><path d="M0 96 C55 92 76 54 120 70 S188 105 232 70 S304 28 350 49 S417 98 462 58 S535 30 600 18" fill="none" stroke="url(#callLine)" strokeWidth="3" strokeLinecap="round" /></svg>
-      </div>
-      <div className="call-ui__metrics"><div><small>COMUNIDADE</small><strong>R$ XX.XXX</strong></div><div><small>CASS MATCH</small><strong>XX%</strong></div><div><small>STATUS</small><strong>REGRA CONGELADA</strong></div></div>
+      <div className="call-ui__hero"><div><small>CALL COM APORTE</small><strong>PASSA A CALL</strong></div><span>X PARTICIPANTES</span></div>
+      <div className="call-ui__progress"><div className="call-ui__progress-head"><small>FORMAÇÃO DA BANCA</small><span>EM ANDAMENTO</span></div><div className="call-ui__progress-track"><i /></div><div className="call-ui__progress-legend"><span>COMUNIDADE</span><span>+ APORTE DO CASS</span></div></div>
+      <div className="call-ui__metrics"><div><small>COMUNIDADE</small><strong>R$ XX.XXX</strong></div><div><small>APORTE DO CASS</small><strong>XX%</strong></div><div><small>REGRA</small><strong>CONGELADA</strong></div></div>
       <div className="call-ui__actions"><button type="button">ENTRAR COM R$</button><button type="button">ENTRAR COM CASSCOIN</button></div>
     </div>
   )
@@ -185,8 +183,8 @@ function App() {
 
         <section className="deck-slide pac-screen-slide" aria-label="PAC em uma tela">
           <div className="deck-slide__inner pac-screen-layout">
-            <SlideHead>COMUNIDADE ENTRA<br />CASS EXECUTA<br /><span>PAC ORGANIZA</span></SlideHead>
-            <Reveal className="call-ui-wrap" delay={0.08}><CallInterface /><div className="pac-screen-tags"><Tag accent>R$ OU CASSCOIN</Tag><Tag>REGRA CONGELADA</Tag><Tag>SETTLEMENT</Tag></div></Reveal>
+            <SlideHead>COMUNIDADE ENTRA<br />CASS EXECUTA<br /><span>PAC ORQUESTRA</span></SlideHead>
+            <Reveal className="call-ui-wrap" delay={0.08}><CallInterface /></Reveal>
           </div>
         </section>
 
