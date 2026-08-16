@@ -729,3 +729,40 @@
 .commercial-block--strategic header em{padding:3px 5px;font-size:4.7px}
 .commercial-block--strategic>b{margin-top:4px;font-size:5.5px}
 }
+
+/* 17 — strategic offer promoted to the main grid */
+.investment-slide .offer-grid{grid-template-columns:repeat(6,minmax(0,1fr));grid-template-areas:"strategic strategic strategic traditional traditional traditional" "platform platform pac pac future future";gap:10px}
+.investment-slide .offer-card{min-height:0}
+.investment-slide .offer-card--strategic{grid-area:strategic;position:relative;min-height:clamp(158px,20dvh,205px);padding:clamp(21px,1.8vw,30px);border-color:transparent;background:linear-gradient(#0d1218,#0d1218) padding-box,linear-gradient(115deg,rgba(100,255,147,.7),rgba(32,217,255,.78),rgba(180,43,255,.66)) border-box;box-shadow:0 0 58px rgba(32,217,255,.1),inset 0 0 42px rgba(32,217,255,.035)}
+.investment-slide .offer-card--strategic>div{position:absolute;top:14px;right:14px;padding:7px 10px;border-radius:999px;color:#071015;background:var(--gradient);font:800 7px/1 var(--mono);letter-spacing:.09em;box-shadow:0 0 20px rgba(32,217,255,.2)}
+.investment-slide .offer-card--strategic small{color:#c9f5f7}
+.investment-slide .offer-card--strategic>strong{display:flex;align-items:baseline;gap:10px;margin:18px 0 10px;font-size:clamp(34px,2.7vw,47px)}
+.investment-slide .offer-card--strategic>strong em{max-width:170px;color:#d7e0e5;font:750 clamp(10px,.76vw,13px)/1.18 var(--mono);letter-spacing:.02em;font-style:normal;white-space:normal}
+.investment-slide .offer-card--strategic>b{color:#8de9ef;font:700 clamp(8px,.62vw,10px)/1 var(--mono);letter-spacing:.1em}
+.investment-slide .offer-card--strategic>span{margin-top:9px;color:#8e9aa5}
+.investment-slide .offer-card--traditional{grid-area:traditional;min-height:clamp(158px,20dvh,205px);border-color:rgba(255,255,255,.13);background:linear-gradient(145deg,rgba(255,255,255,.028),rgba(32,217,255,.018));box-shadow:none}
+.investment-slide .offer-card--traditional>strong{font-size:clamp(32px,2.45vw,42px)}
+.investment-slide .offer-card--individual{min-height:clamp(105px,13dvh,135px);padding-block:clamp(15px,1.4vw,21px)}
+.investment-slide .offer-card--individual:nth-of-type(3){grid-area:platform}
+.investment-slide .offer-card--individual:nth-of-type(4){grid-area:pac}
+.investment-slide .offer-card--future{grid-area:future;min-height:clamp(105px,13dvh,135px);padding-block:clamp(15px,1.4vw,21px)}
+.investment-slide .offer-card--individual>strong,.investment-slide .offer-card--future>strong{margin:11px 0 8px;font-size:clamp(23px,1.75vw,31px)}
+.investment-slide .commercial-bar{min-height:clamp(80px,10dvh,102px);grid-template-columns:1fr 1fr;padding-inline:clamp(24px,2.5vw,42px)}
+.investment-slide .commercial-block{align-items:center;text-align:center}
+.investment-slide .commercial-block--external{border-left:1px solid rgba(255,255,255,.08)}
+
+@media (orientation:portrait),(max-width:760px){
+.investment-slide .offer-grid{grid-template-columns:1fr 1fr;grid-template-areas:"strategic strategic" "traditional traditional" "platform pac" "future future";gap:6px}
+.investment-slide .offer-card--strategic,.investment-slide .offer-card--traditional{min-height:94px;padding:11px}
+.investment-slide .offer-card--strategic>div{top:7px;right:7px;padding:5px 6px;font-size:5px}
+.investment-slide .offer-card--strategic>strong{gap:6px;margin:8px 0 5px;font-size:21px}
+.investment-slide .offer-card--strategic>strong em{max-width:120px;font-size:6.2px}
+.investment-slide .offer-card--strategic>b{font-size:5.8px}
+.investment-slide .offer-card--strategic>span{margin-top:4px;font-size:5.5px}
+.investment-slide .offer-card--traditional>strong{font-size:22px}
+.investment-slide .offer-card--individual,.investment-slide .offer-card--future{min-height:78px;padding:9px 10px}
+.investment-slide .offer-card--individual>strong,.investment-slide .offer-card--future>strong{margin:7px 0 5px;font-size:17px}
+.investment-slide .commercial-bar{grid-template-columns:1fr 1fr;padding:0 6px}
+.investment-slide .commercial-block{min-height:59px;padding:8px 6px}
+.investment-slide .commercial-block--external{border-top:0;border-left:1px solid rgba(255,255,255,.07)}
+}
