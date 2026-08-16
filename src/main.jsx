@@ -13,7 +13,7 @@ const flywheelArcs = [
   "M 380 466 A 300 206 0 0 1 80 260",
   "M 80 260 A 300 206 0 0 1 380 54",
 ]
-const benchmarkLoop = ["STREAM", "CONTA", "PROGRESSÃO", "REWARDS", "STORE", "PLAY", "RETORNO"]
+const benchmarkLoop = ["STREAM", "CONTA", "PROGRESSÃO", "REWARDS", "STORE", "CASS PLAY", "RETORNO"]
 
 
 function Reveal({ children, className = "", delay = 0 }) {
@@ -91,12 +91,20 @@ function DashboardInterface() {
 }
 
 function PlayInterface() {
+  const games = [
+    ["game", "FORTUNA CC", "SLOTS"],
+    ["rewards", "DROP DIÁRIO", "DROPS"],
+    ["missions", "MISSÃO CASS", "MISSÕES"],
+    ["progress", "RANK RUSH", "RANKING"],
+    ["activity", "GIRO DA LIVE", "ARCADE"],
+    ["play", "DESAFIO 24/7", "EVENTO"],
+  ]
   return (
     <div className="play-ui">
-      <div className="play-ui__top"><div><small>CASS PLAY</small><strong>LOBBY</strong></div><div className="play-balance"><small>SALDO CASSCOIN</small><strong>XX.XXX CC</strong></div></div>
+      <div className="play-ui__top"><div><small>CASS PLAY</small><strong>CASSINO DO CASS</strong></div><div className="play-balance"><small>SALDO CASSCOIN</small><strong>XX.XXX CC</strong></div></div>
       <div className="play-ui__content">
         <div className="play-feature"><span>EVENTO ATIVO</span><PresentationIcon name="play" /><strong>ARCADE DA<br />COMUNIDADE</strong><small>MISSÕES + RECOMPENSAS</small><button type="button">JOGAR</button></div>
-        <div className="play-games">{["DROP DIÁRIO", "MISSÃO CASS", "RANK RUSH"].map((item, index) => <div key={item}><span>0{index + 1}</span><PresentationIcon name={index === 1 ? "missions" : "game"} /><strong>{item}</strong><small>NÍVEL XX</small></div>)}</div>
+        <div className="play-catalog"><div className="play-catalog__tabs"><strong>EM DESTAQUE</strong><span>JOGOS · MISSÕES · EVENTOS</span></div><div className="play-catalog__grid">{games.map(([icon, title, type], index) => <div className={index === 0 ? "play-game-card play-game-card--accent" : "play-game-card"} key={title}><span>0{index + 1}</span><PresentationIcon name={icon} /><strong>{title}</strong><small>{type}</small></div>)}</div></div>
         <div className="play-ranking"><small>RANKING</small>{["01 · JOGADOR", "02 · JOGADOR", "03 · JOGADOR"].map((item) => <span key={item}>{item}<i>XX XP</i></span>)}</div>
       </div>
     </div>
@@ -112,12 +120,12 @@ function App() {
       <main>
         <section className="deck-slide reality-slide" data-deck-start aria-label="A realidade atual">
           <div className="deck-slide__inner">
-            <SlideHead kicker="HOJE">O FACEBOOK É O PALCO<br />O WHATSAPP É A DISTRIBUIÇÃO<br /><span>MAS NENHUM DOS DOIS É A CASA</span></SlideHead>
+            <SlideHead kicker="HOJE">O FACEBOOK E O WHATSAPP<br />SÃO PALCO E DISTRIBUIÇÃO<br /><span>MAS NENHUM DOS DOIS É A CASA</span></SlideHead>
             <div className="reality-map">
-              <Reveal className="platform-window platform-window--facebook" delay={0.1}><div className="platform-window__top"><i /><span>FACEBOOK LIVE</span></div><div className="live-frame"><span className="live-chip">AO VIVO</span><div className="live-person" /><div className="live-chat"><i /><i /><i /></div></div></Reveal>
+              <Reveal className="platform-window platform-window--facebook" delay={0.1}><div className="platform-window__top"><i /><span>FACEBOOK LIVE</span><PresentationIcon name="facebook" className="platform-window__brand" /></div><div className="live-frame"><span className="live-chip">AO VIVO</span><div className="live-person" /><div className="live-chat"><i /><i /><i /></div></div></Reveal>
               <div className="reality-links" aria-hidden="true"><i /><i /></div>
-              <Reveal className="audience-core" delay={0.18}><small>COMUNIDADE</small><strong>AUDIÊNCIA<br />DO CASS</strong><span>RELAÇÃO ALUGADA</span></Reveal>
-              <Reveal className="platform-window platform-window--whatsapp" delay={0.14}><div className="platform-window__top"><i /><span>WHATSAPP</span></div><div className="chat-stack"><i /><i /><i /><i /></div></Reveal>
+              <Reveal className="audience-core" delay={0.18}><small>COMUNIDADE</small><strong>AUDIÊNCIA</strong><span>RELAÇÃO ALUGADA</span></Reveal>
+              <Reveal className="platform-window platform-window--whatsapp" delay={0.14}><div className="platform-window__top"><i /><span>WHATSAPP</span><PresentationIcon name="whatsapp" className="platform-window__brand" /></div><div className="chat-stack"><i /><i /><i /><i /></div></Reveal>
             </div>
           </div>
         </section>
@@ -127,12 +135,12 @@ function App() {
             <SlideHead>NÃO TROCAMOS O QUE JÁ FUNCIONA<br /><span>ADICIONAMOS O QUE AINDA NÃO EXISTE</span></SlideHead>
             <div className="vision-architecture">
               <div className="vision-channels">
-                <Reveal className="vision-node vision-node--channel" delay={0.08}><PresentationIcon name="facebook" /><div><small>FACEBOOK</small><strong>PALCO</strong><span>ALCANCE + LIVE</span></div></Reveal>
-                <Reveal className="vision-node vision-node--channel" delay={0.11}><PresentationIcon name="whatsapp" /><div><small>WHATSAPP</small><strong>DISTRIBUIÇÃO</strong><span>COMUNIDADE + RETORNO</span></div></Reveal>
+                <Reveal className="vision-node vision-node--channel" delay={0.08}><PresentationIcon name="facebook" /><div><strong>PALCO</strong><span>ALCANCE + LIVE</span></div></Reveal>
+                <Reveal className="vision-node vision-node--channel" delay={0.11}><PresentationIcon name="whatsapp" /><div><strong>DISTRIBUIÇÃO</strong><span>COMUNIDADE + RETORNO</span></div></Reveal>
               </div>
               <div className="vision-connector" aria-hidden="true"><i /></div>
               <div className="vision-products">
-                {[["platform", "01", "CASS PLATFORM", "CASA", "IDENTIDADE + DADOS"], ["pac", "02", "PAC", "PARTICIPAÇÃO AO VIVO", "EVENTOS + ECONOMIA"], ["play", "03", "CASS PLAY", "ENTRETENIMENTO 24/7", "FASE FUTURA"]].map(([icon, number, product, role, copy], index) => <React.Fragment key={product}><Reveal className={`vision-node vision-node--product vision-node--${number}`} delay={0.14 + index * 0.045}><PresentationIcon name={icon} /><span>{number}</span><div><small>{product}</small><strong>{role}</strong><em>{copy}</em></div></Reveal>{index < 2 && <div className="vision-arrow">→</div>}</React.Fragment>)}
+                {[["platform", "01", "CASA DA AUDIÊNCIA", "VALOR PERCEBIDO + DADOS", "+ ENGAJAMENTO"], ["pac", "02", "PASSA A CALL", "EVENTOS + ECONOMIA PROPRIETÁRIA", "+ LUCRO / TICKET MÉDIO"], ["play", "03", "ENTRETENIMENTO 24/7", "ENTRETENIMENTO + RECORRÊNCIA", "+ VALOR / EQUITY"]].map(([icon, number, title, copy, value], index) => <React.Fragment key={title}><Reveal className={`vision-node vision-node--product vision-node--${number}`} delay={0.14 + index * 0.045}><PresentationIcon name={icon} /><span>{number}</span><div><strong>{title}</strong><em>{copy}</em><b>{value}</b></div></Reveal>{index < 2 && <div className="vision-arrow">→</div>}</React.Fragment>)}
               </div>
             </div>
           </div>
@@ -140,15 +148,15 @@ function App() {
 
         <section className="deck-slide benchmark-slide" aria-label="Benchmark Roshtein">
           <div className="deck-slide__inner">
-            <SlideHead kicker="BENCHMARK">ROSHSTEIN PROVOU O MODELO<br /><span>O CASS ADAPTA PARA O BRASIL</span></SlideHead>
+            <SlideHead kicker="BENCHMARK">ROSHSTEIN PROVOU O MODELO<br /><span>NÓS AJUSTAMOS AO BRASIL</span></SlideHead>
             <div className="benchmark-layout">
-              <Reveal className="benchmark-system" delay={0.08}><div className="benchmark-system__top"><span>ROSHSTEIN.COM</span><small>ECOSSISTEMA VALIDADO</small></div><div className="benchmark-flow">{benchmarkLoop.map((item, index) => <React.Fragment key={item}><div className={item === "PLAY" ? "benchmark-flow__node benchmark-flow__node--accent" : "benchmark-flow__node"}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>{index < benchmarkLoop.length - 1 && <i>→</i>}</React.Fragment>)}</div><div className="benchmark-return"><span>RETORNO RECORRENTE</span><i /></div></Reveal>
-              <div className="benchmark-lessons">{[["01", "MODELAR A LÓGICA", "Progressão · Missions · Rewards · Store · Play · ..."], ["02", "ADAPTAR O CONTEXTO", "Facebook · WhatsApp · Pix · Brasil"], ["03", "CRIAR O DIFERENCIAL", "PAC + mecânicas próprias"]].map(([number, title, copy], index) => <Reveal className={index === 2 ? "benchmark-lesson benchmark-lesson--accent" : "benchmark-lesson"} delay={0.12 + index * 0.05} key={title}><span>{number}</span><div><small>{title}</small><strong>{copy}</strong></div></Reveal>)}</div>
+              <div className="benchmark-lessons">{[["01", "MODELAR A LÓGICA", "Progressão · Missions · Rewards · Store · Play · ..."], ["02", "ADAPTAR O CONTEXTO", "FACEBOOK + WHATSAPP · PIX · PÚBLICO BRASILEIRO"], ["03", "CRIAR O ECOSSISTEMA", "SITE + PAC + CASS PLAY"]].map(([number, title, copy], index) => <Reveal className={index === 2 ? "benchmark-lesson benchmark-lesson--accent" : "benchmark-lesson"} delay={0.08 + index * 0.05} key={title}><span>{number}</span><div><small>{title}</small><strong>{copy}</strong></div></Reveal>)}</div>
+              <Reveal className="benchmark-system" delay={0.14}><div className="benchmark-system__top"><span>ROSHSTEIN.COM</span><small>ECOSSISTEMA VALIDADO</small></div><div className="benchmark-flow">{benchmarkLoop.map((item, index) => <React.Fragment key={item}><div className={item === "CASS PLAY" ? "benchmark-flow__node benchmark-flow__node--accent" : "benchmark-flow__node"}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>{index < benchmarkLoop.length - 1 && <i aria-hidden="true" />}</React.Fragment>)}</div><div className="benchmark-return"><span>RETORNO RECORRENTE</span><i /></div></Reveal>
             </div>
           </div>
         </section>
 
-        <ProductTransition kicker="PRODUTO 01" title={["CASS", "PLATFORM"]} support={<><strong>A casa própria do Cass</strong><small>Conta · hábito · rewards · dados próprios</small></>} />
+        <ProductTransition kicker="PRODUTO 01" title={["CASS", "PLATFORM"]} support={<><strong>A CASA DA AUDIÊNCIA</strong><small>HÁBITO · RECOMPENSAS · DADOS PRÓPRIETÁRIOS</small></>} />
 
         <section className="deck-slide account-slide" aria-label="Valor da conta">
           <div className="deck-slide__inner">
@@ -156,19 +164,19 @@ function App() {
             <div className="account-orbit">
               <svg className="account-connections" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="50" y1="50" x2="17" y2="35" /><line x1="50" y1="50" x2="83" y2="35" /><line x1="50" y1="50" x2="17" y2="65" /><line x1="50" y1="50" x2="83" y2="65" /></svg>
               <Reveal className="viewer-profile" delay={0.1}><div className="viewer-profile__avatar">C</div><small>PERFIL DO VIEWER</small><strong>LEVEL XX</strong><div className="viewer-profile__bar"><i /></div><div className="viewer-profile__wallet"><span>XP</span><span>CASSCOIN</span></div></Reveal>
-              {[["rewards", "GANHA", "Rewards desde a entrada"], ["progress", "EVOLUI", "XP · levels · streaks"], ["store", "TROCA", "Store · raffles · drops"], ["activity", "PARTICIPA", "Missions · predictions · campanhas"]].map(([icon, title, copy], index) => <Reveal className={`orbit-action orbit-action--${index + 1}`} delay={0.14 + index * 0.04} key={title}><PresentationIcon name={icon} /><div><strong>{title}</strong><span>{copy}</span></div></Reveal>)}
+              {[["rewards", "GANHA", "RECOMPENSAS DESDE A ENTRADA"], ["progress", "EVOLUI", "XP · LEVELS · STREAKS"], ["store", "TROCA", "STORE · RIFAS · DROPS"], ["activity", "PARTICIPA", "MISSIONS · PREDICTIONS · CAMPANHAS"]].map(([icon, title, copy], index) => <Reveal className={`orbit-action orbit-action--${index + 1}`} delay={0.14 + index * 0.04} key={title}><PresentationIcon name={icon} /><div><strong>{title}</strong><span>{copy}</span></div></Reveal>)}
             </div>
           </div>
         </section>
 
         <section className="deck-slide loop-slide" aria-label="Loop de hábito">
           <div className="deck-slide__inner">
-            <div className="loop-copy"><SlideHead>DE AUDIÊNCIA<br /><span>PARA HÁBITO</span></SlideHead><Reveal className="loop-support" delay={0.05}>CADA VOLTA GERA MAIS DADOS, RELAÇÃO E VALOR</Reveal></div>
+            <div className="loop-copy"><SlideHead>DE VIEWER<br /><span>PARA ATIVO</span></SlideHead><Reveal className="loop-support" delay={0.05}>A CADA CICLO GERAMOS MAIS DADOS, DESEJO E VALOR</Reveal></div>
             <div className="behavior-loop">
               <svg className="behavior-loop__track" viewBox="0 0 760 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                 <defs>
                   <linearGradient id="behavior-loop-gradient" x1="80" y1="54" x2="680" y2="466" gradientUnits="userSpaceOnUse"><stop stopColor="#64ff93" /><stop offset=".48" stopColor="#20d9ff" /><stop offset="1" stopColor="#b42bff" /></linearGradient>
-                  <marker id="behavior-loop-arrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 11 5.5 0 11Z" fill="#78e8ef" /></marker>
+                  <marker id="behavior-loop-arrow" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 14 7 0 14Z" fill="#78e8ef" /></marker>
                 </defs>
                 <ellipse className="behavior-loop__track-glow" cx="380" cy="260" rx="300" ry="206" />
                 {flywheelArcs.map((path, index) => <path className="behavior-loop__track-arc" d={path} markerEnd="url(#behavior-loop-arrow)" key={index} />)}
@@ -183,18 +191,18 @@ function App() {
 
         <section className="deck-slide pac-screen-slide" aria-label="PAC em uma tela">
           <div className="deck-slide__inner pac-screen-layout">
-            <SlideHead>COMUNIDADE ENTRA<br />CASS EXECUTA<br /><span>PAC ORGANIZA</span></SlideHead>
+            <SlideHead>PLATAFORMA VERSÁTIL,<br />INTUITIVA E<br /><span>AUTOMATIZADA</span></SlideHead>
             <Reveal className="call-ui-wrap" delay={0.08}><CallInterface /></Reveal>
           </div>
         </section>
 
         <section className="deck-slide creator-slide" aria-label="Painel do Cass">
-          <div className="deck-slide__inner"><SlideHead kicker="PAINEL DO CASS">SEM DEV<br /><span>CASS MONTA A EXPERIÊNCIA</span></SlideHead><Reveal className="creator-ui-wrap" delay={0.08}><DashboardInterface /></Reveal></div>
+          <div className="deck-slide__inner"><SlideHead kicker="DASHBOARD INTERNO INTELIGENTE">CONFIGURAÇÃO RÁPIDA DE<br /><span>EVENTOS, REGRAS E DISTRIBUIÇÃO</span></SlideHead><Reveal className="creator-ui-wrap" delay={0.08}><DashboardInterface /></Reveal></div>
         </section>
 
         <section className="deck-slide pac-impact-slide" aria-label="PAC como produto e negócio">
           <div className="deck-slide__inner pac-impact-layout">
-            <SlideHead>A LIVE DEIXA DE SER SÓ CONTEÚDO<br /><span>VIRA PRODUTO</span></SlideHead>
+            <SlideHead>A LIVE DEIXA DE SER SÓ CONTEÚDO<br /><span>E VIRA PRODUTO</span></SlideHead>
             <div className="pac-impact-pillars">
               {[
                 ["community", "PARTICIPAÇÃO", "O viewer deixa de só assistir"],
@@ -207,11 +215,11 @@ function App() {
                 </Reveal>
               ))}
             </div>
-            <Reveal className="pac-impact-callout" delay={0.3}>E O MOTOR CONTINUA GANHANDO <strong>NOVAS MECÂNICAS</strong></Reveal>
+            <Reveal className="pac-impact-callout" delay={0.3}>E O MOTOR CONTINUA GANHANDO <strong>NOVAS MECÂNICAS E EVENTOS</strong></Reveal>
           </div>
         </section>
 
-        <ProductTransition kicker="PRODUTO 03 · FASE FUTURA" title={["CASS", "PLAY"]} future support={<strong>QUANDO A LIVE ACABA<br />O ENTRETENIMENTO CONTINUA</strong>} />
+        <ProductTransition kicker="PRODUTO 03" title={["CASS", "PLAY"]} future support={<strong>QUANDO A LIVE DESLIGA<br />O ENTRETENIMENTO CONTINUA</strong>} />
 
         <section className="deck-slide play-slide" aria-label="Cass Play em uma tela">
           <div className="deck-slide__inner play-layout">
@@ -222,13 +230,13 @@ function App() {
 
         <section className="deck-slide roadmap-slide" aria-label="Roadmap do ecossistema">
           <div className="deck-slide__inner">
-            <SlideHead>PRIMEIRO A CASA<br />DEPOIS A PARTICIPAÇÃO<br /><span>DEPOIS 24/7</span></SlideHead>
-            <div className="ecosystem-roadmap"><div className="ecosystem-roadmap__track" />{[["01", "CASA", "CASS PLATFORM", "Conta · perfil · rewards · dados"], ["02", "PARTICIPAÇÃO", "PAC", "Calls · Event Engine · wallet · settlement"], ["03", "24/7", "CASS PLAY", "Jogos · CassCoin · rankings · eventos"], ["04", "ESCALA", "ECOSSISTEMA", "Mobile · CRM · parceiros · automação"], ["05", "EXPANSÃO", "NOVOS NEGÓCIOS", "EXCLUSIVO · MULTI-CREATOR · WHITE-LABEL · BET PARTNERSHIP"]].map(([number, phase, title, copy], index) => <Reveal className={`roadmap-stage roadmap-stage--${index + 1}`} delay={0.07 + index * 0.045} key={phase}><span>{number}</span><small>{phase}</small>{title && <strong>{title}</strong>}<p>{copy}</p></Reveal>)}</div>
+            <SlideHead><span>TIMELINE</span></SlideHead>
+            <div className="ecosystem-roadmap"><div className="ecosystem-roadmap__track" />{[["01", "CASA", "CASS PLATFORM", "Conta · perfil · rewards · dados", "~45 DIAS"], ["02", "PARTICIPAÇÃO", "PASSA A CALL", "Calls · Event Engine · wallet · settlement", "~90 DIAS"], ["03", "24/7", "CASS PLAY", "Jogos · CassCoin · rankings · eventos", "~150 DIAS"], ["04", "ESCALA", "ECOSSISTEMA", "Mobile · CRM · parceiros · automação", ""], ["05", "EXPANSÃO", "NOVOS NEGÓCIOS", "EXCLUSIVO · MULTI-CREATOR · WHITE-LABEL · BET PARTNERSHIP", ""]].map(([number, phase, title, copy, timing], index) => <Reveal className={`roadmap-stage roadmap-stage--${index + 1}`} delay={0.07 + index * 0.045} key={phase}><span>{number}</span><small>{phase}</small><strong>{title}</strong><p>{copy}</p><b className={`roadmap-stage__timing${timing ? "" : " roadmap-stage__timing--empty"}`}>{timing || "FUTURO"}</b></Reveal>)}</div>
           </div>
         </section>
 
         <section className="deck-slide wrap-slide" aria-label="Resumo do ecossistema">
-          <div className="deck-slide__inner"><SlideHead>TRÊS PRODUTOS<br /><span>UM ÚNICO ATIVO</span></SlideHead><div className="wrap-equation">{[["platform", "CASS PLATFORM", "IDENTIDADE + HÁBITO"], ["pac", "PAC", "PARTICIPAÇÃO AO VIVO"], ["play", "CASS PLAY", "ENTRETENIMENTO 24/7"]].map(([icon, title, copy], index) => <React.Fragment key={title}><Reveal className="wrap-product" delay={0.08 + index * 0.045}><PresentationIcon name={icon} /><small>{title}</small><strong>{copy}</strong></Reveal>{index < 2 && <span>+</span>}</React.Fragment>)}<span>=</span><Reveal className="wrap-result" delay={0.22}><PresentationIcon name="ecosystem" /><small>RESULTADO</small><strong>ECOSSISTEMA<br />PROPRIETÁRIO</strong></Reveal></div></div>
+          <div className="deck-slide__inner"><SlideHead>TRÊS PRODUTOS<br /><span>UM ÚNICO ECOSSISTEMA</span></SlideHead><div className="wrap-equation">{[["platform", "CASS PLATFORM", "IDENTIDADE + HÁBITO"], ["pac", "PASSA A CALL", "PARTICIPAÇÃO AO VIVO"], ["play", "CASS PLAY", "ENTRETENIMENTO 24/7"]].map(([icon, title, copy], index) => <React.Fragment key={title}><Reveal className="wrap-product" delay={0.08 + index * 0.045}><PresentationIcon name={icon} /><small>{title}</small><strong>{copy}</strong></Reveal>{index < 2 && <span>+</span>}</React.Fragment>)}</div></div>
         </section>
 
         <section className="deck-slide investment-slide" aria-label="Investimento">
