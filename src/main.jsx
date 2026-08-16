@@ -260,16 +260,14 @@ function App() {
             <SlideHead kicker="INVESTIMENTO">DOIS CAMINHOS<br /><span>PARA COMEÇAR</span></SlideHead>
             <div className="investment-layout">
               <div className="offer-grid">
-                <Reveal className="offer-card offer-card--strategic" delay={0.07}><div>RECOMENDADO</div><small>MODELO ESTRATÉGICO</small><strong>R$ 90.000 <em>+ PARTICIPAÇÃO MINORITÁRIA</em></strong><b>CASS PLATFORM + PAC</b><span>TECH FOUNDING PARTNER</span></Reveal>
-                <Reveal className="offer-card offer-card--traditional" delay={0.1}><small>MODELO TRADICIONAL</small><strong>R$ 120.000</strong><span>CASS PLATFORM + PAC</span></Reveal>
-                <Reveal className="offer-card offer-card--individual" delay={0.13}><small>CASS PLATFORM</small><strong>R$ 60.000</strong><span>CASA PRÓPRIA DA AUDIÊNCIA</span></Reveal>
-                <Reveal className="offer-card offer-card--individual" delay={0.16}><small>PASSA A CALL</small><strong>R$ 90.000</strong><span>PARTICIPAÇÃO AO VIVO + ECONOMIA</span></Reveal>
-                <Reveal className="offer-card offer-card--future" delay={0.19}><small>FASE FUTURA</small><strong>CASS PLAY</strong><span>ESCOPO + INVESTIMENTO<br />APÓS VALIDAÇÃO</span></Reveal>
+                <Reveal className="offer-card offer-card--platform" delay={0.07}><small>CASS PLATFORM</small><strong>R$ 60.000</strong><span>CASA PRÓPRIA DA AUDIÊNCIA</span></Reveal>
+                <Reveal className="offer-card offer-card--pac" delay={0.1}><small>PASSA A CALL</small><strong>R$ 90.000</strong><span>PARTICIPAÇÃO AO VIVO + ECONOMIA</span></Reveal>
+                <Reveal className="offer-card offer-card--traditional" delay={0.13}><small>CASS PLATFORM + PAC</small><strong>R$ 120.000</strong><span>MODELO TRADICIONAL</span></Reveal>
+                <Reveal className="offer-card offer-card--strategic" delay={0.16}><div>RECOMENDADO</div><small>MODELO ESTRATÉGICO</small><strong><span>R$ 90.000</span><em>+ PARTICIPAÇÃO MINORITÁRIA</em></strong><b>CASS PLATFORM + PAC</b><span>TECH FOUNDING PARTNER</span></Reveal>
+                <Reveal className="offer-card offer-card--payment" delay={0.19}><small>FORMA DE PAGAMENTO</small><div><span><b>50%</b> KICKOFF</span><i>→</i><span><b>25%</b> BETA</span><i>→</i><span><b>25%</b> LAUNCH</span></div></Reveal>
+                <Reveal className="offer-card offer-card--future" delay={0.22}><small>FASE FUTURA</small><strong>CASS PLAY</strong><span>ESCOPO + INVESTIMENTO<br />APÓS VALIDAÇÃO</span></Reveal>
+                <Reveal className="offer-card offer-card--external" delay={0.25}><small>CUSTOS EXTERNOS</small><strong>INFRA · PSP/BAAS · TAXAS · TERCEIROS</strong><span>PAGOS À PARTE</span></Reveal>
               </div>
-              <Reveal className="commercial-bar" delay={0.22}>
-                <div className="commercial-block commercial-block--payment"><small>FORMA DE PAGAMENTO</small><div><span><b>50%</b> KICKOFF</span><i>→</i><span><b>25%</b> BETA</span><i>→</i><span><b>25%</b> LAUNCH</span></div></div>
-                <div className="commercial-block commercial-block--external"><small>CUSTOS EXTERNOS</small><strong>INFRA · PSP/BAAS · TAXAS · TERCEIROS</strong><span>PAGOS À PARTE</span></div>
-              </Reveal>
             </div>
           </div>
         </section>

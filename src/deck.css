@@ -766,3 +766,44 @@
 .investment-slide .commercial-block{min-height:59px;padding:8px 6px}
 .investment-slide .commercial-block--external{border-top:0;border-left:1px solid rgba(255,255,255,.07)}
 }
+
+/* 17 — three-tier commercial decision layout */
+.investment-slide .offer-grid{grid-template-columns:repeat(6,minmax(0,1fr));grid-template-areas:"platform platform pac pac traditional traditional" "strategic strategic strategic strategic payment payment" "future future future external external external";gap:10px}
+.investment-slide .offer-card--platform{grid-area:platform}
+.investment-slide .offer-card--pac{grid-area:pac}
+.investment-slide .offer-card--traditional{grid-area:traditional}
+.investment-slide .offer-card--strategic{grid-area:strategic}
+.investment-slide .offer-card--payment{grid-area:payment}
+.investment-slide .offer-card--future{grid-area:future}
+.investment-slide .offer-card--external{grid-area:external}
+.investment-slide .offer-card--platform,.investment-slide .offer-card--pac,.investment-slide .offer-card--traditional{min-height:clamp(116px,14.5dvh,150px);padding:clamp(16px,1.35vw,22px)}
+.investment-slide .offer-card--platform>strong,.investment-slide .offer-card--pac>strong,.investment-slide .offer-card--traditional>strong{margin:12px 0 9px;font-size:clamp(26px,1.95vw,34px)}
+.investment-slide .offer-card--strategic{min-height:clamp(136px,17dvh,175px);justify-content:center;padding:clamp(20px,1.75vw,28px)}
+.investment-slide .offer-card--strategic>strong{display:flex;align-items:baseline;gap:11px;margin:17px 0 10px}
+.investment-slide .offer-card--strategic>strong>span{flex:0 0 auto;color:#f4fbfc;font-size:clamp(34px,2.7vw,47px);line-height:.95;letter-spacing:-.05em}
+.investment-slide .offer-card--strategic>strong>em{max-width:220px}
+.investment-slide .offer-card--strategic>b,.investment-slide .offer-card--strategic>span{display:block;text-align:left}
+.investment-slide .offer-card--payment{min-height:clamp(136px,17dvh,175px);align-items:flex-start;padding:clamp(20px,1.75vw,28px);border-color:rgba(255,255,255,.11);background:rgba(255,255,255,.018)}
+.investment-slide .offer-card--payment>div{display:flex;align-items:center;gap:clamp(7px,.75vw,12px);margin-top:21px;color:#b4bec7;font:650 clamp(9px,.68vw,11px)/1 var(--mono);white-space:nowrap}
+.investment-slide .offer-card--payment>div span{display:flex;align-items:center;gap:4px}
+.investment-slide .offer-card--payment>div b{color:#77e2eb;font-size:clamp(13px,1vw,17px)}
+.investment-slide .offer-card--payment>div i{color:#596672;font-size:12px;font-style:normal}
+.investment-slide .offer-card--future,.investment-slide .offer-card--external{min-height:clamp(84px,10.5dvh,108px);justify-content:center;padding:clamp(14px,1.25vw,20px)}
+.investment-slide .offer-card--future>strong{margin:8px 0 6px;font-size:clamp(20px,1.5vw,27px)}
+.investment-slide .offer-card--external{border-color:rgba(255,255,255,.09);background:rgba(255,255,255,.014)}
+.investment-slide .offer-card--external>strong{margin:9px 0 6px;color:#d2d9df;font-size:clamp(12px,.91vw,16px);letter-spacing:-.01em;white-space:normal}
+
+@media (orientation:portrait),(max-width:760px){
+.investment-slide .offer-grid{grid-template-columns:1fr 1fr;grid-template-areas:"platform pac" "traditional traditional" "strategic strategic" "payment payment" "future external";gap:6px}
+.investment-slide .offer-card--platform,.investment-slide .offer-card--pac,.investment-slide .offer-card--traditional{min-height:74px;padding:9px 10px}
+.investment-slide .offer-card--platform>strong,.investment-slide .offer-card--pac>strong,.investment-slide .offer-card--traditional>strong{margin:7px 0 5px;font-size:17px}
+.investment-slide .offer-card--strategic{min-height:92px;padding:11px}
+.investment-slide .offer-card--strategic>strong{gap:6px;margin:8px 0 5px}
+.investment-slide .offer-card--strategic>strong>span{font-size:21px}
+.investment-slide .offer-card--strategic>strong>em{max-width:122px;font-size:6.2px}
+.investment-slide .offer-card--payment{min-height:64px;padding:9px 11px}
+.investment-slide .offer-card--payment>div{gap:5px;margin-top:8px;font-size:6px}
+.investment-slide .offer-card--payment>div b{font-size:8px}.investment-slide .offer-card--payment>div i{font-size:7px}
+.investment-slide .offer-card--future,.investment-slide .offer-card--external{min-height:72px;padding:9px 10px}
+.investment-slide .offer-card--external>strong{margin:6px 0 4px;font-size:7.5px;line-height:1.25}
+}
