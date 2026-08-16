@@ -363,10 +363,12 @@
 .vision-node--channel>div{justify-content:center}
 .vision-node--channel strong{margin-top:0}
 .vision-node--product{min-height:clamp(178px,23dvh,235px)}
-.vision-node--product>div{justify-content:center}
-.vision-node--product strong{min-height:2.05em;margin-top:0;font-size:clamp(17px,1.22vw,21px);line-height:1.04}
-.vision-node--product em{min-height:2.4em;margin-top:10px;color:#a4aeba;font-size:clamp(8px,.61vw,10px);line-height:1.25}
-.vision-node--product b{margin-top:14px;color:#7ce5ee;font:700 clamp(9px,.68vw,11px)/1.15 var(--mono);letter-spacing:.08em}
+.vision-node--product>div{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto minmax(0,1fr);align-items:center;padding-block:clamp(13px,1.4vh,18px)}
+.vision-node--product small{align-self:end;margin-bottom:10px;line-height:1.2}
+.vision-node--product strong{align-self:center;min-height:0;display:flex;align-items:center;margin:0;font-size:clamp(17px,1.22vw,21px);line-height:1.04}
+.vision-node--product b{align-self:start;display:flex;align-items:baseline;gap:6px;margin-top:10px;color:#7ce5ee;font:700 clamp(9px,.68vw,11px)/1.15 var(--mono);letter-spacing:.08em}
+.vision-node--product b i{font-size:1.42em;line-height:.72;font-style:normal}
+.vision-node--03 strong{padding:0;border:0;border-radius:0;background:none}
 .vision-node--03 b{color:#c6a3f3}
 
 /* 05 — strategy on the left, validated ecosystem on the right */
@@ -436,10 +438,12 @@
 .platform-window__top .platform-window__brand{width:14px;height:14px}
 .audience-core strong{font-size:24px}
 .vision-node--channel{justify-content:flex-start}
-.vision-node--product{min-height:84px}
-.vision-node--product strong{min-height:0;font-size:12.5px}
-.vision-node--product em{min-height:0;margin-top:4px;font-size:6.2px}
-.vision-node--product b{margin-top:5px;font-size:6.5px}
+.vision-node--product{min-height:94px}
+.vision-node--product>div{padding-block:5px}
+.vision-node--product small{margin-bottom:4px;font-size:6.5px}
+.vision-node--product strong{min-height:0;font-size:12px}
+.vision-node--product b{gap:4px;margin-top:4px;font-size:6.5px}
+.vision-node--product b i{font-size:1.48em}
 .benchmark-layout{grid-template-columns:1fr;gap:8px}
 .benchmark-system{grid-row:2}
 .benchmark-lessons{grid-row:1}

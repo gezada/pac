@@ -140,7 +140,7 @@ function App() {
               </div>
               <div className="vision-connector" aria-hidden="true"><i /></div>
               <div className="vision-products">
-                {[["platform", "01", "CASA DA AUDIÊNCIA", "VALOR PERCEBIDO + DADOS", "+ ENGAJAMENTO"], ["pac", "02", "PASSA A CALL", "EVENTOS + ECONOMIA PROPRIETÁRIA", "+ LUCRO / TICKET MÉDIO"], ["play", "03", "ENTRETENIMENTO 24/7", "ENTRETENIMENTO + RECORRÊNCIA", "+ VALOR / EQUITY"]].map(([icon, number, title, copy, value], index) => <React.Fragment key={title}><Reveal className={`vision-node vision-node--product vision-node--${number}`} delay={0.14 + index * 0.045}><PresentationIcon name={icon} /><span>{number}</span><div><strong>{title}</strong><em>{copy}</em><b>{value}</b></div></Reveal>{index < 2 && <div className="vision-arrow">→</div>}</React.Fragment>)}
+                {[["platform", "01", "CASA DA AUDIÊNCIA", "VALOR PERCEBIDO + DADOS", "ENGAJAMENTO"], ["pac", "02", "PASSA A CALL", "EVENTOS + ECONOMIA PROPRIETÁRIA", "LUCRO / TICKET MÉDIO"], ["play", "03", "ENTRETENIMENTO 24/7", "ENTRETENIMENTO + RECORRÊNCIA", "VALOR / EQUITY"]].map(([icon, number, title, copy, value], index) => <React.Fragment key={title}><Reveal className={`vision-node vision-node--product vision-node--${number}`} delay={0.14 + index * 0.045}><PresentationIcon name={icon} /><span>{number}</span><div><small>{title}</small><strong>{copy}</strong><b><i>+</i>{value}</b></div></Reveal>{index < 2 && <div className="vision-arrow">→</div>}</React.Fragment>)}
               </div>
             </div>
           </div>
