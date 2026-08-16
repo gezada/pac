@@ -772,6 +772,7 @@
 .investment-slide .offer-card--platform{grid-area:platform}
 .investment-slide .offer-card--pac{grid-area:pac}
 .investment-slide .offer-card--traditional{grid-area:traditional}
+.investment-slide .offer-card--traditional{border-color:transparent;background:linear-gradient(#0d1218,#0d1218) padding-box,linear-gradient(115deg,rgba(100,255,147,.7),rgba(32,217,255,.78),rgba(180,43,255,.66)) border-box}
 .investment-slide .offer-card--strategic{grid-area:strategic}
 .investment-slide .offer-card--payment{grid-area:payment}
 .investment-slide .offer-card--future{grid-area:future}
