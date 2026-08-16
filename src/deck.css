@@ -715,3 +715,17 @@
 .investment-slide .offer-card{min-height:170px}
 .commercial-bar{min-height:94px}
 }
+
+/* 17 — strategic model as the commercial recommendation */
+.investment-slide .offer-card--featured{border-color:rgba(32,217,255,.18);background:radial-gradient(circle at 82% 10%,rgba(32,217,255,.08),transparent 40%),linear-gradient(140deg,rgba(100,255,147,.025),rgba(32,217,255,.035),rgba(180,43,255,.025));box-shadow:0 0 36px rgba(32,217,255,.035)}
+.investment-slide .offer-card--featured small{color:#afbbc4}
+.investment-slide .offer-card--featured>span{color:#97a3ae}
+.commercial-block--strategic{position:relative;margin:-1px 0;padding-inline:clamp(18px,1.55vw,25px);border:1px solid transparent!important;border-radius:13px;background:linear-gradient(#0d1218,#0d1218) padding-box,linear-gradient(115deg,rgba(100,255,147,.55),rgba(32,217,255,.65),rgba(180,43,255,.55)) border-box;box-shadow:0 0 36px rgba(32,217,255,.07),inset 0 0 30px rgba(32,217,255,.025)}
+.commercial-block--strategic header em{padding:5px 7px;border-color:rgba(32,217,255,.3);color:#071015;background:var(--gradient);font-size:6.5px;box-shadow:0 0 18px rgba(32,217,255,.18)}
+.commercial-block--strategic>strong{color:#f3fbfc;font-size:clamp(13px,1vw,17px)}
+.commercial-block--strategic>b{margin-top:7px;color:#91e8ef;font:700 clamp(7px,.55vw,9px)/1 var(--mono);letter-spacing:.09em}
+@media (orientation:portrait),(max-width:760px){
+.commercial-block--strategic{margin:0;padding-inline:8px;border-radius:9px}
+.commercial-block--strategic header em{padding:3px 5px;font-size:4.7px}
+.commercial-block--strategic>b{margin-top:4px;font-size:5.5px}
+}

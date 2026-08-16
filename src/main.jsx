@@ -257,17 +257,17 @@ function App() {
 
         <section className="deck-slide investment-slide" aria-label="Investimento">
           <div className="deck-slide__inner">
-            <SlideHead kicker="INVESTIMENTO">RECOMENDAMOS COMEÇAR POR<br /><span>CASS PLATFORM + PAC</span></SlideHead>
+            <SlideHead kicker="INVESTIMENTO">DOIS CAMINHOS<br /><span>PARA COMEÇAR</span></SlideHead>
             <div className="investment-layout">
               <div className="offer-grid">
                 <Reveal className="offer-card" delay={0.07}><small>CASS PLATFORM</small><strong>R$ 60.000</strong><span>CASA PRÓPRIA DA AUDIÊNCIA</span></Reveal>
                 <Reveal className="offer-card" delay={0.1}><small>PASSA A CALL</small><strong>R$ 90.000</strong><span>PARTICIPAÇÃO AO VIVO + ECONOMIA</span></Reveal>
-                <Reveal className="offer-card offer-card--featured" delay={0.13}><div>RECOMENDADO</div><small>CASS PLATFORM + PAC</small><strong>R$ 120.000</strong><span>ECONOMIA DE R$ 30.000</span></Reveal>
+                <Reveal className="offer-card offer-card--featured" delay={0.13}><small>CASS PLATFORM + PAC</small><strong>R$ 120.000</strong><span>MODELO TRADICIONAL</span></Reveal>
                 <Reveal className="offer-card offer-card--future" delay={0.16}><small>FASE FUTURA</small><strong>CASS PLAY</strong><span>ESCOPO + INVESTIMENTO<br />APÓS VALIDAÇÃO</span></Reveal>
               </div>
               <Reveal className="commercial-bar" delay={0.2}>
                 <div className="commercial-block commercial-block--payment"><small>FORMA DE PAGAMENTO</small><div><span><b>50%</b> KICKOFF</span><i>→</i><span><b>25%</b> BETA</span><i>→</i><span><b>25%</b> LAUNCH</span></div></div>
-                <div className="commercial-block commercial-block--strategic"><header><small>MODELO ESTRATÉGICO</small><em>ALTERNATIVA</em></header><strong>R$ 90.000 + PARTICIPAÇÃO MINORITÁRIA</strong><span>TECH FOUNDING PARTNER</span></div>
+                <div className="commercial-block commercial-block--strategic"><header><small>MODELO ESTRATÉGICO</small><em>RECOMENDADO</em></header><strong>R$ 90.000 + PARTICIPAÇÃO MINORITÁRIA</strong><b>CASS PLATFORM + PAC</b><span>TECH FOUNDING PARTNER</span></div>
                 <div className="commercial-block commercial-block--external"><small>CUSTOS EXTERNOS</small><strong>INFRA · PSP/BAAS · TAXAS · TERCEIROS</strong><span>PAGOS À PARTE</span></div>
               </Reveal>
             </div>
