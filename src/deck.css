@@ -652,3 +652,66 @@
 .benchmark-cycle__return-arrow::after{width:4px;height:4px}
 .benchmark-cycle__return{bottom:3px}
 }
+
+/* 17 — final commercial proposal */
+.investment-slide .slide-head{margin-bottom:clamp(20px,2.7vh,29px)}
+.investment-slide .slide-head h2{font-size:clamp(34px,2.95vw,50px)}
+.investment-slide .investment-layout{display:grid;grid-template-columns:1fr;gap:14px;align-items:stretch}
+.investment-slide .offer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.investment-slide .offer-card{min-width:0;min-height:clamp(185px,24dvh,245px);padding:clamp(18px,1.45vw,24px);border-radius:18px}
+.investment-slide .offer-card small{color:#a7b1bb;font-size:clamp(9px,.68vw,11px)}
+.investment-slide .offer-card>strong{margin:clamp(17px,2.1vh,23px) 0 13px;font-size:clamp(29px,2.15vw,38px);white-space:nowrap}
+.investment-slide .offer-card>span{color:#9aa5af;font-size:clamp(8px,.59vw,10px);line-height:1.35;letter-spacing:.06em}
+.investment-slide .offer-card--featured{grid-column:auto;border-color:rgba(32,217,255,.34);background:radial-gradient(circle at 82% 10%,rgba(32,217,255,.17),transparent 40%),linear-gradient(140deg,rgba(100,255,147,.055),rgba(32,217,255,.07),rgba(180,43,255,.055));box-shadow:0 0 52px rgba(32,217,255,.085)}
+.investment-slide .offer-card--featured>div{top:13px;right:13px;padding:8px 10px;font-size:8px}
+.investment-slide .offer-card--featured>strong{font-size:clamp(34px,2.5vw,43px)}
+.investment-slide .offer-card--featured>span{color:#9ce8ef}
+.investment-slide .offer-card--future{border-color:rgba(180,43,255,.21);background:radial-gradient(circle at 82% 14%,rgba(180,43,255,.12),transparent 40%),rgba(180,43,255,.025)}
+.investment-slide .offer-card--future small{color:#bea2e5}
+.investment-slide .offer-card--future>strong{color:#e6dbf4;font-size:clamp(26px,1.9vw,33px)}
+.investment-slide .offer-card--future>span{color:#a99bbd}
+.commercial-bar{min-height:clamp(102px,13dvh,132px);display:grid;grid-template-columns:1fr 1.24fr 1fr;align-items:stretch;padding:0 clamp(14px,1.2vw,20px);border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.07);border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,.018),rgba(32,217,255,.022),rgba(180,43,255,.018))}
+.commercial-block{min-width:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(15px,1.25vw,20px)}
+.commercial-block+ .commercial-block{border-left:1px solid rgba(255,255,255,.08)}
+.commercial-block small{color:#8995a1;font:650 clamp(7px,.55vw,9px)/1 var(--mono);letter-spacing:.12em}
+.commercial-block>strong{margin-top:11px;color:#d8dee4;font-size:clamp(12px,.92vw,16px);line-height:1.18;letter-spacing:-.02em}
+.commercial-block>span{margin-top:8px;color:#7f8b97;font:650 clamp(7px,.53vw,8.5px)/1 var(--mono);letter-spacing:.1em}
+.commercial-block--payment>div{display:flex;align-items:center;gap:clamp(6px,.65vw,10px);margin-top:13px;color:#aeb8c1;font:650 clamp(8px,.62vw,10px)/1 var(--mono);white-space:nowrap}
+.commercial-block--payment span{display:flex;align-items:center;gap:4px}
+.commercial-block--payment b{color:#77e2eb;font-size:clamp(12px,.9vw,15px)}
+.commercial-block--payment i{color:#56636f;font-size:11px;font-style:normal}
+.commercial-block--strategic header{display:flex;align-items:center;gap:9px}
+.commercial-block--strategic header em{padding:4px 6px;border:1px solid rgba(180,43,255,.2);border-radius:999px;color:#c2a0eb;background:rgba(180,43,255,.045);font:700 6px/1 var(--mono);letter-spacing:.1em;font-style:normal}
+.commercial-block--strategic>strong{color:#edf4f6}
+.commercial-block--external>span{color:#ad92d4}
+
+@media (orientation:portrait),(max-width:760px){
+.investment-slide .slide-head{margin-bottom:13px}
+.investment-slide .slide-head h2{font-size:clamp(26px,7.2vw,31px)}
+.investment-slide .investment-layout{gap:8px}
+.investment-slide .offer-grid{grid-template-columns:1fr 1fr;gap:6px}
+.investment-slide .offer-card{min-height:105px;padding:10px;border-radius:12px}
+.investment-slide .offer-card small{font-size:6.5px}
+.investment-slide .offer-card>strong{margin:10px 0 7px;font-size:19px}
+.investment-slide .offer-card>span{font-size:5.8px;line-height:1.25}
+.investment-slide .offer-card--featured{grid-column:auto;min-height:105px}
+.investment-slide .offer-card--featured>div{top:7px;right:7px;padding:5px 6px;font-size:5px}
+.investment-slide .offer-card--featured>small{max-width:70%}
+.investment-slide .offer-card--featured>strong{font-size:23px}
+.investment-slide .offer-card--future>strong{font-size:17px}
+.commercial-bar{min-height:0;grid-template-columns:1fr;padding:0 8px;border-radius:10px}
+.commercial-block{min-height:55px;padding:8px 5px}
+.commercial-block+ .commercial-block{border-left:0;border-top:1px solid rgba(255,255,255,.07)}
+.commercial-block small{font-size:5.5px}
+.commercial-block>strong{margin-top:6px;font-size:9px}
+.commercial-block>span{margin-top:4px;font-size:5.5px}
+.commercial-block--payment>div{gap:5px;margin-top:7px;font-size:6px}
+.commercial-block--payment b{font-size:8px}.commercial-block--payment i{font-size:7px}
+.commercial-block--strategic header em{padding:3px 5px;font-size:4.7px}
+}
+
+@media (orientation:landscape) and (max-height:760px){
+.investment-slide .slide-head{margin-bottom:15px}
+.investment-slide .offer-card{min-height:170px}
+.commercial-bar{min-height:94px}
+}
