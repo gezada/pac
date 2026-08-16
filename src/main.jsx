@@ -66,7 +66,7 @@ function CallInterface() {
   return (
     <div className="call-ui">
       <div className="call-ui__bar"><span className="status-live"><i /> CALL AO VIVO</span><span>EXEMPLO DE INTERFACE</span></div>
-      <div className="call-ui__hero"><div><small>CALL COM APORTE</small><strong>PASSA A CALL</strong></div><span>X PARTICIPANTES</span></div>
+      <div className="call-ui__hero"><div><small>CALL COM APORTE</small><strong>CALL PREMIADA</strong></div><span>X PARTICIPANTES</span></div>
       <div className="call-ui__progress"><div className="call-ui__progress-head"><small>FORMAÇÃO DA BANCA</small><span>EM ANDAMENTO</span></div><div className="call-ui__progress-track"><i /></div><div className="call-ui__progress-legend"><span>COMUNIDADE</span><span>+ APORTE DO CASS</span></div></div>
       <div className="call-ui__metrics"><div><small>COMUNIDADE</small><strong>R$ XX.XXX</strong></div><div><small>APORTE DO CASS</small><strong>XX%</strong></div><div><small>REGRA</small><strong>CONGELADA</strong></div></div>
       <div className="call-ui__actions"><button type="button">ENTRAR COM R$</button><button type="button">ENTRAR COM CASSCOIN</button></div>
@@ -91,21 +91,37 @@ function DashboardInterface() {
 }
 
 function PlayInterface() {
-  const games = [
+  const trendingGames = [
     ["game", "FORTUNA CC", "SLOTS"],
-    ["rewards", "DROP DIÁRIO", "DROPS"],
-    ["missions", "MISSÃO CASS", "MISSÕES"],
-    ["progress", "RANK RUSH", "RANKING"],
     ["activity", "GIRO DA LIVE", "ARCADE"],
-    ["play", "DESAFIO 24/7", "EVENTO"],
+    ["rewards", "DROP DIÁRIO", "DROPS"],
+    ["progress", "RANK RUSH", "RANKING"],
   ]
+  const newGames = [
+    ["missions", "MISSÃO CASS", "MISSÕES"],
+    ["play", "DESAFIO 24/7", "EVENTO"],
+    ["community", "ARCADE DA COMUNIDADE", "MULTIPLAYER"],
+  ]
+  const renderGame = ([icon, title, type], index) => (
+    <div className={`casino-game casino-game--${index + 1}`} key={title}>
+      <div className="casino-game__cover"><PresentationIcon name={icon} /><i /><i /><span>{index === 0 ? "HOT" : "NOVO"}</span></div>
+      <strong>{title}</strong><small>{type}</small>
+    </div>
+  )
   return (
     <div className="play-ui">
       <div className="play-ui__top"><div><small>CASS PLAY</small><strong>CASSINO DO CASS</strong></div><div className="play-balance"><small>SALDO CASSCOIN</small><strong>XX.XXX CC</strong></div></div>
-      <div className="play-ui__content">
-        <div className="play-feature"><span>EVENTO ATIVO</span><PresentationIcon name="play" /><strong>ARCADE DA<br />COMUNIDADE</strong><small>MISSÕES + RECOMPENSAS</small><button type="button">JOGAR</button></div>
-        <div className="play-catalog"><div className="play-catalog__tabs"><strong>EM DESTAQUE</strong><span>JOGOS · MISSÕES · EVENTOS</span></div><div className="play-catalog__grid">{games.map(([icon, title, type], index) => <div className={index === 0 ? "play-game-card play-game-card--accent" : "play-game-card"} key={title}><span>0{index + 1}</span><PresentationIcon name={icon} /><strong>{title}</strong><small>{type}</small></div>)}</div></div>
-        <div className="play-ranking"><small>RANKING</small>{["01 · JOGADOR", "02 · JOGADOR", "03 · JOGADOR"].map((item) => <span key={item}>{item}<i>XX XP</i></span>)}</div>
+      <nav className="casino-nav" aria-label="Categorias do Cass Play"><span className="active">INÍCIO</span><span>JOGOS</span><span>SLOTS</span><span>EVENTOS</span><span>MISSÕES</span><span>RANKING</span><i>⌕</i></nav>
+      <div className="casino-lobby">
+        <div className="casino-main">
+          <div className="casino-hero">
+            <div><small>JOGO EM DESTAQUE</small><strong>GIRO DA<br />FORTUNA</strong><span>PRÊMIOS EM CASSCOIN</span><button type="button">JOGAR AGORA</button></div>
+            <div className="casino-hero__reels" aria-hidden="true"><i>7</i><i>C</i><i>★</i></div>
+          </div>
+          <section className="casino-shelf"><header><strong>JOGOS EM ALTA</strong><span>VER TODOS →</span></header><div className="casino-shelf__grid">{trendingGames.map(renderGame)}</div></section>
+          <section className="casino-shelf casino-shelf--new"><header><strong>NOVIDADES</strong><span>DESCOBRIR →</span></header><div className="casino-shelf__grid casino-shelf__grid--three">{newGames.map(renderGame)}</div></section>
+        </div>
+        <aside className="casino-ranking"><small>RANKING AO VIVO</small><strong>TOP JOGADORES</strong>{["01 · JOGADOR", "02 · JOGADOR", "03 · JOGADOR", "04 · JOGADOR"].map((item) => <span key={item}>{item}<i>XX XP</i></span>)}<div><small>SEU LEVEL</small><b>XX</b></div></aside>
       </div>
     </div>
   )
@@ -140,7 +156,7 @@ function App() {
               </div>
               <div className="vision-connector" aria-hidden="true"><i /></div>
               <div className="vision-products">
-                {[["platform", "01", "CASA DA AUDIÊNCIA", "VALOR PERCEBIDO + DADOS", "ENGAJAMENTO"], ["pac", "02", "PASSA A CALL", "EVENTOS + ECONOMIA PROPRIETÁRIA", "LUCRO / TICKET MÉDIO"], ["play", "03", "ENTRETENIMENTO 24/7", "ENTRETENIMENTO + RECORRÊNCIA", "VALOR / EQUITY"]].map(([icon, number, title, copy, value], index) => <React.Fragment key={title}><Reveal className={`vision-node vision-node--product vision-node--${number}`} delay={0.14 + index * 0.045}><PresentationIcon name={icon} /><span>{number}</span><div><small>{title}</small><strong>{copy}</strong><b><i>+</i>{value}</b></div></Reveal>{index < 2 && <div className="vision-arrow">→</div>}</React.Fragment>)}
+                {[["platform", "01", "VALOR PERCEBIDO + DADOS", "CASS.COM", "ENGAJAMENTO"], ["pac", "02", "EVENTOS + ECONOMIA PROPRIETÁRIA", "PASSA A CALL", "LUCRO / TICKET MÉDIO"], ["play", "03", "RECORRÊNCIA + ENTRETENIMENTO 24/7", "CASS PLAY", "VALOR / EQUITY"]].map(([icon, number, overline, title, value], index) => <React.Fragment key={title}><Reveal className={`vision-node vision-node--product vision-node--${number}`} delay={0.14 + index * 0.045}><PresentationIcon name={icon} /><span>{number}</span><div><small>{overline}</small><strong>{title}</strong><b><i>+</i>{value}</b></div></Reveal>{index < 2 && <div className="vision-arrow">→</div>}</React.Fragment>)}
               </div>
             </div>
           </div>
@@ -151,7 +167,7 @@ function App() {
             <SlideHead kicker="BENCHMARK">ROSHSTEIN PROVOU O MODELO<br /><span>NÓS AJUSTAMOS AO BRASIL</span></SlideHead>
             <div className="benchmark-layout">
               <div className="benchmark-lessons">{[["01", "MODELAR A LÓGICA", "Progressão · Missions · Rewards · Store · Play · ..."], ["02", "ADAPTAR O CONTEXTO", "FACEBOOK + WHATSAPP · PIX · PÚBLICO BRASILEIRO"], ["03", "CRIAR O ECOSSISTEMA", "SITE + PAC + CASS PLAY"]].map(([number, title, copy], index) => <Reveal className={index === 2 ? "benchmark-lesson benchmark-lesson--accent" : "benchmark-lesson"} delay={0.08 + index * 0.05} key={title}><span>{number}</span><div><small>{title}</small><strong>{copy}</strong></div></Reveal>)}</div>
-              <Reveal className="benchmark-system" delay={0.14}><div className="benchmark-system__top"><span>ROSHSTEIN.COM</span><small>ECOSSISTEMA VALIDADO</small></div><div className="benchmark-flow">{benchmarkLoop.map((item, index) => <React.Fragment key={item}><div className={item === "CASS PLAY" ? "benchmark-flow__node benchmark-flow__node--accent" : "benchmark-flow__node"}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>{index < benchmarkLoop.length - 1 && <i aria-hidden="true" />}</React.Fragment>)}</div><div className="benchmark-return"><span>RETORNO RECORRENTE</span><i /></div></Reveal>
+              <Reveal className="benchmark-system" delay={0.14}><div className="benchmark-system__top"><span>ROSHSTEIN.COM</span><small>ECOSSISTEMA VALIDADO</small></div><div className="benchmark-cycle"><svg className="benchmark-cycle__lines" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="benchmark-cycle-gradient" x1="25" y1="90" x2="900" y2="420" gradientUnits="userSpaceOnUse"><stop stopColor="#64ff93" /><stop offset=".5" stopColor="#20d9ff" /><stop offset="1" stopColor="#b42bff" /></linearGradient><marker id="benchmark-cycle-arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 13 6.5 0 13Z" fill="#68dce7" /></marker></defs><path d="M225 105H275" markerEnd="url(#benchmark-cycle-arrow)" /><path d="M475 105H525" markerEnd="url(#benchmark-cycle-arrow)" /><path d="M725 105H775" markerEnd="url(#benchmark-cycle-arrow)" /><path d="M875 160V220H375V250" markerEnd="url(#benchmark-cycle-arrow)" /><path d="M475 305H525" markerEnd="url(#benchmark-cycle-arrow)" /><path d="M725 305H775" markerEnd="url(#benchmark-cycle-arrow)" /><path className="benchmark-cycle__return-path" d="M875 360V420H24V105H34" markerEnd="url(#benchmark-cycle-arrow)" /></svg><div className="benchmark-cycle__nodes">{benchmarkLoop.map((item, index) => <div className={item === "CASS PLAY" ? "benchmark-flow__node benchmark-flow__node--accent" : "benchmark-flow__node"} key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>)}</div><div className="benchmark-cycle__return"><span>RETORNO RECORRENTE</span></div></div></Reveal>
             </div>
           </div>
         </section>
@@ -231,7 +247,7 @@ function App() {
         <section className="deck-slide roadmap-slide" aria-label="Roadmap do ecossistema">
           <div className="deck-slide__inner">
             <SlideHead><span>TIMELINE</span></SlideHead>
-            <div className="ecosystem-roadmap"><div className="ecosystem-roadmap__track" />{[["01", "CASA", "CASS PLATFORM", "Conta · perfil · rewards · dados", "~45 DIAS"], ["02", "PARTICIPAÇÃO", "PASSA A CALL", "Calls · Event Engine · wallet · settlement", "~90 DIAS"], ["03", "24/7", "CASS PLAY", "Jogos · CassCoin · rankings · eventos", "~150 DIAS"], ["04", "ESCALA", "ECOSSISTEMA", "Mobile · CRM · parceiros · automação", ""], ["05", "EXPANSÃO", "NOVOS NEGÓCIOS", "EXCLUSIVO · MULTI-CREATOR · WHITE-LABEL · BET PARTNERSHIP", ""]].map(([number, phase, title, copy, timing], index) => <Reveal className={`roadmap-stage roadmap-stage--${index + 1}`} delay={0.07 + index * 0.045} key={phase}><span>{number}</span><small>{phase}</small><strong>{title}</strong><p>{copy}</p><b className={`roadmap-stage__timing${timing ? "" : " roadmap-stage__timing--empty"}`}>{timing || "FUTURO"}</b></Reveal>)}</div>
+            <div className="ecosystem-roadmap"><div className="ecosystem-roadmap__track" />{[["01", "CASA", "CASS PLATFORM", "CONTA · PERFIL · REWARDS · DADOS", "~45 DIAS"], ["02", "PARTICIPAÇÃO", "PASSA A CALL", "CALLS · EVENT ENGINE · WALLET · SETTLEMENT", "~90 DIAS"], ["03", "24/7", "CASS PLAY", "JOGOS · CASSCOIN · RANKINGS · EVENTOS", "~150 DIAS"], ["04", "ESCALA", "ECOSSISTEMA", "MOBILE · CRM · PARCEIROS · AUTOMAÇÃO", ""], ["05", "EXPANSÃO", "NOVOS NEGÓCIOS", "EXCLUSIVO · MULTI-CREATOR · WHITE-LABEL · BET PARTNERSHIP", ""]].map(([number, phase, title, copy, timing], index) => <Reveal className={`roadmap-stage roadmap-stage--${index + 1}`} delay={0.07 + index * 0.045} key={phase}><span>{number}</span><small>{phase}</small><strong>{title}</strong><p>{copy}</p><b className={`roadmap-stage__timing${timing ? "" : " roadmap-stage__timing--empty"}`}>{timing || "FUTURO"}</b></Reveal>)}</div>
           </div>
         </section>
 
